@@ -19,8 +19,8 @@ namespace QLDienThoai
         {
         }
 
-        public string SoTaiKhoan { get => soTaiKhoan; set => soTaiKhoan = value; }
-        public string NganHang { get => nganHang; set => nganHang = value; }
+        public string SoTaiKhoan { get => soTaiKhoan; set { if (value != null && value != "") { soTaiKhoan = value; } } }
+        public string NganHang { get => nganHang; set { if (value != null && value != "") { nganHang = value; } } }
 
         public override string ToString()
         {

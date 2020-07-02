@@ -4,18 +4,19 @@ using System.Text;
 
 namespace QLDienThoai
 {
-    class HoaDon
+    class HoaDon : KhachHang
     {
-        private KhachHang khachHang = new KhachHang();
         private SanPham[] sanPhams = new SanPham[0];
         private string maHoaDon = "Unknow";
         private DateTime ngayMua = new DateTime();
 
-        public HoaDon(string maHoaDon, DateTime ngayMua, KhachHang khachHang, SanPham[] sanPhams)
+        public HoaDon(string maHoaDon,
+                      DateTime ngayMua,
+                      KhachHang khachHang,
+                      SanPham[] sanPhams) : base(khachHang.MaKhachHang, khachHang.ATM, khachHang.ThongTinChung, khachHang.ThongTinLienHe)
         {
             MaHoaDon = maHoaDon;
             NgayMua = ngayMua;
-            KhachHang = khachHang;
             SanPhams = sanPhams;
         }
 
@@ -23,10 +24,9 @@ namespace QLDienThoai
         {
         }
 
-        public string MaHoaDon { get => maHoaDon; set => maHoaDon = value; }
-        public DateTime NgayMua { get => ngayMua; set => ngayMua = value; }
-        internal KhachHang KhachHang { get => khachHang; set => khachHang = value; }
-        internal SanPham[] SanPhams { get => sanPhams; set => sanPhams = value; }
+        public string MaHoaDon { get => maHoaDon; set { if (value != null && value != "") { maHoaDon = value; } } }
+        public DateTime NgayMua { get => ngayMua; set { if (value != new DateTime() && value != null) { ngayMua = value; } } }
+        internal SanPham[] SanPhams { get => sanPhams; set { if (value != null ) { sanPhams = value; } } }
 
         public override string ToString()
         {

@@ -23,7 +23,7 @@ namespace QLDienThoai
             ThongTinLienHe = thongTinLienHe;
         }
 
-        public string MaKhachHang { get => maKhachHang; set => maKhachHang = value; }
+        public string MaKhachHang { get => maKhachHang; set { if (value != null && value != "") { maKhachHang = value; } } }
         internal ATM ATM { get => aTM; set => aTM = value; }
         internal ThongTinChung ThongTinChung { get => thongTinChung; set => thongTinChung = value; }
         internal ThongTinLienHe ThongTinLienHe { get => thongTinLienHe; set => thongTinLienHe = value; }

@@ -23,10 +23,10 @@ namespace QLDienThoai
         {
         }
 
-        public string SoNha { get => soNha; set => soNha = value; }
-        public string Duong { get => duong; set => duong = value; }
-        public string Quan { get => quan; set => quan = value; }
-        public string ThanhPho { get => thanhPho; set => thanhPho = value; }
+        public string SoNha { get => soNha; set { if (value != null && value != "") { soNha = value; } } }
+        public string Duong { get => duong; set { if (value != null && value != "") { duong = value; } } }
+        public string Quan { get => quan; set { if (value != null && value != "") { quan = value; } } }
+        public string ThanhPho { get => thanhPho; set { if (value != null && value != "") { thanhPho = value; } } }
 
         public override string ToString()
         {
