@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using QLDienThoai;
+using System.Collections;
 
 namespace QLDienThoai.UnitTests
 {
@@ -40,6 +41,16 @@ namespace QLDienThoai.UnitTests
             arr.Arr[0] = result[0];
             arr.Arr[1] = result[1];
             Assert.AreEqual(arr.Arr, result);
+        }
+        [Test]
+        public void Test5()
+        {
+            int[] result = { 1, 2 };
+            List<int> arr = new List<int>();
+            arr.Arr[0] = result[0];
+            arr.Arr[1] = result[1];
+            arr.Arr[2] = 2;
+            Assert.AreEqual(result,arr.Arr);
         }
     }
 }
