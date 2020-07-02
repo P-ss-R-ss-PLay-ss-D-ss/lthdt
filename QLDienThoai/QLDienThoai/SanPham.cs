@@ -22,11 +22,11 @@ namespace QLDienThoai
         }
 
 
-        public string MaDT { get => maDT; set => maDT = value; }
-        public int SoLuong { get => soLuong; set => soLuong = value; }
-        public double Gia { get => gia; set => gia = value; }
-        public string XuatXu { get => xuatXu; set => xuatXu = value; }
-       
+        public string MaDT { get => maDT; set { if (value != null && value != "") { maDT = value; } } }
+        public int SoLuong { get => soLuong; set { if (value > 0) { soLuong = value; } } }
+        public double Gia { get => gia; set { if (value >0) { gia = value; } } }
+        public string XuatXu { get => xuatXu; set { if (value != null && value != "") { xuatXu = value; } } }
+
         public override string ToString()
         {
             return base.ToString();

@@ -7,11 +7,11 @@ namespace QLDienThoai
     class ThongTinChung
     {
         private string hoTen = "Unknow";
-        private string ngaySinh = "Unknow";
+        private DateTime ngaySinh = new DateTime(1900,1,1);
         private DiaChi diaChi = new DiaChi();
         private string soCMND = "Unknow";
 
-        public ThongTinChung(string hoTen, string ngaySinh, string soCMND, DiaChi diaChi)
+        public ThongTinChung(string hoTen, DateTime ngaySinh, string soCMND, DiaChi diaChi)
         {
             HoTen = hoTen;
             NgaySinh = ngaySinh;
@@ -23,8 +23,8 @@ namespace QLDienThoai
         {
         }
 
-        public string HoTen { get => hoTen; set => hoTen = value; }
-        public string NgaySinh { get => ngaySinh; set => ngaySinh = value; }
+        public string HoTen { get => hoTen; set { if (value != null && value != "") { hoTen = value; } } }
+        public DateTime NgaySinh { get => ngaySinh; set { if (value != null && value != new DateTime()) { ngaySinh = value; } } }
         public string SoCMND { get => soCMND; set => soCMND = value; }
         internal DiaChi DiaChi { get => diaChi; set => diaChi = value; }
 

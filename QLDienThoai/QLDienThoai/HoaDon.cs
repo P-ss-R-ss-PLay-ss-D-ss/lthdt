@@ -8,7 +8,7 @@ namespace QLDienThoai
     {
         private SanPham[] sanPhams = new SanPham[0];
         private string maHoaDon = "Unknow";
-        private DateTime ngayMua = new DateTime();
+        private DateTime ngayMua = new DateTime(1900,1,1);
 
         public HoaDon(string maHoaDon,
                       DateTime ngayMua,

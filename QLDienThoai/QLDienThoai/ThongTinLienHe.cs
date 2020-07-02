@@ -7,13 +7,13 @@ namespace QLDienThoai
     class ThongTinLienHe
     {
         private string email = "Unknow";
-        private string SDT = "Unknow";
+        private string sDT = "Unknow";
         private DiaChi diaChi = new DiaChi();
 
-        public ThongTinLienHe(string email, string sDT1, DiaChi diaChi)
+        public ThongTinLienHe(string email, string sDT, DiaChi diaChi)
         {
             Email = email;
-            SDT1 = sDT1;
+            SDT = sDT;
             DiaChi = diaChi;
         }
 
@@ -21,9 +21,9 @@ namespace QLDienThoai
         {
         }
 
-        public string Email { get => email; set => email = value; }
-        public string SDT1 { get => SDT; set => SDT = value; }
-        internal DiaChi DiaChi { get => diaChi; set => diaChi = value; }
+        public string Email { get => email; set { if (value != null && value != "") { email = value; } } }
+        public string SDT { get => sDT; set { if (value != null && value != "") { SDT = value; } } }
+        internal DiaChi DiaChi { get => diaChi; set { if (value != null ) { diaChi = value; } } }
 
         public override string ToString()
         {
