@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "uRjnGU32OPPV+8qzE5h4/RXhmBNYsuw+n48S/7Yvuko9XYyq7q69ExbhFLWwCACX0ke8AAegtqnLC3z7YYFxPw==",
+  "dgSpecHash": "y++D7zGqt1/QC8rmIdVC/YPWPmflyy7LD9zTwYhJg1RL+JVBqvhdk69NHMwPX3mSn2cFwAW6hgMwPrKHrVpUmw==",
   "success": true,
   "projectFilePath": "D:\\git\\lthdt\\QLDienThoai\\QLDienThoai\\QLDienThoai.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512"
+  ],
   "logs": []
 }

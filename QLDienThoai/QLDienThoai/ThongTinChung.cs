@@ -8,7 +8,7 @@ namespace QLDienThoai
     {
         private string hoTen = "Unknow";
         private DateTime ngaySinh = new DateTime(1900,1,1);
-        private DiaChi diaChi = new DiaChi();
+        private DiaChi diaChi = new DiaChi("","","","");
         private string soCMND = "Unknow";
 
         public ThongTinChung(string hoTen, DateTime ngaySinh, string soCMND, DiaChi diaChi)
@@ -19,8 +19,11 @@ namespace QLDienThoai
             DiaChi = diaChi;
         }
 
-        public ThongTinChung()
+        public ThongTinChung(string hoTen, string soCMND, DiaChi diaChi)
         {
+            HoTen = hoTen;
+            SoCMND = soCMND;
+            DiaChi = diaChi;
         }
 
         public string HoTen { get => hoTen; set { if (value != null && value != "") { hoTen = value; } } }

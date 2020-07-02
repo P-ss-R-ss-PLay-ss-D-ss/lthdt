@@ -8,17 +8,13 @@ namespace QLDienThoai
     {
         private string email = "Unknow";
         private string sDT = "Unknow";
-        private DiaChi diaChi = new DiaChi();
+        private DiaChi diaChi = new DiaChi("","","","");
 
         public ThongTinLienHe(string email, string sDT, DiaChi diaChi)
         {
             Email = email;
             SDT = sDT;
             DiaChi = diaChi;
-        }
-
-        public ThongTinLienHe()
-        {
         }
 
         public string Email { get => email; set { if (value != null && value != "") { email = value; } } }

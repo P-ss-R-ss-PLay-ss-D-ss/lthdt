@@ -19,10 +19,6 @@ namespace QLDienThoai
             ThanhPho = thanhPho;
         }
 
-        public DiaChi()
-        {
-        }
-
         public string SoNha { get => soNha; set { if (value != null && value != "") { soNha = value; } } }
         public string Duong { get => duong; set { if (value != null && value != "") { duong = value; } } }
         public string Quan { get => quan; set { if (value != null && value != "") { quan = value; } } }
