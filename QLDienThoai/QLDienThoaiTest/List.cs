@@ -52,6 +52,7 @@ namespace QLDienThoai
         public List(int capacity)
         {
             Array.Resize(ref this.arr, capacity);
+        }
         public List(t[] arr)
         {
             this.arr = arr;

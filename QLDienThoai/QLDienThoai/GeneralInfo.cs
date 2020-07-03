@@ -70,7 +70,11 @@ namespace QLDienThoai
         {
             return base.ToString();
         }
-
+        /// <summary>
+        /// in thông tin chung của khách hang
+        /// ngày : 2/7/2020
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return base.ToString();
