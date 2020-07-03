@@ -13,9 +13,9 @@ namespace QLDienThoai
     class Bill : Customer
     {
         //fields
-        private List<Product> sanPhams = new List<Product>();
-        private string maHoaDon = "Unknow";
-        private DateTime ngayMua = new DateTime(1900,1,1);
+        private List<Product> products = new List<Product>();
+        private string codeBill = "Unknow";
+        private DateTime dateOfPurchase = new DateTime(1900,1,1);
         /// <summary>
         /// constructor đầy đủ tham số
         /// ngày : 2/7/2020
@@ -24,20 +24,20 @@ namespace QLDienThoai
         /// <param name="ngayMua"></param>
         /// <param name="khachHang"></param>
         /// <param name="sanPhams"></param>
-        public Bill(string maHoaDon, DateTime ngayMua, Customer khachHang, List<Product> sanPhams) : base(khachHang.MaKhachHang, khachHang.ThongTinChung, khachHang.ThongTinLienHe)
+        public Bill(string maHoaDon, DateTime ngayMua, Customer khachHang, List<Product> sanPhams) : base(khachHang.CodeCustomer, khachHang.GeneralInfo, khachHang.ContactInfo)
         {
-            MaHoaDon = maHoaDon;
-            NgayMua = ngayMua;
-            SanPhams = sanPhams;
+            CodeBill = maHoaDon;
+            DateOfPurchase = ngayMua;
+            Products = sanPhams;
         }
 
         public Bill()
         {
         }
         //properties
-        public string MaHoaDon { get => maHoaDon; set { if (value != null && value != "") { maHoaDon = value; } } }
-        public DateTime NgayMua { get => ngayMua; set { if (value != new DateTime() && value != null) { ngayMua = value; } } }
-        internal List<Product> SanPhams { get => sanPhams; set => sanPhams = value; }
+        public string CodeBill { get => codeBill; set { if (value != null && value != "") { codeBill = value; } } }
+        public DateTime DateOfPurchase { get => dateOfPurchase; set { if (value != new DateTime() && value != null) { dateOfPurchase = value; } } }
+        internal List<Product> Products { get => products; set => products = value; }
         /// <summary>
         /// in hoá đơn
         /// ngày : 2/7/2020
@@ -45,7 +45,7 @@ namespace QLDienThoai
         /// <returns></returns>
         public override string ToString()
         {
-            return base.ToString();
+            return $"ho ten: {base.GeneralInfo.Name},";
         }
     }
 }

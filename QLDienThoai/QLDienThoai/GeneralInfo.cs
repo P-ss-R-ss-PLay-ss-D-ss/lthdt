@@ -13,8 +13,8 @@ namespace QLDienThoai
     class GeneralInfo : Address
     {
         //fields
-        private string hoTen = "Unknow";
-        private DateTime ngaySinh = new DateTime(1900, 1, 1);
+        private string name = "Unknow";
+        private DateTime birdDay = new DateTime(1900, 1, 1);
         private string soCMND = "Unknow";
         /// <summary>
         /// constructor đầy đủ tham số
@@ -26,8 +26,8 @@ namespace QLDienThoai
         /// <param name="diaChi"></param>
         public GeneralInfo(string hoTen, DateTime ngaySinh, string soCMND, Address diaChi) : base(diaChi.ApartmentNum, diaChi.Street, diaChi.District, diaChi.City)
         {
-            HoTen = hoTen;
-            NgaySinh = ngaySinh;
+            Name = hoTen;
+            BirdDay = ngaySinh;
             SoCMND = soCMND;
         }
         /// <summary>
@@ -39,7 +39,7 @@ namespace QLDienThoai
         /// <param name="diaChi"></param>
         public GeneralInfo(string hoTen, string soCMND, Address diaChi) : base(diaChi.ApartmentNum, diaChi.Street, diaChi.District, diaChi.City)
         {
-            HoTen = hoTen;
+            Name = hoTen;
             SoCMND = soCMND;
         }
         /// <summary>
@@ -54,12 +54,12 @@ namespace QLDienThoai
         /// <param name="city"></param>
         public GeneralInfo(string hoTen, string soCMND, string apartmentNum, string street, string district, string city) : base(apartmentNum, street, district, city)
         {
-            HoTen = hoTen;
+            Name = hoTen;
             SoCMND = soCMND;
         }
         //properties
-        public string HoTen { get => hoTen; set { if (value != null && value != "") { hoTen = value; } } }
-        public DateTime NgaySinh { get => ngaySinh; set { if (value != null && value != new DateTime()) { ngaySinh = value; } } }
+        public string Name { get => name; set { if (value != null && value != "") { name = value; } } }
+        public DateTime BirdDay { get => birdDay; set { if (value != null && value != new DateTime()) { birdDay = value; } } }
         public string SoCMND { get => soCMND; set => soCMND = value; }
         /// <summary>
         /// in địa chỉ
