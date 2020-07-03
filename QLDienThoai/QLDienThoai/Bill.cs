@@ -24,10 +24,7 @@ namespace QLDienThoai
         /// <param name="ngayMua"></param>
         /// <param name="khachHang"></param>
         /// <param name="sanPhams"></param>
-        public Bill(string maHoaDon,
-                      DateTime ngayMua,
-                      Customer khachHang,
-                      List<Product> sanPhams) : base(khachHang.MaKhachHang, khachHang.ATM, khachHang.ThongTinChung, khachHang.ThongTinLienHe)
+        public Bill(string maHoaDon, DateTime ngayMua, Customer khachHang, List<Product> sanPhams) : base(khachHang.MaKhachHang, khachHang.ThongTinChung, khachHang.ThongTinLienHe)
         {
             MaHoaDon = maHoaDon;
             NgayMua = ngayMua;

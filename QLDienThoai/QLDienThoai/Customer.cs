@@ -13,7 +13,6 @@ namespace QLDienThoai
     class Customer
     {
         //fields
-        private ATM aTM = new ATM("", "");
         private GeneralInfo thongTinChung = new GeneralInfo("", "", new Address("", "", "", ""));
         private ContactInfo thongTinLienHe = new ContactInfo("", "", new Address("", "", "", ""));
         private string maKhachHang = "Unknow";
@@ -27,19 +26,16 @@ namespace QLDienThoai
         /// constructor đầy đủ tham số
         /// </summary>
         /// <param name="maKhachHang"></param>
-        /// <param name="aTM"></param>
         /// <param name="thongTinChung"></param>
         /// <param name="thongTinLienHe"></param>
-        public Customer(string maKhachHang, ATM aTM, GeneralInfo thongTinChung, ContactInfo thongTinLienHe)
+        public Customer(string maKhachHang, GeneralInfo thongTinChung, ContactInfo thongTinLienHe)
         {
             MaKhachHang = maKhachHang;
-            ATM = aTM;
             ThongTinChung = thongTinChung;
             ThongTinLienHe = thongTinLienHe;
         }
         //properties
         public string MaKhachHang { get => maKhachHang; set { if (value != null && value != "") { maKhachHang = value; } } }
-        internal ATM ATM { get => aTM; set { if (value != null) { aTM = value; } } }
         internal GeneralInfo ThongTinChung { get => thongTinChung; set { if (value != null) { thongTinChung = value; } } }
         internal ContactInfo ThongTinLienHe { get => thongTinLienHe; set { if (value != null) { thongTinLienHe = value; } } }
         /// <summary>
