@@ -5,10 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLDienThoai", "QLDienThoai\QLDienThoai.csproj", "{8DA1FB44-8210-4637-9C28-866302CDD430}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLDienThoaiTest", "QLDienThoaiTest\QLDienThoaiTest.csproj", "{D2BC27BF-3DFA-417D-9FCB-B5A280FD7176}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8DA1FB44-8210-4637-9C28-866302CDD430} = {8DA1FB44-8210-4637-9C28-866302CDD430}
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dttest", "dttest\dttest.csproj", "{F71C60DC-F7AC-498F-BCEA-744DECBAFA10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,10 +17,10 @@ Global
 		{8DA1FB44-8210-4637-9C28-866302CDD430}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DA1FB44-8210-4637-9C28-866302CDD430}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DA1FB44-8210-4637-9C28-866302CDD430}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2BC27BF-3DFA-417D-9FCB-B5A280FD7176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2BC27BF-3DFA-417D-9FCB-B5A280FD7176}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2BC27BF-3DFA-417D-9FCB-B5A280FD7176}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2BC27BF-3DFA-417D-9FCB-B5A280FD7176}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F71C60DC-F7AC-498F-BCEA-744DECBAFA10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F71C60DC-F7AC-498F-BCEA-744DECBAFA10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F71C60DC-F7AC-498F-BCEA-744DECBAFA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F71C60DC-F7AC-498F-BCEA-744DECBAFA10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

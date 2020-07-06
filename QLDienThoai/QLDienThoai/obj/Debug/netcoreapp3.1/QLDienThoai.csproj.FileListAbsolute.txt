@@ -8,8 +8,6 @@ D:\git\lthdt\QLDienThoai\QLDienThoai\bin\Debug\netcoreapp3.1\QLDienThoai.runtime
 D:\git\lthdt\QLDienThoai\QLDienThoai\bin\Debug\netcoreapp3.1\QLDienThoai.runtimeconfig.dev.json
 D:\git\lthdt\QLDienThoai\QLDienThoai\bin\Debug\netcoreapp3.1\QLDienThoai.dll
 D:\git\lthdt\QLDienThoai\QLDienThoai\bin\Debug\netcoreapp3.1\QLDienThoai.pdb
-D:\git\lthdt\QLDienThoai\QLDienThoai\bin\Debug\netcoreapp3.1\nunit.framework.dll
-D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\netcoreapp3.1\QLDienThoai.csproj.CopyComplete
 D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\netcoreapp3.1\QLDienThoai.dll
 D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\netcoreapp3.1\QLDienThoai.pdb
 D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\netcoreapp3.1\QLDienThoai.genruntimeconfig.cache
