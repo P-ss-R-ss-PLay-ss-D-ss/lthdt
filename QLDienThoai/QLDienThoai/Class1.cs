@@ -10,15 +10,20 @@ namespace QLDienThoai
         static void Main(string[] args)
         {
             string file = @"D:\git\lthdt\QLDienThoai\QLDienThoai\Customer.txt";
+            Console.WriteLine(docFile(file));
         }
+
+        #region xử lý file
         static String docFile(string file)
         {
             StreamReader sr = new StreamReader(file);
 
-            return sr.ReadLine();
+            string s = sr.ReadLine();
+
+            return s;
         }
 
-        public void ghiFileDiaChi(string file,string data)
+        static void ghiFileDiaChi(string file, string data)
         {
             FileStream f = new FileStream(file, FileMode.Open);
             StreamWriter sr = new StreamWriter(f, Encoding.UTF8);
@@ -28,5 +33,6 @@ namespace QLDienThoai
             sr.Close();
             f.Close();
         }
+        #endregion
     }
 }

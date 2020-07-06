@@ -10,21 +10,24 @@ using System.Text;
 
 namespace QLDienThoai
 {
-    class ContactInfo : Address
+    class ContactInfo
     {
         //fields
         private string email = "Unknow";
         private string sDT = "Unknow";
+        private Address diaChi = new Address("", "", "", "");
+        //constructer
         /// <summary>
         /// constructor đầy đủ tham số
         /// </summary>
         /// <param name="email"></param>
         /// <param name="sDT"></param>
         /// <param name="diaChi"></param>
-        public ContactInfo(string email, string sDT, Address diaChi) : base(diaChi.ApartmentNum, diaChi.Street, diaChi.District, diaChi.City)
+        public ContactInfo(string email, string sDT, Address diaChi)
         {
             Email = email;
             SDT = sDT;
+            DiaChi = diaChi;
         }
         /// <summary>
         /// cóntructor đầy đủ tham số
@@ -35,14 +38,26 @@ namespace QLDienThoai
         /// <param name="street"></param>
         /// <param name="district"></param>
         /// <param name="city"></param>
-        public ContactInfo(string email, string sDT, string apartmentNum, string street, string district, string city) : base(apartmentNum, street, district, city)
+        public ContactInfo(string email, string sDT, string apartmentNum, string street, string district, string city)
         {
             Email = email;
             SDT = sDT;
+            DiaChi.ApartmentNum = apartmentNum;
+            DiaChi.Street = street;
+            DiaChi.District = district;
+            DiaChi.City = city;
         }
         //properties
         public string Email { get => email; set { if (value != null && value != "") { email = value; } } }
         public string SDT { get => sDT; set { if (value != null && value != "") { SDT = value; } } }
+        internal Address DiaChi { get => diaChi; set => diaChi = value; }
+        //method
+
+        public string nhapFileThongTinLienLac()
+        {
+            return $"{Email}.{SDT}.{DiaChi.nhapFileDiaChi()}";
+        }
+
         /// <summary>
         /// in địa chỉ
         /// Ngày : 2/7/2020

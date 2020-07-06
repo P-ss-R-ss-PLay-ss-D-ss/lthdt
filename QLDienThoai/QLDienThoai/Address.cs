@@ -38,41 +38,15 @@ namespace QLDienThoai
         public string Street { get => street; set { if (value != null && value != "") { street = value; } } }
         public string District { get => district; set { if (value != null && value != "") { district = value; } } }
         public string City { get => city; set { if (value != null && value != "") { city = value; } } }
-
-        //public
-        public static Address docFileDiaChi(string diachi)
+        /// <summary>
+        /// form ghi vao file
+        /// ngay : 6/7/2020
+        /// </summary>
+        /// <returns></returns>
+        public string nhapFileDiaChi()
         {
-            Address dc = new Address("", "", "", "");
-
-            string[] dcs = new string[4];
-
-            dcs = diachi.Split('-');
-
-            dc.ApartmentNum = dcs[0];
-            dc.Street = dcs[1];
-            dc.District = dcs[2];
-            dc.City = dcs[3];
-
-            return dc;
+            return $"{ApartmentNum},{Street},{District},{City}";
         }
-
-        public string xuatFileDiaChi()
-        {
-            return $"{ApartmentNum}-{Street}-{District}-{City}";
-        }
-
-        public void ghiFileDiaChi(string file)
-        {
-            FileStream f = new FileStream(file, FileMode.Open);
-            StreamWriter sr = new StreamWriter(f, Encoding.UTF8);
-            Address a = new Address(this.ApartmentNum, this.Street, District, City);
-
-            sr.Write(a.xuatFileDiaChi());
-
-            sr.Close();
-            f.Close();
-        }
-
         /// <summary>
         /// in địa chỉ
         /// Ngày : 2/7/2020

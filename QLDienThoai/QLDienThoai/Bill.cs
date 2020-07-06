@@ -38,6 +38,23 @@ namespace QLDienThoai
         public string CodeBill { get => codeBill; set { if (value != null && value != "") { codeBill = value; } } }
         public DateTime DateOfPurchase { get => dateOfPurchase; set { if (value != new DateTime() && value != null) { dateOfPurchase = value; } } }
         internal List<Product> Products { get => products; set => products = value; }
+
+        public string nhapFileHoaDon()
+        {
+            string s = "";
+
+            s += $"{codeBill}-{DateOfPurchase.ToString("dd/MM/yyyy")}";
+
+            for (int i = 0; i < Products.Count; i++)
+            {
+                s += $"-{Products[i].xuatFileSanPham()}";
+            }
+
+            s+=$"-{base.}"
+
+            return s;
+        }
+
         /// <summary>
         /// in hoá đơn
         /// ngày : 2/7/2020

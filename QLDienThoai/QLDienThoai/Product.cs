@@ -46,6 +46,12 @@ namespace QLDienThoai
         public double Price { get => price; set { if (value >0) { price = value; } } }
         public string MakeIn { get => makeIn; set { if (value != null && value != "") { makeIn = value; } } }
         public string NameProduct { get => nameProduct; set => nameProduct = value; }
+
+        public string xuatFileSanPham()
+        {
+            return $"{CodeProduct},{NameProduct},{Amount},{Price},{MakeIn}";
+        }
+
         /// <summary>
         /// in thông tin sản phầm
         /// ngày : 2/7/2020
