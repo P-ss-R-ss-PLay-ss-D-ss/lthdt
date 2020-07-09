@@ -41,13 +41,81 @@ namespace QLDienThoai
             NameProduct = temSP;
         }
         //properties
-        public string CodeProduct { get => codeProduct; set { if (value != null && value != "") { codeProduct = value; } } }
-        public int Amount { get => amount; set { if (value > 0) { amount = value; } } }
-        public double Price { get => price; set { if (value >0) { price = value; } } }
-        public string MakeIn { get => makeIn; set { if (value != null && value != "") { makeIn = value; } } }
-        public string NameProduct { get => nameProduct; set => nameProduct = value; }
+        public string CodeProduct
+        {
+            get
+            {
+                return codeProduct;
+            }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    codeProduct = value;
+                }
+            }
+        }
+        public int Amount
+        {
+            get
+            {
+                return amount;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    amount = value;
+                }
+            }
+        }
+        public double Price
+        {
+            get
+            {
+                return price;
+            }
+            set
+            {
+                if (value > 0) { price = value; }
 
-        public string xuatFileSanPham()
+            }
+        }
+        public string MakeIn
+        {
+            get
+            {
+                return makeIn;
+            }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    makeIn = value;
+                }
+            }
+        }
+        public string NameProduct
+        {
+            get
+            {
+                return nameProduct;
+            }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    value = nameProduct;
+                }
+            }
+        }
+
+        /// <summary>
+        /// form ghi vao file
+        /// ngay : 9/7/2020
+        /// </summary>
+        /// <returns></returns>
+        public string nhapFileSanPham()
         {
             return $"{CodeProduct},{NameProduct},{Amount},{Price},{MakeIn}";
         }
@@ -61,5 +129,6 @@ namespace QLDienThoai
         {
             return base.ToString();
         }
+        ~Product() { }
     }
 }

@@ -34,10 +34,62 @@ namespace QLDienThoai
             City = city;
         }
         //properties
-        public string ApartmentNum { get => apartmentNum; set { if (value != null && value != "") { apartmentNum = value; } } }
-        public string Street { get => street; set { if (value != null && value != "") { street = value; } } }
-        public string District { get => district; set { if (value != null && value != "") { district = value; } } }
-        public string City { get => city; set { if (value != null && value != "") { city = value; } } }
+        public string ApartmentNum
+        {
+            get
+            {
+                return apartmentNum;
+            }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    apartmentNum = value;
+                }
+            }
+        }
+        public string Street
+        {
+            get
+            {
+                return street;
+            }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    street = value;
+                }
+            }
+        }
+        public string District
+        {
+            get
+            {
+                return district;
+            }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    district = value;
+                }
+            }
+        }
+        public string City
+        {
+            get
+            {
+                return city;
+            }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    city = value;
+                }
+            }
+        }
         /// <summary>
         /// form ghi vao file
         /// ngay : 6/7/2020
@@ -56,5 +108,6 @@ namespace QLDienThoai
         {
             return $"-  so {ApartmentNum}, duong {Street}, quan {District}, thanh pho {City}.";
         }
+
     }
 }

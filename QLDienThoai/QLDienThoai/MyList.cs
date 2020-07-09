@@ -12,7 +12,7 @@ using System.Text;
 
 namespace QLDienThoai
 {
-    class List
+    class MyList
     {
         //fields
         private int size = 0;
@@ -164,17 +164,6 @@ namespace QLDienThoai
         }
 
         /// <summary>
-        /// lấy thông tin tại vị trí thứ index
-        /// ngày : 2/7/2020
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public object GetIndex(int index)
-        {
-            return this.arr[index];
-        }
-
-        /// <summary>
         /// sữa thông tin tại vị trí thứ index
         /// ngày : 2/7/2020
         /// </summary>
@@ -291,7 +280,7 @@ namespace QLDienThoai
         /// constructor mặc định
         /// ngày : 2/7/2020
         /// </summary>
-        public List()
+        public MyList()
         {
 
         }
@@ -301,7 +290,7 @@ namespace QLDienThoai
         /// ngày : 2/7/2020
         /// </summary>
         /// <param name="arr"></param>
-        public List(int capacity)
+        public MyList(int capacity)
         {
             arr = new object[capacity];
             Capacity = capacity;
