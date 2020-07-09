@@ -89,11 +89,16 @@ namespace QLDienThoai
         {
             string s = "";
 
-            s += $"{codeBill}-{DateOfPurchase.ToString("dd/MM/yyyy")}";
+            s += $"{codeBill}-{DateOfPurchase.ToString("dd/MM/yyyy")}-";
 
             for (int i = 0; i < Products.Count; i++)
             {
-                s += $"-{Products[i].nhapFileSanPham()}";
+                if (i == products.Count - 1)
+                {
+                    s += $"{Products[i].nhapFileSanPham()}";
+                    break;
+                }
+                s += $"{Products[i].nhapFileSanPham()}*";
             }
 
             s += $"-{base.nhapFileKhachHang()}";

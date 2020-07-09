@@ -9,4 +9,8 @@
     <Compile Remove="MyList.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="bin\Debug\Bill.txt" />
+  </ItemGroup>
+
 </Project>
