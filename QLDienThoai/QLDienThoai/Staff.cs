@@ -31,6 +31,12 @@ namespace QLDienThoai
             return new Staff(s[0], ttc);
         }
 
+        public static Staff xuatFileNhanVienBangMaSP(string code)
+        {
+            string fileNV = @"..\Staff.txt";
+            return Staff.xuatFileNhanVien(IOFile.docFileBangMa(code,fileNV));
+        }
+
         public override string ToString()
         {
             return base.ToString();

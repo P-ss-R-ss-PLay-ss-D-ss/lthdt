@@ -11,76 +11,81 @@ namespace QLDienThoai
     {
         static void Main(string[] args)
         {
-            string fileHoaDon = @"..\Bill.txt";
-            string fileSanPham = @"..\Product.txt";
-            string fileKhachHang = @"..\Customer.txt";
-            string fileNhanVien = @"..\Staff.txt";
-            Product p1 = new Product(createCodeProduct(fileSanPham), 1, 123, "my", "dt1");
-            Product p2 = new Product(createCodeProduct(fileSanPham), 1, 123, "my", "dt2");
-            Product p3 = new Product(createCodeProduct(fileSanPham), 1, 123, "my", "dt3");
-            Product p4 = new Product(createCodeProduct(fileSanPham), 1, 123, "my", "dt4");
-            LinkedList<Product> l = new LinkedList<Product>();
-            l.Append(p1);
-            l.Append(p2);
-            l.Append(p3);
-            l.Append(p4);
-            Bill bill = new Bill(
-                createCodeBill(fileHoaDon),
-                new DateTime(2001, 10, 30),
-                new Customer
-                (
-                    createCodeCustomer(fileKhachHang),
-                    new GeneralInfo
-                    (
-                        "nguyentien",
-                        "342090200",
-                        new Address
-                        (
-                            "025",
-                            "thien ho duong",
-                            "thu duc",
-                            "tphcm"
-                        )
-                     )
-                    ),
-                l,
-                new Staff
-                (
-                    createCodeStaff(fileNhanVien),
-                    new GeneralInfo
-                    (
-                        "nguyentien",
-                        "342090200",
-                        new Address
-                        (
-                            "025",
-                            "thien ho duong",
-                            "thu duc",
-                            "tphcm"
-                        )
-                     )
-                ));
-            Console.WriteLine(bill);
-            //ghiFileDiaChi(file, bill.nhapFileHoaDon());
+            string fileBill = @"..\Bill.txt";
+            string fileProduct = @"..\Product.txt";
+            string fileCustomer = @"..\Customer.txt";
+            string fileStaff = @"..\Staff.txt";
+            Product p = new Product(createCodeProduct(fileProduct), 1, 123, "my", "dt1");
+            #region comment
+            // #region create bill
+            // Bill bill = new Bill(
+            //    createCodeBill(fileBill),
+            //    new DateTime(2001, 10, 30),
+            //    new Customer
+            //    (
+            //        createCodeCustomer(fileCustomer),
+            //        new GeneralInfo
+            //        (
+            //            "nguyentien",
+            //            "342090200",
+            //            new Address
+            //            (
+            //                "025",
+            //                "thien ho duong",
+            //                "thu duc",
+            //                "tphcm"
+            //            )
+            //         )
+            //        ),
+            //    l,
+            //    new Staff
+            //    (
+            //        createCodeStaff(fileStaff),
+            //        new GeneralInfo
+            //        (
+            //            "nguyentien",
+            //            "342090200",
+            //            new Address
+            //            (
+            //                "025",
+            //                "thien ho duong",
+            //                "thu duc",
+            //                "tphcm"
+            //            )
+            //         )
+            //    )
+            //);
+            // #endregion
+            //Console.WriteLine(IOFile.Add(createCodeProduct(fileCodeProduct), p.nhapFileSanPham(), fileCodeProduct, fileProduct));
+            //Console.WriteLine(bill);
+            //IOFile.ghiFile(fileProduct, p3.nhapFileSanPham());
             //Console.WriteLine(Bill.xuatFileHoaDon(docFile(fileHoaDon)[0]));
+            //Console.WriteLine(IOFile.Delete("SP001", fileCodeProduct, fileProduct));
+            //string s = "";
+            //while (!checkExit(s))
+            //{
+            //    s = Console.ReadLine();
+            //}
+            #endregion
+            Console.WriteLine(IOFile.Clear(fileBill));
         }
 
         #region create code
         static string createCodeBill(string file)
         {
-            return $"HD{chechSoMa(file):000}";
+            return $"HD{chechSoMa(file) + 1:000}";
         }
         static string createCodeCustomer(string file)
         {
-            return $"KH{chechSoMa(file):000}";
+            return $"KH{chechSoMa(file) + 1:000}";
         }
         static string createCodeProduct(string file)
         {
-            return $"SP{chechSoMa(file):000}";
+            return $"SP{chechSoMa(file) + 1:000}";
         }
         static string createCodeStaff(string file)
         {
-            return $"NV{chechSoMa(file):000}";
+            return $"NV{chechSoMa(file) + 1:000}";
         }
         static int chechSoMa(string file)
         {
@@ -90,49 +95,71 @@ namespace QLDienThoai
             {
                 a++;
             }
+            sr.Close();
             return a;
         }
         #endregion
 
-        #region xử lý file
-        static String[] docFile(string file)
+        #region nhap thong tin
+        static Bill addBill()
         {
-            StreamReader sr = new StreamReader(file);
 
-            string[] s = new string[0];
-            string s1;
-            while ((s1 = sr.ReadLine()) != null)
+        }
+        static Address addProduct()
+        {
+
+        }
+
+        static Address addCustomer()
+        {
+
+        }
+        static Address addGeneralInfo()
+        {
+
+        }
+        static Address addStaff()
+        {
+
+        }
+        static Address addAddress()
+        {
+            string soNha;
+            string duong;
+            string quan;
+            string thanhPho;
+
+            Console.Write("-  Nhap so nha: ");
+            soNha = Read();
+
+            Console.Write("-  Nhap duong: ");
+            duong = Read();
+
+            Console.Write("-  Nhap quan: ");
+            quan = Read();
+
+            Console.Write("-  Nhap thanh pho: ");
+            thanhPho = Read();
+
+            return new Address(soNha, duong, quan, thanhPho);
+        }
+        #endregion
+
+        static string Read()
+        {
+            string s = Console.ReadLine();
+
+            if (s.Equals("exit"))
             {
-                Array.Resize(ref s, s.Length + 1);
-                s[s.Length - 1] = s1;
+                Environment.Exit(0);
             }
 
-            sr.Close();
+            if (s.Equals("clear"))
+            {
+                Console.Clear();
+            }
+
             return s;
         }
-
-        static void ghiFileDiaChi(string file, string[] data)
-        {
-            StreamWriter sr = new StreamWriter(file);
-
-            sr.Write(data);
-
-            sr.Close();
-        }
-        #endregion
-
-        #region them, xoa, sua ,tim kiem
-        static bool Delete(string file,string Code)
-        {
-            string[] s = docFile(file);
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (Bill.xuatFileHoaDon(s[i]).CodeBill == Code)
-                {
-
-                }
-            }
-        }
-        #endregion
     }
 }

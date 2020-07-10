@@ -98,15 +98,15 @@ namespace QLDienThoai
             {
                 if (i == products.Count - 1)
                 {
-                    sb.Append($"{Products.ElementAt(i).nhapFileSanPham()}");
+                    sb.Append($"{Products.ElementAt(i).CodeProduct}");
                     break;
                 }
-                sb.Append($"{Products.ElementAt(i).nhapFileSanPham()}*");
+                sb.Append($"{Products.ElementAt(i).CodeProduct}*");
             }
 
-            sb.Append($"-{base.nhapFileKhachHang()}");
+            sb.Append($"-{base.CodeCustomer}");
 
-            sb.Append("-" + Staff.nhapFileNhanVien());
+            sb.Append("-" + Staff.CodeStraff);
 
             return sb.ToString();
         }
@@ -118,12 +118,18 @@ namespace QLDienThoai
             string[] product = bills[2].Split('*');
             for (int i = 0; i < product.Length/5; i++)
             {
-                l.Append(Product.nhapFileSanPham(product[i]));
+                l.Append(Product.xuatFileSanPhamBangMaSP(product[i]));
             }
 
-            Customer kh = Customer.xuatFileKhachHang(bills[3]);
-            Staff nv = Staff.xuatFileNhanVien(bills[4]);
+            Customer kh = Customer.xuatFileKhachHangBangMaKH(bills[3]);
+            Staff nv = Staff.xuatFileNhanVienBangMaSP(bills[4]);
             return new Bill(bills[0], Convert.ToDateTime(bills[1]), kh, l, nv);
+        }
+
+        public static Bill xuatFileHoaDonBangMaHoaDon(string code)
+        {
+            string fileBill = @"..\Bill.txt";
+            return Bill.xuatFileHoaDon(IOFile.docFileBangMa(code, fileBill));
         }
 
         /// <summary>

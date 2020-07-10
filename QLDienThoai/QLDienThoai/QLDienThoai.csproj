@@ -10,8 +10,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\CodeBill.txt" />
     <Content Include="bin\Debug\CodeCustomer.txt" />
     <Content Include="bin\Debug\CodeProduct.txt" />
+    <Content Include="bin\Debug\CodeStaff.txt" />
+    <Content Include="bin\Debug\Customer.txt" />
+    <Content Include="bin\Debug\Staff.txt" />
   </ItemGroup>
 
   <ItemGroup>

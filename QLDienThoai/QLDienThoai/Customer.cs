@@ -66,6 +66,12 @@ namespace QLDienThoai
             return new Customer(s[0], ttc);
         }
 
+        public static Customer xuatFileKhachHangBangMaKH(string code)
+        {
+            string fileKH = @"..\Customer.txt";
+            return Customer.xuatFileKhachHang(IOFile.docFileBangMa(code, fileKH));
+        }
+
         /// <summary>
         /// xuất thông tin khách hàng
         /// ngày : 2/7/2020
