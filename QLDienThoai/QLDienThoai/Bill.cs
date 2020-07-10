@@ -15,9 +15,10 @@ namespace QLDienThoai
     class Bill : Customer
     {
         //fields
-        private List<Product> products = new List<Product>();
+        private LinkedList<Product> products = new LinkedList<Product>();
         private string codeBill = "Unknow";
         private DateTime dateOfPurchase = new DateTime(1900, 1, 1);
+        private Staff staff = new Staff("");
         /// <summary>
         /// constructor đầy đủ tham số
         /// ngày : 2/7/2020
@@ -26,11 +27,12 @@ namespace QLDienThoai
         /// <param name="ngayMua"></param>
         /// <param name="khachHang"></param>
         /// <param name="sanPhams"></param>
-        public Bill(string maHoaDon, DateTime ngayMua, Customer khachHang, List<Product> sanPhams) : base(khachHang.CodeCustomer, khachHang.GeneralInfo)
+        public Bill(string maHoaDon, DateTime ngayMua, Customer khachHang, LinkedList<Product> sanPhams, Staff staff) : base(khachHang.CodeCustomer, new GeneralInfo(khachHang.Name, khachHang.SoCMND, khachHang.Address))
         {
             CodeBill = maHoaDon;
             DateOfPurchase = ngayMua;
             Products = sanPhams;
+            Staff = staff;
         }
 
         public Bill()
@@ -65,7 +67,7 @@ namespace QLDienThoai
                 }
             }
         }
-        internal List<Product> Products
+        internal LinkedList<Product> Products
         {
             get
             {
@@ -79,6 +81,7 @@ namespace QLDienThoai
                 }
             }
         }
+        internal Staff Staff { get { return staff; } set { if (value != null && value != new Staff("")) { staff = value; } } }
 
         /// <summary>
         /// form ghi vao file
@@ -87,23 +90,40 @@ namespace QLDienThoai
         /// <returns></returns>
         public string nhapFileHoaDon()
         {
-            string s = "";
+            StringBuilder sb = new StringBuilder();
 
-            s += $"{codeBill}-{DateOfPurchase.ToString("dd/MM/yyyy")}-";
+            sb.Append($"{codeBill}-{DateOfPurchase.ToString("yyyy/MM/dd")}-");
 
             for (int i = 0; i < Products.Count; i++)
             {
                 if (i == products.Count - 1)
                 {
-                    s += $"{Products[i].nhapFileSanPham()}";
+                    sb.Append($"{Products.ElementAt(i).nhapFileSanPham()}");
                     break;
                 }
-                s += $"{Products[i].nhapFileSanPham()}*";
+                sb.Append($"{Products.ElementAt(i).nhapFileSanPham()}*");
             }
 
-            s += $"-{base.nhapFileKhachHang()}";
+            sb.Append($"-{base.nhapFileKhachHang()}");
 
-            return s;
+            sb.Append("-" + Staff.nhapFileNhanVien());
+
+            return sb.ToString();
+        }
+
+        public static Bill xuatFileHoaDon(string bill)
+        {
+            string[] bills = bill.Split('-');
+            LinkedList<Product> l = new LinkedList<Product>();
+            string[] product = bills[2].Split('*');
+            for (int i = 0; i < product.Length/5; i++)
+            {
+                l.Append(Product.nhapFileSanPham(product[i]));
+            }
+
+            Customer kh = Customer.xuatFileKhachHang(bills[3]);
+            Staff nv = Staff.xuatFileNhanVien(bills[4]);
+            return new Bill(bills[0], Convert.ToDateTime(bills[1]), kh, l, nv);
         }
 
         /// <summary>
@@ -113,7 +133,7 @@ namespace QLDienThoai
         /// <returns></returns>
         public override string ToString()
         {
-            return $"ho ten: {base.GeneralInfo.Name},";
+            return $"true" /*{base.GeneralInfo.Name},*/;
         }
     }
 }

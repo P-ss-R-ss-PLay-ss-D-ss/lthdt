@@ -105,7 +105,7 @@ namespace QLDienThoai
             {
                 if (value != null && value != "")
                 {
-                    value = nameProduct;
+                    nameProduct = value;
                 }
             }
         }
@@ -118,6 +118,12 @@ namespace QLDienThoai
         public string nhapFileSanPham()
         {
             return $"{CodeProduct},{NameProduct},{Amount},{Price},{MakeIn}";
+        }
+
+        public static Product nhapFileSanPham(string product)
+        {
+            string[] s = product.Split(',');
+            return new Product(s[0], Convert.ToInt32(s[2]), Convert.ToDouble(s[3]), s[1], s[4]);
         }
 
         /// <summary>

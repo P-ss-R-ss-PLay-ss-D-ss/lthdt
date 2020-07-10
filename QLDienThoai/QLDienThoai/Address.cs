@@ -99,6 +99,13 @@ namespace QLDienThoai
         {
             return $"{ApartmentNum},{Street},{District},{City}";
         }
+
+        public static Address xuatFileDiaChi(string diaChi)
+        {
+            string[] s = diaChi.Split(',');
+            return new Address(s[0], s[1], s[2], s[3]);
+        }
+
         /// <summary>
         /// in địa chỉ
         /// Ngày : 2/7/2020

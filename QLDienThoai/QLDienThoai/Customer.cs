@@ -7,19 +7,19 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace QLDienThoai
 {
-    class Customer
+    class Customer : GeneralInfo
     {
         //fields
-        private GeneralInfo generalInfo = new GeneralInfo("", "", new Address("", "", "", ""));
         private string codeCustomer = "Unknow";
         /// <summary>
         /// constructor không tham số
         /// </summary>
-        public Customer()
+        public Customer() : base("", "", new Address("", "", "", ""))
         {
         }
         /// <summary>
@@ -28,43 +28,24 @@ namespace QLDienThoai
         /// <param name="maKhachHang"></param>
         /// <param name="thongTinChung"></param>
         /// <param name="thongTinLienHe"></param>
-        public Customer(string maKhachHang, GeneralInfo thongTinChung)
+        public Customer(string maKhachHang, GeneralInfo thongTinChung) : base(thongTinChung.Name, thongTinChung.SoCMND, thongTinChung.Address)
         {
             CodeCustomer = maKhachHang;
-            GeneralInfo = thongTinChung;
         }
-        public Customer(string tenKH)
+        public Customer(string tenKH) : base("", "", new Address("", "", "", ""))
         {
-            GeneralInfo.Name = tenKH;
             Random rd = new Random();
             CodeCustomer = "19211" + rd.Next(1000, 9999);
         }
         //properties
         public string CodeCustomer
         {
-            get
-            {
-                return codeCustomer;
-            }
+            get { return codeCustomer; }
             set
             {
                 if (value != null && value != "")
                 {
                     codeCustomer = value;
-                }
-            }
-        }
-        internal GeneralInfo GeneralInfo
-        {
-            get
-            {
-                return generalInfo;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    generalInfo = value;
                 }
             }
         }
@@ -75,7 +56,14 @@ namespace QLDienThoai
         /// <returns></returns>
         public string nhapFileKhachHang()
         {
-            return $"{CodeCustomer}+{GeneralInfo.nhapFileThongTinChung()}";
+            return $"{CodeCustomer}+{base.nhapFileThongTinChung()}";
+        }
+
+        public static Customer xuatFileKhachHang(string customer)
+        {
+            string[] s = customer.Split('+');
+            GeneralInfo ttc = GeneralInfo.xuatFileThongTinChung(s[1]);
+            return new Customer(s[0], ttc);
         }
 
         /// <summary>

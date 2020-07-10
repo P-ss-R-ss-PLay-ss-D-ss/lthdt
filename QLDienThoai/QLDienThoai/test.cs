@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace QLDienThoai
@@ -10,25 +11,88 @@ namespace QLDienThoai
     {
         static void Main(string[] args)
         {
-            string file = @"..\Bill.txt";
-            Product p1 = new Product("123", 1, 123, "my", "dt1");
-            Product p2 = new Product("1123", 1, 123, "my", "dt2");
-            Product p3 = new Product("1223", 1, 123, "my", "dt3");
-            Product p4 = new Product("1234", 1, 123, "my", "dt4");
-            List<Product> l = new List<Product>();
-            l.Add(p1);
-            l.Add(p2);
-            l.Add(p3);
-            l.Add(p4);
-            Bill bill = new Bill("123", new DateTime(2001, 10, 30), new Customer("1234", new GeneralInfo("nguyentien", "342090200", new Address("025", "thien ho duong", "thu duc", "tphcm"))), l);
-            ghiFileDiaChi(file, bill.nhapFileHoaDon());
-            //Console.WriteLine(docFile(file));
-            //foreach (var k in docFile(file))
-            //{
-            //    Console.WriteLine(k);
-            //}
-            docFileBill(docFile(file)[0]);
+            string fileHoaDon = @"..\Bill.txt";
+            string fileSanPham = @"..\Product.txt";
+            string fileKhachHang = @"..\Customer.txt";
+            string fileNhanVien = @"..\Staff.txt";
+            Product p1 = new Product(createCodeProduct(fileSanPham), 1, 123, "my", "dt1");
+            Product p2 = new Product(createCodeProduct(fileSanPham), 1, 123, "my", "dt2");
+            Product p3 = new Product(createCodeProduct(fileSanPham), 1, 123, "my", "dt3");
+            Product p4 = new Product(createCodeProduct(fileSanPham), 1, 123, "my", "dt4");
+            LinkedList<Product> l = new LinkedList<Product>();
+            l.Append(p1);
+            l.Append(p2);
+            l.Append(p3);
+            l.Append(p4);
+            Bill bill = new Bill(
+                createCodeBill(fileHoaDon),
+                new DateTime(2001, 10, 30),
+                new Customer
+                (
+                    createCodeCustomer(fileKhachHang),
+                    new GeneralInfo
+                    (
+                        "nguyentien",
+                        "342090200",
+                        new Address
+                        (
+                            "025",
+                            "thien ho duong",
+                            "thu duc",
+                            "tphcm"
+                        )
+                     )
+                    ),
+                l,
+                new Staff
+                (
+                    createCodeStaff(fileNhanVien),
+                    new GeneralInfo
+                    (
+                        "nguyentien",
+                        "342090200",
+                        new Address
+                        (
+                            "025",
+                            "thien ho duong",
+                            "thu duc",
+                            "tphcm"
+                        )
+                     )
+                ));
+            Console.WriteLine(bill);
+            //ghiFileDiaChi(file, bill.nhapFileHoaDon());
+            //Console.WriteLine(Bill.xuatFileHoaDon(docFile(fileHoaDon)[0]));
         }
+
+        #region create code
+        static string createCodeBill(string file)
+        {
+            return $"HD{chechSoMa(file):000}";
+        }
+        static string createCodeCustomer(string file)
+        {
+            return $"KH{chechSoMa(file):000}";
+        }
+        static string createCodeProduct(string file)
+        {
+            return $"SP{chechSoMa(file):000}";
+        }
+        static string createCodeStaff(string file)
+        {
+            return $"NV{chechSoMa(file):000}";
+        }
+        static int chechSoMa(string file)
+        {
+            StreamReader sr = new StreamReader(file);
+            int a = 0;
+            while (sr.ReadLine() != null)
+            {
+                a++;
+            }
+            return a;
+        }
+        #endregion
 
         #region xử lý file
         static String[] docFile(string file)
@@ -37,17 +101,17 @@ namespace QLDienThoai
 
             string[] s = new string[0];
             string s1;
-            while ((s1=sr.ReadLine()) != null)
+            while ((s1 = sr.ReadLine()) != null)
             {
                 Array.Resize(ref s, s.Length + 1);
-                s[s.Length-1] = s1;
+                s[s.Length - 1] = s1;
             }
 
             sr.Close();
             return s;
         }
 
-        static void ghiFileDiaChi(string file, string data)
+        static void ghiFileDiaChi(string file, string[] data)
         {
             StreamWriter sr = new StreamWriter(file);
 
@@ -55,54 +119,19 @@ namespace QLDienThoai
 
             sr.Close();
         }
+        #endregion
 
-        static string docFileBill(string data)
+        #region them, xoa, sua ,tim kiem
+        static bool Delete(string file,string Code)
         {
-            string[] bill = data.Split('-');
-            string[] customer = bill[3].Split('+');
-            string[] generalInfo = customer[1].Split('.');
-            string[] address = generalInfo[2].Split(',');
-            string[] products = bill[2].Split('*');
-            string[] product;
-            foreach (var k in bill)
+            string[] s = docFile(file);
+            for (int i = 0; i < s.Length; i++)
             {
-                Console.WriteLine(k);
-            }
-            Console.WriteLine();
-            foreach (var k in customer)
-            {
-                Console.WriteLine(k);
-            }
-            Console.WriteLine();
-            foreach (var k in generalInfo)
-            {
-                Console.WriteLine(k);
-            }
-            Console.WriteLine();
-            foreach (var k in address)
-            {
-                Console.WriteLine(k);
-            }
-            Console.WriteLine();
-            foreach (var k in products)
-            {
-                Console.WriteLine(k);
-            }
-            return "";
-        }
-        static string[] docFileProducts(string[] products)
-        {
-            string[] product = new string[0];
+                if (Bill.xuatFileHoaDon(s[i]).CodeBill == Code)
+                {
 
-            string[] temp;
-            for (int i = 0; i < products.Length; i++)
-            {
-                Array.Resize(ref product, product.Length + 4);
-                temp = products[i].Split(',');
-
+                }
             }
-
-            return product.Split(',');
         }
         #endregion
     }

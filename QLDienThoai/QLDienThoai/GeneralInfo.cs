@@ -123,7 +123,13 @@ namespace QLDienThoai
         /// <returns></returns>
         public String nhapFileThongTinChung()
         {
-            return $"{Name}.{BirdDay.ToString("dd/MM/yyyy")}.{Address.nhapFileDiaChi()}.{SoCMND}";
+            return $"{Name}.{BirdDay.ToString("yyyy/MM/dd")}.{Address.nhapFileDiaChi()}.{SoCMND}";
+        }
+        public static GeneralInfo xuatFileThongTinChung(string thongTinChung)
+        {
+            string[] s = thongTinChung.Split('.');
+            Address dc = Address.xuatFileDiaChi(s[2]);
+            return new GeneralInfo(s[0], Convert.ToDateTime(s[1]), s[3], dc);
         }
         /// <summary>
         /// in thông tin chung của khách hang
