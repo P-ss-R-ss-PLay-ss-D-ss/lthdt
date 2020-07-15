@@ -129,7 +129,12 @@ namespace QLDienThoai
         public static Product xuatFileSanPhamBangMaSP(string code)
         {
             string fileSP = @"..\Product.txt";
-            return Product.xuatFileSanPham(IOFile.docFileBangMa(code, fileSP));
+            string data;
+            if ((data = IOFile.docFileBangMa(code, fileSP))!=null)
+            {
+                return Product.xuatFileSanPham(data);
+            }
+            return null;
         }
 
         /// <summary>

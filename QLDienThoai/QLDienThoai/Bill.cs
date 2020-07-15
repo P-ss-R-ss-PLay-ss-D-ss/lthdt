@@ -18,7 +18,7 @@ namespace QLDienThoai
         private LinkedList<Product> products = new LinkedList<Product>();
         private string codeBill = "Unknow";
         private DateTime dateOfPurchase = new DateTime(1900, 1, 1);
-        private Staff staff = new Staff("");
+        private Staff staff = new Staff();
         /// <summary>
         /// constructor đầy đủ tham số
         /// ngày : 2/7/2020
@@ -27,7 +27,8 @@ namespace QLDienThoai
         /// <param name="ngayMua"></param>
         /// <param name="khachHang"></param>
         /// <param name="sanPhams"></param>
-        public Bill(string maHoaDon, DateTime ngayMua, Customer khachHang, LinkedList<Product> sanPhams, Staff staff) : base(khachHang.CodeCustomer, new GeneralInfo(khachHang.Name, khachHang.SoCMND, khachHang.Address))
+        /// 
+        public Bill(string maHoaDon, DateTime ngayMua, Customer khachHang, LinkedList<Product> sanPhams, Staff staff) : base(khachHang)
         {
             CodeBill = maHoaDon;
             DateOfPurchase = ngayMua;
@@ -35,9 +36,6 @@ namespace QLDienThoai
             Staff = staff;
         }
 
-        public Bill()
-        {
-        }
         //properties
         public string CodeBill
         {
@@ -81,7 +79,7 @@ namespace QLDienThoai
                 }
             }
         }
-        internal Staff Staff { get { return staff; } set { if (value != null && value != new Staff("")) { staff = value; } } }
+        internal Staff Staff { get { return staff; } set { if (value != null) { staff = value; } } }
 
         /// <summary>
         /// form ghi vao file
@@ -106,7 +104,7 @@ namespace QLDienThoai
 
             sb.Append($"-{base.CodeCustomer}");
 
-            sb.Append("-" + Staff.CodeStraff);
+            sb.Append("-" + Staff.CodeStaff);
 
             return sb.ToString();
         }
@@ -114,9 +112,10 @@ namespace QLDienThoai
         public static Bill xuatFileHoaDon(string bill)
         {
             string[] bills = bill.Split('-');
+
             LinkedList<Product> l = new LinkedList<Product>();
             string[] product = bills[2].Split('*');
-            for (int i = 0; i < product.Length/5; i++)
+            for (int i = 0; i < product.Length / 5; i++)
             {
                 l.Append(Product.xuatFileSanPhamBangMaSP(product[i]));
             }
@@ -128,8 +127,12 @@ namespace QLDienThoai
 
         public static Bill xuatFileHoaDonBangMaHoaDon(string code)
         {
-            string fileBill = @"..\Bill.txt";
-            return Bill.xuatFileHoaDon(IOFile.docFileBangMa(code, fileBill));
+            string data;
+            if ((data = IOFile.docFileBangMa(code, test.fileBill)) != null)
+            {
+                return Bill.xuatFileHoaDon(data);
+            }
+            return null;
         }
 
         /// <summary>

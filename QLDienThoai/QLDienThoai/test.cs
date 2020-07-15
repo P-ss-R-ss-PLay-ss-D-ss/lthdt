@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Encodings.Web;
 
 namespace QLDienThoai
 {
     class test
     {
+
+        public static string fileBill = @"..\Bill.txt";
+        public static string fileProduct = @"..\Product.txt";
+        public static string fileCustomer = @"..\Customer.txt";
+        public static string fileStaff = @"..\Staff.txt";
         static void Main(string[] args)
         {
-            string fileBill = @"..\Bill.txt";
-            string fileProduct = @"..\Product.txt";
-            string fileCustomer = @"..\Customer.txt";
-            string fileStaff = @"..\Staff.txt";
-            Product p = new Product(createCodeProduct(fileProduct), 1, 123, "my", "dt1");
+
+            Product p = new Product(CreataCode.createCodeProduct(fileProduct), 1, 123, "my", "dt1");
             #region comment
             // #region create bill
             // Bill bill = new Bill(
@@ -67,60 +71,151 @@ namespace QLDienThoai
             //    s = Console.ReadLine();
             //}
             #endregion
-            Console.WriteLine(IOFile.Clear(fileBill));
+            IOFile.Add(CreataCode.createCodeCustomer(fileCustomer), addCustomer().nhapFileKhachHang(), fileCustomer);
+            //Console.WriteLine(Staff.xuatFileNhanVienBangMaSP("NV001"));
+            //Console.WriteLine(addGeneralInfo());
         }
-
-        #region create code
-        static string createCodeBill(string file)
-        {
-            return $"HD{chechSoMa(file) + 1:000}";
-        }
-        static string createCodeCustomer(string file)
-        {
-            return $"KH{chechSoMa(file) + 1:000}";
-        }
-        static string createCodeProduct(string file)
-        {
-            return $"SP{chechSoMa(file) + 1:000}";
-        }
-        static string createCodeStaff(string file)
-        {
-            return $"NV{chechSoMa(file) + 1:000}";
-        }
-        static int chechSoMa(string file)
-        {
-            StreamReader sr = new StreamReader(file);
-            int a = 0;
-            while (sr.ReadLine() != null)
-            {
-                a++;
-            }
-            sr.Close();
-            return a;
-        }
-        #endregion
 
         #region nhap thong tin
         static Bill addBill()
         {
+            DateTime birthday;
+            string c;
+            string s;
+            LinkedList<Product> l = new LinkedList<Product>();
+            int soSP = 0;
+
+            lap:
+            try
+            {
+                Console.Write("  -  Nhap ngay mua[yyyy/MM/dd]: ");
+                birthday = Convert.ToDateTime(Read());
+            }
+            catch (Exception)
+            {
+                goto lap;
+            }
+
+            Console.Write("-  Nhap ma khach hang: ");
+            c = Read();
+
+            Console.Write("-  Nhap ma nhan vien: ");
+            s = Read();
+
+            Console.Write("Nhap so san pham: ");
+            int.TryParse(Read(), out soSP);
+
+            string code;
+            for (int i = 0; i < soSP; i++)
+            {
+                Console.Write("-  Nhap ma san pham thu {0}: ",i);
+                if ((code = Read())!=""&& Product.xuatFileSanPhamBangMaSP(code)!=null)
+                {
+                    l.AddLast(Product.xuatFileSanPhamBangMaSP(code));
+                }
+            }
+
+            if (Customer.xuatFileKhachHangBangMaKH(c)==null&& Staff.xuatFileNhanVienBangMaSP(s)==null)
+            {
+                return new Bill(CreataCode.createCodeProduct(fileBill), birthday, new Customer(), l, new Staff());
+            }
+            else if(Customer.xuatFileKhachHangBangMaKH(c) == null)
+            {
+                return new Bill(CreataCode.createCodeProduct(fileBill), birthday, new Customer(), l, Staff.xuatFileNhanVienBangMaSP(s));
+            }
+            else if (Staff.xuatFileNhanVienBangMaSP(s) == null)
+            {
+                return new Bill(CreataCode.createCodeProduct(fileBill), birthday, Customer.xuatFileKhachHangBangMaKH(c), l,new Staff());
+            }
+            else
+            {
+                return new Bill(CreataCode.createCodeProduct(fileBill), birthday, Customer.xuatFileKhachHangBangMaKH(c), l, Staff.xuatFileNhanVienBangMaSP(s));
+            }
+        }
+        static Product addProduct()
+        {
+            double gia;
+            int soLuong;
+            string name;
+            string xuatXu;
+
+            Console.Write("Nhap xuat xu san pham: ");
+            xuatXu = Read();
+
+            Console.Write("Nhap ten san pham: ");
+            name = Read();
+
+            Console.Write("Nhap gia: ");
+            double.TryParse(Read(), out gia);
+
+            Console.Write("Nhap so luong: ");
+            int.TryParse(Read(), out soLuong);
+
+            return new Product(CreataCode.createCodeProduct(fileProduct), soLuong, gia, xuatXu, name);
+        }
+        static Customer addCustomer()
+        {
+            string sDT;
+            string mail;
+            GeneralInfo g;
+
+            Console.Write("  -  Nhap SDT khach hang: ");
+            sDT = Read();
+
+            Console.Write("  -  Nhap mail khach hang: ");
+            mail = Read();
+
+            Console.WriteLine("-  Nhap thong tin chung: ");
+            g = addGeneralInfo();
+
+            return new Customer(CreataCode.createCodeStaff(fileStaff), sDT, mail, g);
 
         }
-        static Address addProduct()
+        static GeneralInfo addGeneralInfo()
         {
+            Address dc;
+            string name;
+            string soCMND;
+            DateTime birthday;
 
+            lap:
+            try
+            {
+                Console.Write("  -  Nhap ngay sinh nhan vien[yyyy/MM/dd]: ");
+                birthday = Convert.ToDateTime(Read());
+            }
+            catch (Exception)
+            {
+                goto lap;
+            }
+
+            Console.Write("  -  Nhap ten nhan vien: ");
+            name = Read();
+
+            Console.Write("  -  Nhap so CMND: ");
+            soCMND = Read();
+
+            Console.WriteLine("-  Nhap dia chi: ");
+            dc = addAddress();
+
+            return new GeneralInfo(name, birthday, soCMND, dc);
         }
-
-        static Address addCustomer()
+        static Staff addStaff()
         {
+            string sDT;
+            string mail;
+            GeneralInfo g;
 
-        }
-        static Address addGeneralInfo()
-        {
+            Console.Write("  -  Nhap SDT nhan vien: ");
+            sDT = Read();
 
-        }
-        static Address addStaff()
-        {
+            Console.Write("  -  Nhap mail nhan vien: ");
+            mail = Read();
 
+            Console.WriteLine("- Nhap thong tin chung");
+            g = addGeneralInfo();
+
+            return new Staff(CreataCode.createCodeStaff(fileStaff), sDT, mail, g);
         }
         static Address addAddress()
         {
@@ -129,16 +224,16 @@ namespace QLDienThoai
             string quan;
             string thanhPho;
 
-            Console.Write("-  Nhap so nha: ");
+            Console.Write("  -  Nhap so nha: ");
             soNha = Read();
-
-            Console.Write("-  Nhap duong: ");
+             
+            Console.Write("  -  Nhap duong: ");
             duong = Read();
 
-            Console.Write("-  Nhap quan: ");
+            Console.Write("  -  Nhap quan: ");
             quan = Read();
 
-            Console.Write("-  Nhap thanh pho: ");
+            Console.Write("  -  Nhap thanh pho: ");
             thanhPho = Read();
 
             return new Address(soNha, duong, quan, thanhPho);

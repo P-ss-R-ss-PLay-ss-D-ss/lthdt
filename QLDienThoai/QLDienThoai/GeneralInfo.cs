@@ -61,6 +61,21 @@ namespace QLDienThoai
             SoCMND = soCMND;
             Address = new Address(apartmentNum, street, district, city);
         }
+
+        public GeneralInfo(GeneralInfo generalInfo)
+        {
+            this.Name = generalInfo.name;
+            this.SoCMND = generalInfo.SoCMND;
+            this.Address = generalInfo.address;
+            this.BirdDay = generalInfo.birdDay;
+        }
+
+        public GeneralInfo()
+        {
+        }
+
+
+
         //properties
         public string Name
         {
@@ -84,7 +99,7 @@ namespace QLDienThoai
             }
             set
             {
-                if (value != null && value != new DateTime())
+                if (value != null)
                 {
                     birdDay = value;
                 }
@@ -100,7 +115,7 @@ namespace QLDienThoai
             {
                 if (value != "" && value != null)
                 {
-                    value = soCMND;
+                    soCMND = value;
                 }
             }
         }
@@ -111,7 +126,7 @@ namespace QLDienThoai
             {
                 if (value != null)
                 {
-                    value = address;
+                    address = value;
                 }
             }
         }
@@ -138,7 +153,7 @@ namespace QLDienThoai
         /// <returns></returns>
         public override string ToString()
         {
-            return base.ToString();
+            return $"{this.Address}{this.BirdDay}{this.Name}{this.SoCMND}";
         }
     }
 }

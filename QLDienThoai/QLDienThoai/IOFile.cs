@@ -44,19 +44,23 @@ namespace QLDienThoai
 
         public static string docFileBangMa(string code, string file)
         {
-            return File.ReadLines(file).Skip(IOFile.findInCode(code, createAutoFileCode(file))).Take(1).First();
+            int line;
+            if ((line = findInCode(code,file))!=-1)
+            {
+                return File.ReadLines(file).Skip(line).Take(1).First();
+            }
+            return null;
         }
 
         public static int findInCode(string code, string file)
         {
-            StreamReader sr = new StreamReader(createAutoFileCode(file));
+            StreamReader sr = new StreamReader(CreataCode.createAutoFileCode(file));
 
             int length = File.ReadAllLines(file).Length;
-            string s1;
             int result = -1;
             for (int i = 0; i < length; i++)
             {
-                if (code == (s1 = sr.ReadLine()))
+                if (code == sr.ReadLine())
                 {
                     result = i;
                     break;
@@ -69,7 +73,7 @@ namespace QLDienThoai
 
         public static string Delete(string code, string fileData)
         {
-            string fileCode = createAutoFileCode(fileData);
+            string fileCode = CreataCode.createAutoFileCode(fileData);
 
             List<string> fcode = IOFile.docFile(fileCode).ToList();
             List<string> fData = IOFile.docFile(fileData).ToList();
@@ -92,7 +96,7 @@ namespace QLDienThoai
 
         public static string Add(string code, string data,  string fileData)
         {
-            string fileCode = createAutoFileCode(fileData);
+            string fileCode = CreataCode.createAutoFileCode(fileData);
 
             List<string> fcode = IOFile.docFile(fileCode).ToList();
             List<string> fData = IOFile.docFile(fileData).ToList();
@@ -108,27 +112,8 @@ namespace QLDienThoai
 
         public static bool Clear(string file)
         {
-            ghiFile(createAutoFileCode(file), "");
+            ghiFile(CreataCode.createAutoFileCode(file), "");
             return ghiFile(file, "");
-        }
-
-        public static string createAutoFileCode(string file)
-        {
-            char[] chTemp = file.ToCharArray();
-
-            Array.Resize(ref chTemp, chTemp.Length + 4);
-
-            for (int i = chTemp.Length - 1; i >= 6; i--)
-            {
-                chTemp[i] = chTemp[i - 4];
-            }
-
-            chTemp[3] = 'C';
-            chTemp[4] = 'o';
-            chTemp[5] = 'd';
-            chTemp[6] = 'e';
-
-            return new string(chTemp);
         }
     }
 }
