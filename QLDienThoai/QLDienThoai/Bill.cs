@@ -117,7 +117,7 @@ namespace QLDienThoai
             string[] product = bills[2].Split('*');
             for (int i = 0; i < product.Length / 5; i++)
             {
-                l.Append(Product.xuatFileSanPhamBangMaSP(product[i]));
+                l.AddLast(Product.xuatFileSanPhamBangMaSP(product[i]));
             }
 
             Customer kh = Customer.xuatFileKhachHangBangMaKH(bills[3]);

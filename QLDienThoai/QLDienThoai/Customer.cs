@@ -104,7 +104,7 @@ namespace QLDienThoai
 
         public static bool checkMail(string mail)
         {
-            return checkSoKyTuACong(mail) != 1 || mail.Contains(' ');
+            return checkSoKyTuACong(mail) != 1 || mail.Contains(" ");
         }
         private static int checkSoKyTuACong(string mail)
         {

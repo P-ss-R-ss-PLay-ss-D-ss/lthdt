@@ -47,7 +47,14 @@ namespace QLDienThoai
             int line;
             if ((line = findInCode(code,file))!=-1)
             {
-                return File.ReadLines(file).Skip(line).Take(1).First();
+                List<string> fData = IOFile.docFile(file).ToList();
+
+                if (line == -1)
+                {
+                    return "Sai ma!!!";
+                }
+
+                return fData[line];
             }
             return null;
         }

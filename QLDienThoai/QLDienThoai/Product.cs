@@ -15,7 +15,7 @@ namespace QLDienThoai
         private string nameProduct = "Unknow";
         private int amount = 1;
         private double price = 0;
-        private string makeIn = "Unknow";
+        private string madeIn = "Unknow";
         /// <summary>
         /// constructor mặc đinh
         /// ngày : 2/7/2020
@@ -31,14 +31,14 @@ namespace QLDienThoai
         /// <param name="soLuong"></param>
         /// <param name="gia"></param>
         /// <param name="xuatXu"></param>
-        /// <param name="temSP"></param>
-        public Product(string maSP, int soLuong, double gia, string xuatXu, string temSP)
+        /// <param name="tenSP"></param>
+        public Product(string maSP, int soLuong, double gia, string xuatXu, string tenSP)
         {
             CodeProduct = maSP;
             Amount = soLuong;
             Price = gia;
-            MakeIn = xuatXu;
-            NameProduct = temSP;
+            MadeIn = xuatXu;
+            NameProduct = tenSP;
         }
         //properties
         public string CodeProduct
@@ -81,17 +81,17 @@ namespace QLDienThoai
 
             }
         }
-        public string MakeIn
+        public string MadeIn
         {
             get
             {
-                return makeIn;
+                return madeIn;
             }
             set
             {
                 if (value != null && value != "")
                 {
-                    makeIn = value;
+                    madeIn = value;
                 }
             }
         }
@@ -117,7 +117,7 @@ namespace QLDienThoai
         /// <returns></returns>
         public string nhapFileSanPham()
         {
-            return $"{CodeProduct},{NameProduct},{Amount},{Price},{MakeIn}";
+            return $"{CodeProduct},{NameProduct},{Amount},{Price},{MadeIn}";
         }
 
         public static Product xuatFileSanPham(string product)
