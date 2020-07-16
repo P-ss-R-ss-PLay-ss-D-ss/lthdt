@@ -39,7 +39,6 @@ namespace QLDienThoai
         }
         public Customer() : base()
         {
-
         }
 
         //properties
@@ -48,7 +47,7 @@ namespace QLDienThoai
             get { return codeCustomer; }
             set
             {
-                if (value != null && value != "")
+                if (checkString(value))
                 {
                     codeCustomer = value;
                 }
@@ -59,7 +58,7 @@ namespace QLDienThoai
             get { return sDT; }
             set
             {
-                if (value != null && value != "")
+                if (checkString(value) && checkSDT(value))
                 {
                     sDT = value;
                 }
@@ -70,7 +69,7 @@ namespace QLDienThoai
             get { return mail; }
             set
             {
-                if (value != null && value != "" && !checkMail(value))
+                if (checkString(value) && !checkMail(value))
                 {
                     mail = value;
                 }
@@ -118,6 +117,14 @@ namespace QLDienThoai
                 }
             }
             return result;
+        }
+        public static bool checkString(string value)
+        {
+            return value != null && value != "";
+        }
+        public static bool checkSDT(string value)
+        {
+            return value.Length >= 10 && value.Length <= 11;
         }
 
         /// <summary>

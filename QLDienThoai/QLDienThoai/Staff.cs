@@ -9,13 +9,13 @@ namespace QLDienThoai
         private string codeStaff = "Unknow";
         private string sDT = "Unknow";
         private string mail = "Unknow";
-        public string CodeStaff { get { return codeStaff; } set { if (value != "" && value != null) { codeStaff = value; } } }
+        public string CodeStaff { get { return codeStaff; } set { if (Customer.checkString(value)) { codeStaff = value; } } }
         public string SDT
         {
             get { return sDT; }
             set
             {
-                if (value != null && value != "")
+                if (Customer.checkSDT(value)&&Customer.checkString(value))
                 {
                     sDT = value;
                 }
@@ -26,7 +26,7 @@ namespace QLDienThoai
             get { return mail; }
             set
             {
-                if (value != null && value != "" )
+                if (Customer.checkString(value)&&Customer.checkMail(value))
                 {
                     mail = value;
                 }

@@ -110,6 +110,20 @@ namespace QLDienThoai
             return code;
         }
 
+        public static string setInCode(string code, string data, string fileData)
+        {
+            string fileCode = CreataCode.createAutoFileCode(fileData);
+
+            List<string> fcode = IOFile.docFile(fileCode).ToList();
+            List<string> fData = IOFile.docFile(fileData).ToList();
+
+            fData[findInCode(code, fileCode)] = data;
+
+            File.WriteAllLines(fileData, fData.ToArray());
+
+            return code;
+        }
+
         public static bool Clear(string file)
         {
             ghiFile(CreataCode.createAutoFileCode(file), "");

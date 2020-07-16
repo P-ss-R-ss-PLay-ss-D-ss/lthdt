@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Encodings.Web;
 
@@ -18,62 +19,12 @@ namespace QLDienThoai
         public static string fileStaff = @"..\Staff.txt";
         static void Main(string[] args)
         {
-
-            Product p = new Product(CreataCode.createCodeProduct(fileProduct), 1, 123, "my", "dt1");
-            #region comment
-            // #region create bill
-            // Bill bill = new Bill(
-            //    createCodeBill(fileBill),
-            //    new DateTime(2001, 10, 30),
-            //    new Customer
-            //    (
-            //        createCodeCustomer(fileCustomer),
-            //        new GeneralInfo
-            //        (
-            //            "nguyentien",
-            //            "342090200",
-            //            new Address
-            //            (
-            //                "025",
-            //                "thien ho duong",
-            //                "thu duc",
-            //                "tphcm"
-            //            )
-            //         )
-            //        ),
-            //    l,
-            //    new Staff
-            //    (
-            //        createCodeStaff(fileStaff),
-            //        new GeneralInfo
-            //        (
-            //            "nguyentien",
-            //            "342090200",
-            //            new Address
-            //            (
-            //                "025",
-            //                "thien ho duong",
-            //                "thu duc",
-            //                "tphcm"
-            //            )
-            //         )
-            //    )
-            //);
-            // #endregion
-            //Console.WriteLine(IOFile.Add(createCodeProduct(fileCodeProduct), p.nhapFileSanPham(), fileCodeProduct, fileProduct));
-            //Console.WriteLine(bill);
-            //IOFile.ghiFile(fileProduct, p3.nhapFileSanPham());
-            //Console.WriteLine(Bill.xuatFileHoaDon(docFile(fileHoaDon)[0]));
-            //Console.WriteLine(IOFile.Delete("SP001", fileCodeProduct, fileProduct));
-            //string s = "";
-            //while (!checkExit(s))
-            //{
-            //    s = Console.ReadLine();
-            //}
-            #endregion
-            IOFile.Add(CreataCode.createCodeCustomer(fileCustomer), addCustomer().nhapFileKhachHang(), fileCustomer);
-            //Console.WriteLine(Staff.xuatFileNhanVienBangMaSP("NV001"));
-            //Console.WriteLine(addGeneralInfo());
+            //IOFile.Add(CreataCode.createCodeBill(fileBill), addBill().nhapFileHoaDon(), fileBill);
+            do
+            {
+                Read();
+                IOFile.Add(CreataCode.createCodeProduct(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
+            } while (true);
         }
 
         #region nhap thong tin
@@ -96,41 +47,35 @@ namespace QLDienThoai
                 goto lap;
             }
 
-            Console.Write("-  Nhap ma khach hang: ");
-            c = Read();
+            do
+            {
+                Console.Write("  -  Nhap ma khach hang: ");
+                c = Read();
+            } while (Customer.xuatFileKhachHangBangMaKH(c) == null);
 
-            Console.Write("-  Nhap ma nhan vien: ");
-            s = Read();
+            do
+            {
+                Console.Write("  -  Nhap ma nhan vien: ");
+                s = Read();
+            } while (Staff.xuatFileNhanVienBangMaSP(s) == null);
 
-            Console.Write("Nhap so san pham: ");
-            int.TryParse(Read(), out soSP);
+            do
+            {
+                Console.Write("  -  Nhap so san pham: ");
+                int.TryParse(Read(), out soSP);
+            } while (soSP == 0);
 
             string code;
             for (int i = 0; i < soSP; i++)
             {
-                Console.Write("-  Nhap ma san pham thu {0}: ",i);
-                if ((code = Read())!=""&& Product.xuatFileSanPhamBangMaSP(code)!=null)
+                Console.Write("-  Nhap ma san pham thu {0}: ", i);
+                if ((code = Read()) != "" && Product.xuatFileSanPhamBangMaSP(code) != null)
                 {
                     l.AddLast(Product.xuatFileSanPhamBangMaSP(code));
                 }
             }
 
-            if (Customer.xuatFileKhachHangBangMaKH(c)==null&& Staff.xuatFileNhanVienBangMaSP(s)==null)
-            {
-                return new Bill(CreataCode.createCodeProduct(fileBill), birthday, new Customer(), l, new Staff());
-            }
-            else if(Customer.xuatFileKhachHangBangMaKH(c) == null)
-            {
-                return new Bill(CreataCode.createCodeProduct(fileBill), birthday, new Customer(), l, Staff.xuatFileNhanVienBangMaSP(s));
-            }
-            else if (Staff.xuatFileNhanVienBangMaSP(s) == null)
-            {
-                return new Bill(CreataCode.createCodeProduct(fileBill), birthday, Customer.xuatFileKhachHangBangMaKH(c), l,new Staff());
-            }
-            else
-            {
-                return new Bill(CreataCode.createCodeProduct(fileBill), birthday, Customer.xuatFileKhachHangBangMaKH(c), l, Staff.xuatFileNhanVienBangMaSP(s));
-            }
+            return new Bill(CreataCode.createCodeProduct(fileBill), birthday, Customer.xuatFileKhachHangBangMaKH(c), l, Staff.xuatFileNhanVienBangMaSP(s));
         }
         static Product addProduct()
         {
@@ -139,14 +84,23 @@ namespace QLDienThoai
             string name;
             string xuatXu;
 
-            Console.Write("Nhap xuat xu san pham: ");
-            xuatXu = Read();
+            do
+            {
+                Console.Write("Nhap xuat xu san pham: ");
+                xuatXu = Read();
+            } while (!Customer.checkString(xuatXu));
 
-            Console.Write("Nhap ten san pham: ");
-            name = Read();
+            do
+            {
+                Console.Write("Nhap ten san pham: ");
+                name = Read();
+            } while (!Customer.checkString(name));
 
-            Console.Write("Nhap gia: ");
-            double.TryParse(Read(), out gia);
+            do
+            {
+                Console.Write("Nhap gia: ");
+                double.TryParse(Read(), out gia);
+            } while (gia == 0);
 
             Console.Write("Nhap so luong: ");
             int.TryParse(Read(), out soLuong);
@@ -159,11 +113,17 @@ namespace QLDienThoai
             string mail;
             GeneralInfo g;
 
-            Console.Write("  -  Nhap SDT khach hang: ");
-            sDT = Read();
+            do
+            {
+                Console.Write("  -  Nhap SDT khach hang: ");
+                sDT = Read();
+            } while (!Customer.checkSDT(sDT));
 
-            Console.Write("  -  Nhap mail khach hang: ");
-            mail = Read();
+            do
+            {
+                Console.Write("  -  Nhap mail khach hang: ");
+                mail = Read();
+            } while (Customer.checkMail(mail));
 
             Console.WriteLine("-  Nhap thong tin chung: ");
             g = addGeneralInfo();
@@ -189,11 +149,17 @@ namespace QLDienThoai
                 goto lap;
             }
 
-            Console.Write("  -  Nhap ten nhan vien: ");
-            name = Read();
+            do
+            {
+                Console.Write("  -  Nhap ten nhan vien: ");
+                name = Read();
+            } while (Customer.checkString(name));
 
-            Console.Write("  -  Nhap so CMND: ");
-            soCMND = Read();
+            do
+            {
+                Console.Write("  -  Nhap so CMND: ");
+                soCMND = Read();
+            } while (GeneralInfo.checkSoCMND(soCMND));
 
             Console.WriteLine("-  Nhap dia chi: ");
             dc = addAddress();
@@ -206,11 +172,18 @@ namespace QLDienThoai
             string mail;
             GeneralInfo g;
 
-            Console.Write("  -  Nhap SDT nhan vien: ");
-            sDT = Read();
+            do
+            {
+                Console.Write("  -  Nhap SDT nhan vien: ");
+                sDT = Read();
+            } while (!Customer.checkSDT(sDT));
 
-            Console.Write("  -  Nhap mail nhan vien: ");
-            mail = Read();
+            do
+            {
+                Console.Write("  -  Nhap mail nhan vien: ");
+                mail = Read();
+            } while (Customer.checkMail(mail));
+           
 
             Console.WriteLine("- Nhap thong tin chung");
             g = addGeneralInfo();
@@ -224,22 +197,31 @@ namespace QLDienThoai
             string quan;
             string thanhPho;
 
-            Console.Write("  -  Nhap so nha: ");
-            soNha = Read();
-             
-            Console.Write("  -  Nhap duong: ");
-            duong = Read();
+            do
+            {
+                Console.Write("  -  Nhap so nha: ");
+                soNha = Read();
+            } while (Customer.checkString(soNha));
+            
+            do
+            {
+                Console.Write("  -  Nhap duong: ");
+                duong = Read();
+            } while (Customer.checkString(duong));
 
-            Console.Write("  -  Nhap quan: ");
-            quan = Read();
-
-            Console.Write("  -  Nhap thanh pho: ");
-            thanhPho = Read();
-
+            do
+            {
+                Console.Write("  -  Nhap quan: ");
+                quan = Read();
+            } while (Customer.checkString(quan));
+           
+            do
+            {
+                Console.Write("  -  Nhap thanh pho: ");
+                thanhPho = Read();
+            } while (Customer.checkString(thanhPho));
             return new Address(soNha, duong, quan, thanhPho);
         }
-        #endregion
-
         static string Read()
         {
             string s = Console.ReadLine();
@@ -256,5 +238,6 @@ namespace QLDienThoai
 
             return s;
         }
+        #endregion
     }
 }

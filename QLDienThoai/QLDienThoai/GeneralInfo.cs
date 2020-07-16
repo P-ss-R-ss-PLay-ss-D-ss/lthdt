@@ -113,7 +113,7 @@ namespace QLDienThoai
             }
             set
             {
-                if (value != "" && value != null)
+                if (Customer.checkString(value)&&checkSoCMND(value))
                 {
                     soCMND = value;
                 }
@@ -146,6 +146,12 @@ namespace QLDienThoai
             Address dc = Address.xuatFileDiaChi(s[2]);
             return new GeneralInfo(s[0], Convert.ToDateTime(s[1]), s[3], dc);
         }
+
+        public static bool checkSoCMND(string value)
+        {
+            return value.Length == 9 || value.Length == 12;
+        }
+
         /// <summary>
         /// in thông tin chung của khách hang
         /// ngày : 2/7/2020
