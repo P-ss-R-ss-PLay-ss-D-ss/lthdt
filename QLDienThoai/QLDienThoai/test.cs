@@ -1,39 +1,270 @@
-﻿using System;
+﻿/**
+ * Tên: Lưu Thị Kiều Oanh
+ * Ngày: 16/7/2020
+ * Mô tả: Viết các chức năng cho chương trình
+ */
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace QLDienThoai
 {
     class test
     {
+        //Tạo liên kết đến file 
+        public static string fileBill = @"..\Bill.txt";
+        public static string fileProduct = @"..\Product.txt";
+        public static string fileCustomer = @"..\Customer.txt";
+        public static string fileStaff = @"..\Staff.txt";
         static void Main(string[] args)
         {
-            string file = @"D:\git\lthdt\QLDienThoai\QLDienThoai\Bill.txt";
-            Bill bill = new Bill("123", new DateTime(2001, 10, 30), new Customer("1234", new GeneralInfo("nguyentien", "342090200", new Address("025", "thien ho duong", "thu duc", "tphcm"))), new List<Product>(3));
-            //ghiFileDiaChi(file, bill.nhapFileHoaDon());
-            Console.WriteLine(docFile(file));
+            do
+            {
+                Read();
+                IOFile.Add(CreateID.createIDProduct(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
+                Read();
+                IOFile.Add(CreateID.createIDCustomer(fileCustomer), addCustomer().writeCustomer(), fileCustomer);
+                Read();
+                IOFile.Add(CreateID.createIDBill(fileBill), addBill().nhapFileHoaDon(), fileBill);
+                Read();
+                IOFile.Add(CreateID.createIDStaff(fileStaff), addStaff().writeStaff(), fileStaff);
+
+            } while (true);
         }
 
-        #region xử lý file
-        static String docFile(string file)
+        #region nhap thong tin
+        //Thêm hóa đơn
+        static Bill addBill()
         {
-            StreamReader sr = new StreamReader(file);
+            string c;
+            string s;
+            int soSP = 0;
+            DateTime day;
+            LinkedList<Product> listProduct = new LinkedList<Product>();
 
-            string s = sr.ReadLine();
+            /**/
+            lap:
+            try
+            {
+                Console.Write("  -  Nhap ngay mua[yyyy/MM/dd]: ");
+                day = Convert.ToDateTime(Read());
+            }
+            catch (Exception)
+            {
+                goto lap;
+            }
 
-            sr.Close();
+            /**/
+            do
+            {
+                Console.Write("  -  Nhap ma khach hang: ");
+                c = Read();
+            } while (Customer.getCustomerByID(c) == null);
+
+            /**/
+            do
+            {
+                Console.Write("  -  Nhap ma nhan vien: ");
+                s = Read();
+            } while (Staff.getStaffById(s) == null);
+
+            /**/
+            do
+            {
+                Console.Write("  -  Nhap so san pham: ");
+                int.TryParse(Read(), out soSP);
+            } while (soSP == 0);
+
+            /**/
+            string code;
+            for (int i = 0; i < soSP; i++)
+            {
+                Console.Write("-  Nhap ma san pham thu {0}: ", i);
+                code = Read();
+                if (code != "" && Product.getProductByID(code) != null)
+                {
+                    listProduct.AddLast(Product.getProductByID(code));
+                }
+            }
+
+            /**/
+            Bill bill = new Bill(CreateID.createIDBill(fileBill), day, Customer.getCustomerByID(c), listProduct, Staff.getStaffById(s));
+            return bill;
+        }
+        //Thêm sản phẩm
+        static Product addProduct()
+        {
+            double gia;
+            int soLuong;
+            string name;
+            string xuatXu;
+
+            do
+            {
+                Console.Write("Nhap xuat xu san pham: ");
+                xuatXu = Read();
+            } while (!Customer.checkString(xuatXu));
+
+            do
+            {
+                Console.Write("Nhap ten san pham: ");
+                name = Read();
+            } while (!Customer.checkString(name));
+
+            do
+            {
+                Console.Write("Nhap gia: ");
+                double.TryParse(Read(), out gia);
+            } while (gia == 0);
+
+            Console.Write("Nhap so luong: ");
+            int.TryParse(Read(), out soLuong);
+
+            return new Product(CreateID.createIDProduct(fileProduct), soLuong, gia, xuatXu, name);
+        }
+        //Thêm khách hàng
+        static Customer addCustomer()
+        {
+            string sDT;
+            string mail;
+            GeneralInfo g;
+
+            /*Nhap sdt = 10 số*/
+            do
+            {
+                Console.Write("  -  Nhap SDT khach hang: ");
+                sDT = Read();
+            } while (!Customer.checkSDT(sDT));
+
+            do
+            {
+                Console.Write("  -  Nhap mail khach hang: ");
+                mail = Read();
+            } while (Customer.checkMail(mail));
+
+            Console.WriteLine("-  Nhap thong tin chung: ");
+            g = addGeneralInfo();
+
+            return new Customer(CreateID.createIDCustomer(fileCustomer), sDT, mail, g);
+
+        }
+        //Thêm thông tin chung cho khách hàng và nhân viên
+        static GeneralInfo addGeneralInfo()
+        {
+            Address dc;
+            string name;
+            string soCMND;
+            DateTime birthday;
+
+            lap:
+            try
+            {
+                Console.Write("  -  Nhap ngay sinh nhan vien[yyyy/MM/dd]: ");
+                birthday = Convert.ToDateTime(Read());
+            }
+            catch (Exception)
+            {
+                goto lap;
+            }
+
+            do
+            {
+                Console.Write("  -  Nhap ten nhan vien: ");
+                name = Read();
+            } while (Customer.checkString(name)==false);
+
+            do
+            {
+                Console.Write("  -  Nhap so CMND: ");
+                soCMND = Read();
+            } while (GeneralInfo.checkSoCMND(soCMND));
+
+            Console.WriteLine("-  Nhap dia chi: ");
+            dc = addAddress();
+
+            return new GeneralInfo(name, birthday, soCMND, dc);
+        }
+        //Thêm nhân viên
+        static Staff addStaff()
+        {
+            string sDT;
+            string mail;
+            GeneralInfo g;
+
+            do
+            {
+                Console.Write("  -  Nhap SDT nhan vien: ");
+                sDT = Read();
+            } while (!Customer.checkSDT(sDT));
+
+            do
+            {
+                Console.Write("  -  Nhap mail nhan vien: ");
+                mail = Read();
+            } while (Customer.checkMail(mail));
+
+
+            Console.WriteLine("- Nhap thong tin chung");
+            g = addGeneralInfo();
+
+            return new Staff(CreateID.createIDStaff(fileStaff), sDT, mail, g);
+        }
+        //Thêm địa chỉ cho thông tin chung
+        static Address addAddress()
+        {
+            string soNha;
+            string duong;
+            string quan;
+            string thanhPho;
+
+            do
+            {
+                Console.Write("  -  Nhap so nha: ");
+                soNha = Read();
+            } while (Customer.checkString(soNha)==false);
+
+            do
+            {
+                Console.Write("  -  Nhap duong: ");
+                duong = Read();
+            } while (Customer.checkString(duong)==false);
+
+            do
+            {
+                Console.Write("  -  Nhap quan: ");
+                quan = Read();
+            } while (Customer.checkString(quan)==false);
+
+            do
+            {
+                Console.Write("  -  Nhap thanh pho: ");
+                thanhPho = Read();
+            } while (Customer.checkString(thanhPho)==false);
+            return new Address(soNha, duong, quan, thanhPho);
+        }
+
+        //Đọc dữ liệu nhập vào
+        static string Read()
+        {
+            string s = Console.ReadLine();
+
+            if (s.Equals("exit"))
+            {
+                Environment.Exit(0);
+            }
+
+            if (s.Equals("clear"))
+            {
+                Console.Clear();
+            }
+
             return s;
-        }
-
-        static void ghiFileDiaChi(string file, string data)
-        {
-            StreamWriter sr = new StreamWriter(file);
-
-            sr.Write(data);
-
-            sr.Close();
         }
         #endregion
     }

@@ -100,6 +100,16 @@ namespace QLDienThoai
             return $"{ApartmentNum},{Street},{District},{City}";
         }
         /// <summary>
+        /// tạo địa chỉ từ file
+        /// </summary>
+        /// <param name="diaChi"></param>
+        /// <returns></returns>
+        public static Address xuatFileDiaChi(string diaChi)
+        {
+            string[] s = diaChi.Split(',');
+            return new Address(s[0], s[1], s[2], s[3]);
+        }
+        /// <summary>
         /// in địa chỉ
         /// Ngày : 2/7/2020
         /// </summary>

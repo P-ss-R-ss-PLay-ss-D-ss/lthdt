@@ -15,7 +15,7 @@ namespace QLDienThoai
         private string nameProduct = "Unknow";
         private int amount = 1;
         private double price = 0;
-        private string makeIn = "Unknow";
+        private string madeIn = "Unknow";
         /// <summary>
         /// constructor mặc đinh
         /// ngày : 2/7/2020
@@ -31,14 +31,14 @@ namespace QLDienThoai
         /// <param name="soLuong"></param>
         /// <param name="gia"></param>
         /// <param name="xuatXu"></param>
-        /// <param name="temSP"></param>
-        public Product(string maSP, int soLuong, double gia, string xuatXu, string temSP)
+        /// <param name="tenSP"></param>
+        public Product(string maSP, int soLuong, double gia, string xuatXu, string tenSP)
         {
             CodeProduct = maSP;
             Amount = soLuong;
             Price = gia;
-            MakeIn = xuatXu;
-            NameProduct = temSP;
+            MadeIn = xuatXu;
+            NameProduct = tenSP;
         }
         //properties
         public string CodeProduct
@@ -81,17 +81,17 @@ namespace QLDienThoai
 
             }
         }
-        public string MakeIn
+        public string MadeIn
         {
             get
             {
-                return makeIn;
+                return madeIn;
             }
             set
             {
                 if (value != null && value != "")
                 {
-                    makeIn = value;
+                    madeIn = value;
                 }
             }
         }
@@ -105,11 +105,10 @@ namespace QLDienThoai
             {
                 if (value != null && value != "")
                 {
-                    value = nameProduct;
+                    nameProduct = value;
                 }
             }
         }
-
         /// <summary>
         /// form ghi vao file
         /// ngay : 9/7/2020
@@ -117,9 +116,33 @@ namespace QLDienThoai
         /// <returns></returns>
         public string nhapFileSanPham()
         {
-            return $"{CodeProduct},{NameProduct},{Amount},{Price},{MakeIn}";
+            return $"{CodeProduct},{NameProduct},{Amount},{Price},{MadeIn}";
         }
-
+        /// <summary>
+        /// lay doi tuong bang tu file
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public static Product getProduct(string product)
+        {
+            string[] s = product.Split(',');
+            return new Product(s[0], Convert.ToInt32(s[2]), Convert.ToDouble(s[3]), s[1], s[4]);
+        }
+        /// <summary>
+        /// lay doi tuong tu file bang ma
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static Product getProductByID(string code)
+        {
+            string fileSP = @"..\Product.txt";
+            string data;
+            if ((data = IOFile.docFileBangMa(code, fileSP))!=null)
+            {
+                return Product.getProduct(data);
+            }
+            return null;
+        }
         /// <summary>
         /// in thông tin sản phầm
         /// ngày : 2/7/2020
@@ -129,6 +152,5 @@ namespace QLDienThoai
         {
             return base.ToString();
         }
-        ~Product() { }
     }
 }
