@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace QLDienThoai
 {
@@ -18,28 +19,35 @@ namespace QLDienThoai
         public static string fileStaff = @"..\Staff.txt";
         static void Main(string[] args)
         {
-            //Console.WriteLine(Product.getProductByID("SP004"));\
-            Bill b;
-            Console.Write("Nhap vao ma hoa don can tim: ");
-            string s = Console.ReadLine();
-            if ((b = Bill.getBillByID(s)) == null)
-            {
-                Console.WriteLine("Khong tim thay ma hoa don!!!");
-            }
-            else
-            {
-                Console.WriteLine(b.ToString());
-            }
-            Read();
-            //while (true)
-            //{
-            //    //IOFile.Add(CreateID.createIDCustomer(fileCustomer), addCustomer().writeCustomer(), fileCustomer);
-            //    //IOFile.Add(CreateID.createIDProduct(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
-            //    //IOFile.Add(CreateID.createIDStaff(fileStaff), addStaff().writeStaff(), fileStaff);
-            //    IOFile.Add(CreateID.createIDBill(fileBill), addBill().nhapFileHoaDon(), fileBill);
-            //    Read();
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.WriteLine("Hello Xin chào tất cả các bạn :))");
+            home:
+            Console.WriteLine();
+            Console.WriteLine("1. Nhập kho");
+            Console.WriteLine("2. Xuất hoa đơn");
+            Console.WriteLine("3. Trở về màn hình chính");
 
-            //}
+            int menu = 0;
+            do
+            {
+                Console.Write("Nhập lựa chọn: ");
+                int.TryParse(Console.ReadLine(), out menu);
+            } while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
+
+            switch (menu)
+            {
+                case 1:
+
+
+                    break;
+                case 2:
+                    Console.WriteLine("1. Nhập Khách hàng");
+                    Console.WriteLine("1. Nhập Khách hàng");
+
+                    break;
+                case 3:
+                    goto home;
+            }
         }
 
         #region nhap thong tin
@@ -52,7 +60,6 @@ namespace QLDienThoai
             DateTime day;
             LinkedList<Product> listProduct = new LinkedList<Product>();
 
-            /**/
             lap:
             try
             {
@@ -64,28 +71,21 @@ namespace QLDienThoai
                 goto lap;
             }
 
-            /**/
-            do
-            {
-                Console.Write("  -  Nhap ma khach hang: ");
-                c = Read();
-            } while (Customer.getCustomerByID(c) == null);
+            Console.WriteLine("nhap khach hang moi");
+            Console.WriteLine("nhap khach hang cu");
 
-            /**/
             do
             {
                 Console.Write("  -  Nhap ma nhan vien: ");
                 s = Read();
             } while (Staff.getStaffById(s) == null);
 
-            /**/
             do
             {
                 Console.Write("  -  Nhap so san pham: ");
                 int.TryParse(Read(), out soSP);
             } while (soSP == 0);
 
-            /**/
             string code;
             for (int i = 0; i < soSP; i++)
             {
@@ -97,8 +97,7 @@ namespace QLDienThoai
                 }
             }
 
-            /**/
-            Bill bill = new Bill(CreateID.createIDBill(fileBill), day, Customer.getCustomerByID(c), listProduct, Staff.getStaffById(s));
+            Bill bill = new Bill(CreateID.createID(fileBill), day, Customer.getCustomerByID(c), listProduct, Staff.getStaffById(s));
             return bill;
         }
         //Thêm sản phẩm
@@ -130,7 +129,7 @@ namespace QLDienThoai
             Console.Write("Nhap so luong: ");
             int.TryParse(Read(), out soLuong);
 
-            return new Product(CreateID.createIDProduct(fileProduct), soLuong, gia, xuatXu, name);
+            return new Product(CreateID.createID(fileProduct), soLuong, gia, xuatXu, name);
         }
         //Thêm khách hàng
         static Customer addCustomer()
@@ -139,7 +138,7 @@ namespace QLDienThoai
             string mail;
             GeneralInfo g;
 
-            /*Nhap sdt = 10 số*/
+            /*Nhap sdt = 10 hơặc 11 số*/
             do
             {
                 Console.Write("  -  Nhap SDT khach hang: ");
@@ -155,7 +154,7 @@ namespace QLDienThoai
             Console.WriteLine("-  Nhap thong tin chung: ");
             g = addGeneralInfo();
 
-            return new Customer(CreateID.createIDCustomer(fileCustomer), sDT, mail, g);
+            return new Customer(CreateID.createID(fileCustomer), sDT, mail, g);
 
         }
         //Thêm thông tin chung cho khách hàng và nhân viên
@@ -217,7 +216,7 @@ namespace QLDienThoai
             Console.WriteLine("- Nhap thong tin chung");
             g = addGeneralInfo();
 
-            return new Staff(CreateID.createIDStaff(fileStaff), sDT, mail, g);
+            return new Staff(CreateID.createID(fileStaff), sDT, mail, g);
         }
         //Thêm địa chỉ cho thông tin chung
         static Address addAddress()
@@ -252,7 +251,6 @@ namespace QLDienThoai
             } while (Customer.checkString(thanhPho) == false);
             return new Address(soNha, duong, quan, thanhPho);
         }
-
         //Đọc dữ liệu nhập vào
         static string Read()
         {
@@ -271,5 +269,6 @@ namespace QLDienThoai
             return s;
         }
         #endregion
+
     }
 }

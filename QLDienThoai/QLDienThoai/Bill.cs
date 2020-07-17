@@ -116,13 +116,16 @@ namespace QLDienThoai
 
             LinkedList<Product> l = new LinkedList<Product>();
             string[] product = bills[2].Split('*');
-            for (int i = 0; i < product.Length / 5; i++)
+
+            for (int i = 0; i < product.Length ; i++)
             {
                 l.AddLast(Product.getProductByID(product[i]));
             }
 
             Customer kh = Customer.getCustomerByID(bills[3]);
+
             Staff nv = Staff.getStaffById(bills[4]);
+
             return new Bill(bills[0], Convert.ToDateTime(bills[1]), kh, l, nv);
         }
         /// <summary>

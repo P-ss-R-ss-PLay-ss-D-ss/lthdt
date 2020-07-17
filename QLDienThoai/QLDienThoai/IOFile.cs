@@ -176,5 +176,35 @@ namespace QLDienThoai
             ghiFile(CreateID.createAutoFileCode(file), "");
             return ghiFile(file, "");
         }
+
+        public static bool Sort(string fileData)
+        {
+            string fileCode = CreateID.createAutoFileCode(fileData);
+
+            List<string> fcode = IOFile.docFile(fileCode).ToList();
+            List<string> fData = IOFile.docFile(fileData).ToList();
+
+            fcode.Sort();
+            fData.Sort();
+
+            File.WriteAllLines(fileCode, fcode.ToArray());
+            File.WriteAllLines(fileData, fData.ToArray());
+
+            return true;
+        }
+
+        public static bool CheckTrung(string code, string fileData)
+        {
+            string fileCode = CreateID.createAutoFileCode(fileData);
+
+            List<string> fcode = IOFile.docFile(fileCode).ToList();
+
+            foreach (var k in fcode)
+            {
+                if (k.Equals(code))
+                    return true;
+            }
+            return false;
+        }
     }
 }

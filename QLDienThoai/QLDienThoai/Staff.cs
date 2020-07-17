@@ -7,7 +7,20 @@
         private string sDT = "Unknow";
         private string mail = "Unknow";
         //properties
-        public string CodeStaff { get { return codeStaff; } set { if (Customer.checkString(value)) { codeStaff = value; } } }
+        public string CodeStaff
+        {
+            get
+            {
+                return codeStaff;
+            }
+            set
+            {
+                if (Customer.checkString(value))
+                {
+                    codeStaff = value;
+                }
+            }
+        }
         public string SDT
         {
             get { return sDT; }
