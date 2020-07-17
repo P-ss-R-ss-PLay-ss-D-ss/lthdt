@@ -36,6 +36,7 @@ namespace QLDienThoai
                 IOFile.Add(CreateID.createIDStaff(fileStaff), addStaff().writeStaff(), fileStaff);
 
             } while (true);
+            IOFile.docFile(fileBill);
         }
 
         #region nhap thong tin
