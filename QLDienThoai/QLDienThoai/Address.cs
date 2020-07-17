@@ -4,10 +4,6 @@
  * Ngày : 2/7/2020
  * class địa chỉ chứa các thông tin địa chỉ nhà như số nhà đường quận thành phố
  */
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace QLDienThoai
 {

@@ -5,8 +5,6 @@
  * class thông tin chung chứa các thông tin như ho tên ngày sinh số CMND
  */
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QLDienThoai
 {
@@ -116,7 +114,7 @@ namespace QLDienThoai
             }
             set
             {
-                if (Customer.checkString(value)&&checkSoCMND(value))
+                if (Customer.checkString(value) && checkSoCMND(value))
                 {
                     soCMND = value;
                 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection.Emit;
 
 namespace QLDienThoai
 {
@@ -60,7 +59,7 @@ namespace QLDienThoai
         public static string docFileBangMa(string code, string file)
         {
             int line;
-            if ((line = findInCode(code,file))!=-1)
+            if ((line = findInCode(code, file)) != -1)
             {
                 List<string> fData = IOFile.docFile(file).ToList();
 
@@ -132,7 +131,7 @@ namespace QLDienThoai
         /// <param name="data"></param>
         /// <param name="fileData"></param>
         /// <returns></returns>
-        public static string Add(string code, string data,  string fileData)
+        public static string Add(string code, string data, string fileData)
         {
             string fileCode = CreateID.createAutoFileCode(fileData);
 

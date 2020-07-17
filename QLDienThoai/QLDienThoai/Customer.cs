@@ -4,11 +4,6 @@
  * Ngày : 2/7/2020
  * class khách hàng chứa các thông tin như thẻ ATM , thông tin chung,thông tin liên hệ,mã khách hàng
  */
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection.Emit;
-using System.Text;
 
 namespace QLDienThoai
 {
@@ -76,7 +71,7 @@ namespace QLDienThoai
             get { return mail; }
             set
             {
-                if (checkString(value) && !checkCharacter(value))
+                if (checkString(value) && !checkMail(value))
                 {
                     mail = value;
                 }

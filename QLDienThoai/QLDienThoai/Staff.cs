@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QLDienThoai
+﻿namespace QLDienThoai
 {
     class Staff : GeneralInfo
     {
@@ -17,7 +13,7 @@ namespace QLDienThoai
             get { return sDT; }
             set
             {
-                if (Customer.checkSDT(value)&&Customer.checkString(value))
+                if (Customer.checkSDT(value) && Customer.checkString(value))
                 {
                     sDT = value;
                 }
@@ -28,7 +24,7 @@ namespace QLDienThoai
             get { return mail; }
             set
             {
-                if (Customer.checkString(value)&&Customer.checkMail(value))
+                if (Customer.checkString(value) && Customer.checkMail(value))
                 {
                     mail = value;
                 }

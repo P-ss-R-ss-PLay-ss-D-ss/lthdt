@@ -137,7 +137,7 @@ namespace QLDienThoai
         {
             string fileSP = @"..\Product.txt";
             string data;
-            if ((data = IOFile.docFileBangMa(code, fileSP))!=null)
+            if ((data = IOFile.docFileBangMa(code, fileSP)) != null)
             {
                 return Product.getProduct(data);
             }
@@ -150,7 +150,7 @@ namespace QLDienThoai
         /// <returns></returns>
         public override string ToString()
         {
-            return base.ToString();
+            return "oanhcute";
         }
     }
 }

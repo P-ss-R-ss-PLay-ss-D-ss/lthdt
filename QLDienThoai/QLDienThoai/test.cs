@@ -5,13 +5,7 @@
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace QLDienThoai
 {
@@ -24,18 +18,8 @@ namespace QLDienThoai
         public static string fileStaff = @"..\Staff.txt";
         static void Main(string[] args)
         {
-            do
-            {
-                Read();
-                IOFile.Add(CreateID.createIDProduct(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
-                Read();
-                IOFile.Add(CreateID.createIDCustomer(fileCustomer), addCustomer().writeCustomer(), fileCustomer);
-                Read();
-                IOFile.Add(CreateID.createIDBill(fileBill), addBill().nhapFileHoaDon(), fileBill);
-                Read();
-                IOFile.Add(CreateID.createIDStaff(fileStaff), addStaff().writeStaff(), fileStaff);
-
-            } while (true);
+            Console.WriteLine(Product.getProductByID("SP004"));
+            Console.WriteLine(Bill.getBillByID("HD001")==null);
         }
 
         #region nhap thong tin
@@ -177,7 +161,7 @@ namespace QLDienThoai
             {
                 Console.Write("  -  Nhap ten nhan vien: ");
                 name = Read();
-            } while (Customer.checkString(name)==false);
+            } while (Customer.checkString(name) == false);
 
             do
             {
@@ -227,25 +211,25 @@ namespace QLDienThoai
             {
                 Console.Write("  -  Nhap so nha: ");
                 soNha = Read();
-            } while (Customer.checkString(soNha)==false);
+            } while (Customer.checkString(soNha) == false);
 
             do
             {
                 Console.Write("  -  Nhap duong: ");
                 duong = Read();
-            } while (Customer.checkString(duong)==false);
+            } while (Customer.checkString(duong) == false);
 
             do
             {
                 Console.Write("  -  Nhap quan: ");
                 quan = Read();
-            } while (Customer.checkString(quan)==false);
+            } while (Customer.checkString(quan) == false);
 
             do
             {
                 Console.Write("  -  Nhap thanh pho: ");
                 thanhPho = Read();
-            } while (Customer.checkString(thanhPho)==false);
+            } while (Customer.checkString(thanhPho) == false);
             return new Address(soNha, duong, quan, thanhPho);
         }
 

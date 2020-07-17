@@ -5,7 +5,6 @@
  * class hoá đơn lưu thông tin khách hàng mua hàng và danh sach sản phẩm
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
