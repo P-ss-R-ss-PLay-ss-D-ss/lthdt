@@ -18,8 +18,28 @@ namespace QLDienThoai
         public static string fileStaff = @"..\Staff.txt";
         static void Main(string[] args)
         {
-            Console.WriteLine(Product.getProductByID("SP004"));
-            Console.WriteLine(Bill.getBillByID("HD001")==null);
+            //Console.WriteLine(Product.getProductByID("SP004"));\
+            Bill b;
+            Console.Write("Nhap vao ma hoa don can tim: ");
+            string s = Console.ReadLine();
+            if ((b = Bill.getBillByID(s)) == null)
+            {
+                Console.WriteLine("Khong tim thay ma hoa don!!!");
+            }
+            else
+            {
+                Console.WriteLine(b.ToString());
+            }
+            Read();
+            //while (true)
+            //{
+            //    //IOFile.Add(CreateID.createIDCustomer(fileCustomer), addCustomer().writeCustomer(), fileCustomer);
+            //    //IOFile.Add(CreateID.createIDProduct(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
+            //    //IOFile.Add(CreateID.createIDStaff(fileStaff), addStaff().writeStaff(), fileStaff);
+            //    IOFile.Add(CreateID.createIDBill(fileBill), addBill().nhapFileHoaDon(), fileBill);
+            //    Read();
+
+            //}
         }
 
         #region nhap thong tin
@@ -69,10 +89,10 @@ namespace QLDienThoai
             string code;
             for (int i = 0; i < soSP; i++)
             {
-                Console.Write("-  Nhap ma san pham thu {0}: ", i);
                 code = Read();
-                if (code != "" && Product.getProductByID(code) != null)
+                while (code != "" && Product.getProductByID(code) != null)
                 {
+                    Console.Write("-  Nhap ma san pham thu {0}: ", i);
                     listProduct.AddLast(Product.getProductByID(code));
                 }
             }
@@ -149,7 +169,7 @@ namespace QLDienThoai
             lap:
             try
             {
-                Console.Write("  -  Nhap ngay sinh nhan vien[yyyy/MM/dd]: ");
+                Console.Write("  -  Nhap ngay sinh [yyyy/MM/dd]: ");
                 birthday = Convert.ToDateTime(Read());
             }
             catch (Exception)
@@ -159,7 +179,7 @@ namespace QLDienThoai
 
             do
             {
-                Console.Write("  -  Nhap ten nhan vien: ");
+                Console.Write("  -  Nhap ten : ");
                 name = Read();
             } while (Customer.checkString(name) == false);
 
@@ -167,7 +187,7 @@ namespace QLDienThoai
             {
                 Console.Write("  -  Nhap so CMND: ");
                 soCMND = Read();
-            } while (GeneralInfo.checkSoCMND(soCMND));
+            } while (!GeneralInfo.checkSoCMND(soCMND));
 
             Console.WriteLine("-  Nhap dia chi: ");
             dc = addAddress();

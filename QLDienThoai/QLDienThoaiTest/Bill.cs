@@ -147,7 +147,7 @@ namespace QLDienThoai
             do
             {
                 result += a.Value.Price;
-            } while ((a = a.Next) != null);
+            } while ((a = a.Next)!=null);
 
             return result;
         }
@@ -159,17 +159,10 @@ namespace QLDienThoai
         /// <returns></returns>
         public override string ToString()
         {
-            StringBuilder s = new StringBuilder();
-            s.Append("+-------------------------------------------------------------------------------------------------+\n");
-            s.Append($"{"|",-41}{"HOA DON BAN HANG",-57}|\n");
-            s.Append("+-------------------------------------------------------------------------------------------------+\n");
-            s.Append($"{"|   Ma Hoa Don",-20}:{CodeBill,-27}{"|   Ma khach hang:",-25}{this.CodeCustomer,-25}|\n");
-            s.Append($"{"|   Ten nhan vien",-20}:{Staff.Name,-27}{"|   Ten khach hang:",-25}{this.Name,-25}|\n");
-            s.Append($"|  SDT:{this.SDT,-10}|\n");
-            s.Append("+---------------------------------------------------------------------------------------------------+");
-            s.Append("+---------------------------------------------------------------------------------------------------+");
-
-            return s.ToString();
+            string s = "+-----------------------------------------------------------------------------------------------------+";
+            s += $"{"|",-20}{"HOA DON BAN HANG",-15}|";
+            s += "+-----------------------------------------------------------------------------------------------------+";
+            return null;
         }
     }
 }

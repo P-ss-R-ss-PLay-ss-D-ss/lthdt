@@ -24,7 +24,7 @@
             get { return mail; }
             set
             {
-                if (Customer.checkString(value) && Customer.checkMail(value))
+                if (Customer.checkString(value) && !Customer.checkMail(value))
                 {
                     mail = value;
                 }
