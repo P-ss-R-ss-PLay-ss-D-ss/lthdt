@@ -31,6 +31,9 @@ namespace QLDienThoai
                 Console.WriteLine(b.ToString());
             }
             Read();
+            
+            //IOFile.docFileBangMa()
+            //Console.WriteLine(Bill.getCustomer);
             //while (true)
             //{
             //    //IOFile.Add(CreateID.createIDCustomer(fileCustomer), addCustomer().writeCustomer(), fileCustomer);

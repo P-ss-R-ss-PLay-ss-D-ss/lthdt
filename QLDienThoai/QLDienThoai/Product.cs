@@ -126,7 +126,7 @@ namespace QLDienThoai
         public static Product getProduct(string product)
         {
             string[] s = product.Split(',');
-            return new Product(s[0], Convert.ToInt32(s[2]), Convert.ToDouble(s[3]), s[1], s[4]);
+            return new Product(s[0], Convert.ToInt32(s[2]), Convert.ToDouble(s[3]), s[4], s[1]);
         }
         /// <summary>
         /// lay doi tuong tu file bang ma
@@ -150,7 +150,7 @@ namespace QLDienThoai
         /// <returns></returns>
         public override string ToString()
         {
-            return "oanhcute";
+            return null;
         }
     }
 }
