@@ -116,8 +116,7 @@ namespace QLDienThoai
 
             LinkedList<Product> l = new LinkedList<Product>();
             string[] product = bills[2].Split('*');
-
-            for (int i = 0; i < product.Length ; i++)
+            for (int i = 0; i < product.Length; i++)
             {
                 l.AddLast(Product.getProductByID(product[i]));
             }
@@ -168,9 +167,22 @@ namespace QLDienThoai
             s.Append("+-------------------------------------------------------------------------------------------------+\n");
             s.Append($"{"|   Ma Hoa Don",-20}:{CodeBill,-27}{"|   Ma khach hang:",-25}{this.CodeCustomer,-25}|\n");
             s.Append($"{"|   Ten nhan vien",-20}:{Staff.Name,-27}{"|   Ten khach hang:",-25}{this.Name,-25}|\n");
-            s.Append($"|  SDT:{this.SDT,-10}|\n");
-            s.Append("+---------------------------------------------------------------------------------------------------+");
-            s.Append("+---------------------------------------------------------------------------------------------------+");
+            s.Append($"{"|",-48}{"|   SDT:",-25}{this.SDT,-25}|\n");
+            s.Append("+-------------------------------------------------------------------------------------------------+\n");
+            s.Append($"{"|    STT",-18}{"Ma san pham",-23}{"Ten san pham",-27}{"So luong",-17}{"Gia",-13}|\n");
+
+            LinkedListNode<Product> a = products.First;
+            //LinkedListNode<Product> b;
+            int i = 1;
+            while (a != null)
+            {
+                s.Append($"{"|",-5}{i++,-13}{a.Value.CodeProduct,-23}{a.Value.NameProduct,-27}{a.Value.Amount,-17}{a.Value.Price,-13}|\n");
+                a = a.Next;
+            }
+            s.Append("+-------------------------------------------------------------------------------------------------+\n");
+            s.Append($"{"|",-10}{"Tong:",-9}{getTongTien() + "VND",-79}|\n");
+            s.Append("+-------------------------------------------------------------------------------------------------+\n");
+
 
             return s.ToString();
         }

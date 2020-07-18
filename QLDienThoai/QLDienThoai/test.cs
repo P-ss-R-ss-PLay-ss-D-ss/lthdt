@@ -48,6 +48,19 @@ namespace QLDienThoai
                 case 3:
                     goto home;
             }
+            Read();
+            
+            //IOFile.docFileBangMa()
+            //Console.WriteLine(Bill.getCustomer);
+            //while (true)
+            //{
+            //    //IOFile.Add(CreateID.createIDCustomer(fileCustomer), addCustomer().writeCustomer(), fileCustomer);
+            //    //IOFile.Add(CreateID.createIDProduct(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
+            //    //IOFile.Add(CreateID.createIDStaff(fileStaff), addStaff().writeStaff(), fileStaff);
+            //    IOFile.Add(CreateID.createIDBill(fileBill), addBill().nhapFileHoaDon(), fileBill);
+            //    Read();
+
+            //}
         }
 
         #region nhap thong tin
