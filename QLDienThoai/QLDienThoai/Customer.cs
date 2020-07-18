@@ -1,5 +1,6 @@
 ﻿
 
+using System.Collections.Generic;
 using System.Text;
 /**
 * Nguyễn Lê Trọng Tiền
@@ -168,27 +169,27 @@ namespace QLDienThoai
         /// <returns></returns>
         public override string ToString()
         {
+            return null;
+            //StringBuilder s = new StringBuilder();
+            //s.Append("+-------------------------------------------------------------------------------------------------+\n");
+            //s.Append();
+            //s.Append("+-------------------------------------------------------------------------------------------------+\n");
+            //s.Append($"{"|    STT",-18}{"Ma san pham",-23}{"Ten san pham",-27}{"So luong",-17}{"Gia",-13}|\n");
 
-            StringBuilder s = new StringBuilder();
-            s.Append("+-------------------------------------------------------------------------------------------------+\n");
-            s.Append();
-            s.Append("+-------------------------------------------------------------------------------------------------+\n");
-            s.Append($"{"|    STT",-18}{"Ma san pham",-23}{"Ten san pham",-27}{"So luong",-17}{"Gia",-13}|\n");
-
-            LinkedListNode<Product> a = products.First;
+            //LinkedListNode<Product> a = products.First;
             //LinkedListNode<Product> b;
-            int i = 1;
-            while (a != null)
-            {
-                s.Append($"{"|",-5}{i++,-13}{a.Value.CodeProduct,-23}{a.Value.NameProduct,-27}{a.Value.Amount,-17}{a.Value.Price,-13}|\n");
-                a = a.Next;
-            }
-            s.Append("+-------------------------------------------------------------------------------------------------+\n");
-            s.Append($"{"|",-10}{"Tong:",-9}{getTongTien() + "VND",-79}|\n");
-            s.Append("+-------------------------------------------------------------------------------------------------+\n");
+            //int i = 1;
+            //while (a != null)
+            //{
+            //    s.Append($"{"|",-5}{i++,-13}{a.Value.CodeProduct,-23}{a.Value.NameProduct,-27}{a.Value.Amount,-17}{a.Value.Price,-13}|\n");
+            //    a = a.Next;
+            //}
+            //s.Append("+-------------------------------------------------------------------------------------------------+\n");
+            //s.Append($"{"|",-10}{"Tong:",-9}{getTongTien() + "VND",-79}|\n");
+            //s.Append("+-------------------------------------------------------------------------------------------------+\n");
 
 
-            return s.ToString();
+            //return s.ToString();
         }
 
         ~Customer() { }

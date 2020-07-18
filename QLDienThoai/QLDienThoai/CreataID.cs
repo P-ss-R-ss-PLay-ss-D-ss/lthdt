@@ -22,7 +22,7 @@ namespace QLDienThoai
             if (file.Contains("Bill"))
             {
                 result = $"hd{checkID(file) + 1:000}";
-                while (!IOFile.CheckTrung(result, file))
+                while (IOFile.CheckTrung(result, file))
                 {
                     result = $"hd{rd.Next(999) + 1:000}";
                 }
@@ -30,7 +30,7 @@ namespace QLDienThoai
             else if (file.Contains("Customer"))
             {
                 result = $"kh{checkID(file) + 1:000}";
-                while (!IOFile.CheckTrung(result, file))
+                while (IOFile.CheckTrung(result, file))
                 {
                     result = $"kh{rd.Next(999) + 1:000}";
                 }
@@ -38,7 +38,7 @@ namespace QLDienThoai
             else if (file.Contains("Product"))
             {
                 result = $"sp{checkID(file) + 1:000}";
-                while (!IOFile.CheckTrung(result, file))
+                while (IOFile.CheckTrung(result, file))
                 {
                     result = $"sp{rd.Next(999) + 1:000}";
                 }
@@ -46,7 +46,7 @@ namespace QLDienThoai
             else if (file.Contains("Staff"))
             {
                 result = $"nv{checkID(file) + 1:000}";
-                while (!IOFile.CheckTrung(result, file))
+                while (IOFile.CheckTrung(result, file))
                 {
                     result = $"nv{rd.Next(999) + 1:000}";
                 }

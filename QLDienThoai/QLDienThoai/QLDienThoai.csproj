@@ -9,4 +9,8 @@
     <Compile Remove="MyList.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="bin\Debug\Warehouse.txt" />
+  </ItemGroup>
+
 </Project>

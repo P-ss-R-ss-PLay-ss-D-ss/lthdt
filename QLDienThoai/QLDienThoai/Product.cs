@@ -8,12 +8,10 @@ using System;
 
 namespace QLDienThoai
 {
-    class Product
+    class Product : Warehouse
     {
         //fields
-        private String codeProduct = "Unknow";
         private string nameProduct = "Unknow";
-        private int amount = 1;
         private double price = 0;
         private string madeIn = "Unknow";
         /// <summary>
@@ -32,42 +30,11 @@ namespace QLDienThoai
         /// <param name="gia"></param>
         /// <param name="xuatXu"></param>
         /// <param name="tenSP"></param>
-        public Product(string maSP, int soLuong, double gia, string xuatXu, string tenSP)
+        public Product(string maSP, int soLuong, double gia, string xuatXu, string tenSP) : base(maSP, soLuong)
         {
-            CodeProduct = maSP;
-            Amount = soLuong;
             Price = gia;
             MadeIn = xuatXu;
             NameProduct = tenSP;
-        }
-        //properties
-        public string CodeProduct
-        {
-            get
-            {
-                return codeProduct;
-            }
-            set
-            {
-                if (value != null && value != "")
-                {
-                    codeProduct = value;
-                }
-            }
-        }
-        public int Amount
-        {
-            get
-            {
-                return amount;
-            }
-            set
-            {
-                if (value > 0)
-                {
-                    amount = value;
-                }
-            }
         }
         public double Price
         {
@@ -114,9 +81,9 @@ namespace QLDienThoai
         /// ngay : 9/7/2020
         /// </summary>
         /// <returns></returns>
-        public string nhapFileSanPham()
+        public override string nhapFileSanPham()
         {
-            return $"{CodeProduct},{NameProduct},{Amount},{Price},{MadeIn}";
+            return $"{ProductID},{Amoust},{NameProduct},{Price},{MadeIn}";
         }
         /// <summary>
         /// lay doi tuong bang tu file

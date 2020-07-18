@@ -19,55 +19,45 @@ namespace QLDienThoai
         public static string fileStaff = @"..\Staff.txt";
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-            Console.WriteLine("Hello Xin chào tất cả các bạn :))");
-            home:
-            Console.WriteLine();
-            Console.WriteLine("1. Nhập kho");
-            Console.WriteLine("2. Xuất hoa đơn");
-            Console.WriteLine("3. Trở về màn hình chính");
+            //Console.OutputEncoding = Encoding.UTF8;
+            //home:
+            //Console.WriteLine("******************************************************************************************");
+            //Console.WriteLine("1. Nhập kho");
+            //Console.WriteLine("2. Xuất hoa đơn");
+            //Console.WriteLine("3. Trở về màn hình chính");
 
-            int menu = 0;
-            do
-            {
-                Console.Write("Nhập lựa chọn: ");
-                int.TryParse(Console.ReadLine(), out menu);
-            } while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
-
-            switch (menu)
-            {
-                case 1:
-
-
-                    break;
-                case 2:
-                    Console.WriteLine("1. Nhập Khách hàng");
-                    Console.WriteLine("1. Nhập Khách hàng");
-
-                    break;
-                case 3:
-                    goto home;
-            }
-            Read();
-            
-            //IOFile.docFileBangMa()
-            //Console.WriteLine(Bill.getCustomer);
-            //while (true)
+            //int menu = 0;
+            //do
             //{
-            //    //IOFile.Add(CreateID.createIDCustomer(fileCustomer), addCustomer().writeCustomer(), fileCustomer);
-            //    //IOFile.Add(CreateID.createIDProduct(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
-            //    //IOFile.Add(CreateID.createIDStaff(fileStaff), addStaff().writeStaff(), fileStaff);
-            //    IOFile.Add(CreateID.createIDBill(fileBill), addBill().nhapFileHoaDon(), fileBill);
-            //    Read();
+            //    Console.Write("Nhập lựa chọn: ");
+            //    int.TryParse(Console.ReadLine(), out menu);
+            //} while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
 
+            //switch (menu)
+            //{
+            //    case 1:
+
+
+            //        break;
+            //    case 2:
+            //        Console.WriteLine("1. Nhập Khách hàng");
+            //        Console.WriteLine("1. Nhập Khách hàng");
+
+            //        break;
+            //    case 3:
+            //        Console.Clear();
+            //        goto home;
             //}
+
+            //Read();
+            IOFile.Add(CreateID.createID(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
         }
 
         #region nhap thong tin
         //Thêm hóa đơn
         static Bill addBill()
         {
-            string c;
+            string c = "KH001";
             string s;
             int soSP = 0;
             DateTime day;
@@ -86,6 +76,7 @@ namespace QLDienThoai
 
             Console.WriteLine("nhap khach hang moi");
             Console.WriteLine("nhap khach hang cu");
+
 
             do
             {
@@ -117,7 +108,7 @@ namespace QLDienThoai
         static Product addProduct()
         {
             double gia;
-            int soLuong;
+            //int soLuong;
             string name;
             string xuatXu;
 
@@ -139,10 +130,10 @@ namespace QLDienThoai
                 double.TryParse(Read(), out gia);
             } while (gia == 0);
 
-            Console.Write("Nhap so luong: ");
-            int.TryParse(Read(), out soLuong);
+            //Console.Write("Nhap so luong: ");
+            //int.TryParse(Read(), out soLuong);
 
-            return new Product(CreateID.createID(fileProduct), soLuong, gia, xuatXu, name);
+            return new Product(CreateID.createID(fileProduct),/* soLuong,*/ gia, xuatXu, name);
         }
         //Thêm khách hàng
         static Customer addCustomer()
