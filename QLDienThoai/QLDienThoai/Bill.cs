@@ -96,7 +96,7 @@ namespace QLDienThoai
                     sb.Append($"{Products.ElementAt(i).ProductID}/{Products.ElementAt(i).Price}");
                     break;
                 }
-                sb.Append($"{Products.ElementAt(i).nhapFileSanPham()}/{Products.ElementAt(i).Price}*");
+                sb.Append($"{Products.ElementAt(i).ProductID}/{Products.ElementAt(i).Price}*");
             }
 
             sb.Append($"-{base.CodeCustomer}");

@@ -6,7 +6,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace QLDienThoai
@@ -20,48 +22,55 @@ namespace QLDienThoai
         public static string fileStaff = @"..\Staff.txt";
         static void Main(string[] args)
         {
-            //Console.OutputEncoding = Encoding.UTF8;
-            //home:
-            //Console.WriteLine("******************************************************************************************");
-            //Console.WriteLine("1. Nhập kho");
-            //Console.WriteLine("2. Xuất hoa đơn");
-            //Console.WriteLine("3. Trở về màn hình chính");
+            Console.OutputEncoding = Encoding.UTF8;
+            home:
+            Console.WriteLine("******************************************************************************************");
+            Console.WriteLine("1. Nhập kho");
+            Console.WriteLine("2. Xuất hoa đơn");
+            Console.WriteLine("3. Trở về màn hình chính");
 
-            //int menu = 0;
-            //do
-            //{
-            //    Console.Write("Nhập lựa chọn: ");
-            //    int.TryParse(Console.ReadLine(), out menu);
-            //} while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
+            int menu = 0;
+            do
+            {
+                Console.Write("Nhập lựa chọn: ");
+                int.TryParse(Console.ReadLine(), out menu);
+            } while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
 
-            //switch (menu)
-            //{
-            //    case 1:
+            switch (menu)
+            {
+                case 1:
+                    int soHangHoa = 0;
+                    do
+                    {
+                        Console.Write("nhập số lượng hàng hoá muốn nhập vào kho: ");
+                        int.TryParse(Console.ReadLine(), out soHangHoa);
+                    } while (soHangHoa<=0);
 
+                    for (int i = 0; i < soHangHoa; i++)
+                    {
+                        Console.Write("Nhập hàng hoá thứ [{0}]",i);
+                        nhapKho();
+                    }
+                    break;
+                case 2:
+                    IOFile.Add(CreateID.createID(fileBill), addBill().nhapFileHoaDon(), fileBill);
+                    break;
+                case 3:
+                    Console.Clear();
+                    goto home;
+            }
 
-            //        break;
-            //    case 2:
-            //        Console.WriteLine("1. Nhập Khách hàng");
-            //        Console.WriteLine("1. Nhập Khách hàng");
-
-            //        break;
-            //    case 3:
-            //        Console.Clear();
-            //        goto home;
-            //}
-
-            //Read();
+            Read();
             //IOFile.Add(CreateID.createID(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
             //IOFile.Add(CreateID.createID(fileCustomer), addCustomer().writeCustomer(), fileCustomer);
             //IOFile.Add(CreateID.createID(fileStaff), addStaff().writeStaff(), fileStaff);
-            IOFile.Add(CreateID.createID(fileBill), addBill().nhapFileHoaDon(), fileBill);
         }
 
         #region nhap thong tin
         //Thêm hóa đơn
         static Bill addBill()
         {
-            string customer;
+            string customer = "";
             string staff;
             int soSP = 0;
             DateTime day;
@@ -70,7 +79,7 @@ namespace QLDienThoai
             lap:
             try
             {
-                Console.Write("  -  Nhap ngay mua[yyyy/MM/dd]: ");
+                Console.Write("  -  Nhâp ngày mua[yyyy/MM/dd]: ");
                 day = Convert.ToDateTime(Read());
             }
             catch (Exception)
@@ -78,13 +87,29 @@ namespace QLDienThoai
                 goto lap;
             }
 
-            //Console.WriteLine("nhap khach hang moi");
-            //Console.WriteLine("nhap khach hang cu");
+            Console.WriteLine("1. nhâp khách hàng môi");
+            Console.WriteLine("2. nhâp khách hàng cũ");
+
+            int menu = 0;
             do
             {
-                Console.Write("  -  Nhap ma khach hang: ");
-                customer = Read().ToLower();
-            } while (Customer.getCustomerByID(customer) == null);
+                Console.Write("Nhâp lưa chọn: ");
+                int.TryParse(Console.ReadLine(), out menu);
+            } while (menu != 1 && menu != 2);
+
+            switch (menu)
+            {
+                case 1:
+                    customer = IOFile.Add(CreateID.createID(fileCustomer), addCustomer().writeCustomer(), fileCustomer);
+                    break;
+                case 2:
+                    do
+                    {
+                        Console.Write("  -  Nhâp mã khách hàng: ");
+                        customer = Read().ToLower();
+                    } while (Customer.getCustomerByID(customer) == null);
+                    break;
+            }
 
             do
             {
@@ -290,5 +315,60 @@ namespace QLDienThoai
         }
         #endregion
 
+        #region Nhap hàng hoá
+        static void nhapKho()
+        {
+            string code = "";
+            int amount = 0;
+            Console.WriteLine("1. nhâp sản phầm môi");
+            Console.WriteLine("2. nhâp sản phầm cũ");
+
+            int menu = 0;
+            do
+            {
+                Console.Write("Nhâp lưa chọn: ");
+                int.TryParse(Console.ReadLine(), out menu);
+            } while (menu != 1 && menu != 2);
+
+
+            switch (menu)
+            {
+                case 1:
+                    code = IOFile.Add(CreateID.createID(fileProduct), addCustomer().writeCustomer(), fileProduct);
+                    break;
+                case 2:
+                    do
+                    {
+                        Console.Write("  -  Nhâp mã sản phẩm: ");
+                        code = Read().ToLower();
+                    } while (Product.getProductByID(code) == null);
+                    do
+                    {
+                        Console.Write("  -  Nhập số lượng: ");
+                        int.TryParse(Console.ReadLine(), out amount);
+                    } while (amount <= 0);
+                    break;
+            }
+            string[] s = IOFile.docFile(fileProduct);
+            Product[] p = new Product[s.Length];
+            int line = IOFile.findInCode(code, fileProduct);
+
+            p[line] = Product.getProduct(s[line]);
+            p[line].Amoust += amount;
+            s[line] = p[line].nhapFileSanPham();
+
+            List<string> fData = s.ToList();
+
+            File.WriteAllLines(fileProduct, fData.ToArray());
+        }
+
+        #endregion
+
+        #region Xuất hàng hoá
+        static void xuatHangHoa()
+        {
+
+        }
+        #endregion
     }
 }
