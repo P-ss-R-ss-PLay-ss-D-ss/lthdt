@@ -80,21 +80,17 @@ namespace QLDienThoai
         /// <returns></returns>
         public static int findInCode(string code, string file)
         {
-            StreamReader sr = new StreamReader(CreateID.createAutoFileCode(file));
+            List<string> fcode = IOFile.docFile(CreateID.createAutoFileCode(file)).ToList();
 
-            int length = File.ReadAllLines(file).Length;
-            int result = -1;
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < fcode.Count; i++)
             {
-                if (code == sr.ReadLine())
+                if (code.Equals(fcode[i]))
                 {
-                    result = i;
-                    break;
+                    return i;
                 }
             }
 
-            sr.Close();
-            return result;
+            return -1;
         }
         /// <summary>
         /// xoa doi tuong bang ma

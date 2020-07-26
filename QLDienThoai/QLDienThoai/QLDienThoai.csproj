@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="bin\Debug\Warehouse.txt" />
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
 
 </Project>

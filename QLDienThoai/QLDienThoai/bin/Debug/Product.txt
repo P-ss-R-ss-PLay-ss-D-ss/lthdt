@@ -1,1 +1,2 @@
-sp001,oanh,10000,my
+sp001,10,oanh,101000,my
+sp002,20,dien thoai,100000,canada

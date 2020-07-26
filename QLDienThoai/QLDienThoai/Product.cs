@@ -8,9 +8,11 @@ using System;
 
 namespace QLDienThoai
 {
-    class Product : Warehouse
+    class Product
     {
         //fields
+        private string productID = "Unknow";
+        private int amoust = 0;
         private string nameProduct = "Unknow";
         private double price = 0;
         private string madeIn = "Unknow";
@@ -30,11 +32,13 @@ namespace QLDienThoai
         /// <param name="gia"></param>
         /// <param name="xuatXu"></param>
         /// <param name="tenSP"></param>
-        public Product(string maSP, int soLuong, double gia, string xuatXu, string tenSP) : base(maSP, soLuong)
+        public Product(string maSP, int soLuong, double gia, string xuatXu, string tenSP)
         {
             Price = gia;
             MadeIn = xuatXu;
             NameProduct = tenSP;
+            Amoust = soLuong;
+            ProductID = maSP;
         }
         public double Price
         {
@@ -76,12 +80,26 @@ namespace QLDienThoai
                 }
             }
         }
+
+        public string ProductID
+        {
+            get { return productID; }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    productID = value;
+                }
+            }
+        }
+        public int Amoust { get { return amoust; } set { amoust = value; } }
+
         /// <summary>
         /// form ghi vao file
         /// ngay : 9/7/2020
         /// </summary>
         /// <returns></returns>
-        public override string nhapFileSanPham()
+        public string nhapFileSanPham()
         {
             return $"{ProductID},{Amoust},{NameProduct},{Price},{MadeIn}";
         }
@@ -93,7 +111,7 @@ namespace QLDienThoai
         public static Product getProduct(string product)
         {
             string[] s = product.Split(',');
-            return new Product(s[0], Convert.ToInt32(s[2]), Convert.ToDouble(s[3]), s[4], s[1]);
+            return new Product(s[0], Convert.ToInt32(s[1]), Convert.ToDouble(s[3]), s[4], s[2]);
         }
         /// <summary>
         /// lay doi tuong tu file bang ma

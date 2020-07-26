@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace QLDienThoai
@@ -50,15 +51,18 @@ namespace QLDienThoai
             //}
 
             //Read();
-            IOFile.Add(CreateID.createID(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
+            //IOFile.Add(CreateID.createID(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
+            //IOFile.Add(CreateID.createID(fileCustomer), addCustomer().writeCustomer(), fileCustomer);
+            //IOFile.Add(CreateID.createID(fileStaff), addStaff().writeStaff(), fileStaff);
+            IOFile.Add(CreateID.createID(fileBill), addBill().nhapFileHoaDon(), fileBill);
         }
 
         #region nhap thong tin
         //Thêm hóa đơn
         static Bill addBill()
         {
-            string c = "KH001";
-            string s;
+            string customer;
+            string staff;
             int soSP = 0;
             DateTime day;
             LinkedList<Product> listProduct = new LinkedList<Product>();
@@ -74,41 +78,53 @@ namespace QLDienThoai
                 goto lap;
             }
 
-            Console.WriteLine("nhap khach hang moi");
-            Console.WriteLine("nhap khach hang cu");
-
+            //Console.WriteLine("nhap khach hang moi");
+            //Console.WriteLine("nhap khach hang cu");
+            do
+            {
+                Console.Write("  -  Nhap ma khach hang: ");
+                customer = Read().ToLower();
+            } while (Customer.getCustomerByID(customer) == null);
 
             do
             {
                 Console.Write("  -  Nhap ma nhan vien: ");
-                s = Read();
-            } while (Staff.getStaffById(s) == null);
+                staff = Read().ToLower();
+            } while (Staff.getStaffById(staff) == null);
 
             do
             {
                 Console.Write("  -  Nhap so san pham: ");
                 int.TryParse(Read(), out soSP);
-            } while (soSP == 0);
+            } while (soSP <= 0);
 
             string code;
+            int amoust = 0;
             for (int i = 0; i < soSP; i++)
             {
-                code = Read();
-                while (code != "" && Product.getProductByID(code) != null)
+                do
                 {
-                    Console.Write("-  Nhap ma san pham thu {0}: ", i);
-                    listProduct.AddLast(Product.getProductByID(code));
-                }
+                    Console.Write("-  Nhap ma san pham thu [{0}]: ", i);
+                    code = Read().ToLower();
+                    do
+                    {
+                        Console.Write("-  Nhap so luong san pham thu [{0}]: ", i);
+                        int.TryParse(Console.ReadLine(), out amoust);
+                    } while (amoust <= 0);
+                    Product a = Product.getProductByID(code);
+                    a.Amoust = amoust;
+                    listProduct.AddLast(a);
+                } while (code != "" && !IOFile.CheckTrung(code, fileProduct));
             }
 
-            Bill bill = new Bill(CreateID.createID(fileBill), day, Customer.getCustomerByID(c), listProduct, Staff.getStaffById(s));
+            Bill bill = new Bill(CreateID.createID(fileBill), day, Customer.getCustomerByID(customer), listProduct, Staff.getStaffById(staff));
             return bill;
         }
         //Thêm sản phẩm
         static Product addProduct()
         {
             double gia;
-            //int soLuong;
+            int soLuong;
             string name;
             string xuatXu;
 
@@ -130,10 +146,10 @@ namespace QLDienThoai
                 double.TryParse(Read(), out gia);
             } while (gia == 0);
 
-            //Console.Write("Nhap so luong: ");
-            //int.TryParse(Read(), out soLuong);
+            Console.Write("Nhap so luong: ");
+            int.TryParse(Read(), out soLuong);
 
-            return new Product(CreateID.createID(fileProduct),/* soLuong,*/ gia, xuatXu, name);
+            return new Product(CreateID.createID(fileProduct), soLuong, gia, xuatXu, name);
         }
         //Thêm khách hàng
         static Customer addCustomer()

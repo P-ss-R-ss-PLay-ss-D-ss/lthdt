@@ -1,5 +1,4 @@
-﻿
-
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 /**
@@ -33,7 +32,7 @@ namespace QLDienThoai
         ///  Constructor Copy đối tượng
         /// </summary>
         /// <param name="customer"></param>
-        public Customer(Customer customer) : base(customer.Name, customer.SoCMND, customer.Address)
+        public Customer(Customer customer) : base(customer.Name,customer.BirdDay, customer.SoCMND, customer.Address)
         {
             CodeCustomer = customer.codeCustomer;
             SDT = customer.sDT;
@@ -169,7 +168,7 @@ namespace QLDienThoai
         /// <returns></returns>
         public override string ToString()
         {
-            return null;
+            return "true";
             //StringBuilder s = new StringBuilder();
             //s.Append("+-------------------------------------------------------------------------------------------------+\n");
             //s.Append();
