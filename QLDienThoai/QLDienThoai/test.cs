@@ -44,23 +44,22 @@ namespace QLDienThoai
                     {
                         Console.Write("nhập số lượng hàng hoá muốn nhập vào kho: ");
                         int.TryParse(Console.ReadLine(), out soHangHoa);
-                    } while (soHangHoa<=0);
-
+                    } while (soHangHoa <= 0);
                     for (int i = 0; i < soHangHoa; i++)
                     {
-                        Console.Write("Nhập hàng hoá thứ [{0}]",i);
+                        Console.WriteLine("Nhập hàng hoá thứ [{0}]", i);
                         nhapKho();
                     }
-                    break;
+                    Console.Clear();
+                    goto home;
                 case 2:
-                    IOFile.Add(CreateID.createID(fileBill), addBill().nhapFileHoaDon(), fileBill);
-                    break;
+                    xuatHangHoa();
+                    Console.Clear();
+                    goto home;
                 case 3:
                     Console.Clear();
                     goto home;
             }
-
-            Read();
             //IOFile.Add(CreateID.createID(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
             //IOFile.Add(CreateID.createID(fileCustomer), addCustomer().writeCustomer(), fileCustomer);
             //IOFile.Add(CreateID.createID(fileStaff), addStaff().writeStaff(), fileStaff);
@@ -113,13 +112,13 @@ namespace QLDienThoai
 
             do
             {
-                Console.Write("  -  Nhap ma nhan vien: ");
+                Console.Write("  -  Nhập mã nhân viên: ");
                 staff = Read().ToLower();
             } while (Staff.getStaffById(staff) == null);
 
             do
             {
-                Console.Write("  -  Nhap so san pham: ");
+                Console.Write("  -  Nhâp số sản phẩm: ");
                 int.TryParse(Read(), out soSP);
             } while (soSP <= 0);
 
@@ -129,14 +128,18 @@ namespace QLDienThoai
             {
                 do
                 {
-                    Console.Write("-  Nhap ma san pham thu [{0}]: ", i);
+                    Console.Write("-  Nhập mã sản phẩm thứ [{0}]: ", i);
                     code = Read().ToLower();
                     do
                     {
-                        Console.Write("-  Nhap so luong san pham thu [{0}]: ", i);
+                        Console.Write("-  Nhập số lượng sản phẩm thứ [{0}]: ", i);
                         int.TryParse(Console.ReadLine(), out amoust);
                     } while (amoust <= 0);
                     Product a = Product.getProductByID(code);
+                    if (amoust > a.Amoust)
+                    {
+                        throw new Exception("số lượng lớn hơn trong kho");
+                    }
                     a.Amoust = amoust;
                     listProduct.AddLast(a);
                 } while (code != "" && !IOFile.CheckTrung(code, fileProduct));
@@ -155,23 +158,23 @@ namespace QLDienThoai
 
             do
             {
-                Console.Write("Nhap xuat xu san pham: ");
+                Console.Write("Nhâp xuất xư sản phẩm: ");
                 xuatXu = Read();
             } while (!Customer.checkString(xuatXu));
 
             do
             {
-                Console.Write("Nhap ten san pham: ");
+                Console.Write("Nhâp tên sản phẩm: ");
                 name = Read();
             } while (!Customer.checkString(name));
 
             do
             {
-                Console.Write("Nhap gia: ");
+                Console.Write("Nhập giá: ");
                 double.TryParse(Read(), out gia);
             } while (gia == 0);
 
-            Console.Write("Nhap so luong: ");
+            Console.Write("Nhập số lượng: ");
             int.TryParse(Read(), out soLuong);
 
             return new Product(CreateID.createID(fileProduct), soLuong, gia, xuatXu, name);
@@ -186,17 +189,17 @@ namespace QLDienThoai
             /*Nhap sdt = 10 hơặc 11 số*/
             do
             {
-                Console.Write("  -  Nhap SDT khach hang: ");
+                Console.Write("  -  Nhập SDT khách hàng: ");
                 sDT = Read();
             } while (!Customer.checkSDT(sDT));
 
             do
             {
-                Console.Write("  -  Nhap mail khach hang: ");
+                Console.Write("  -  Nhập mail khách hàng: ");
                 mail = Read();
             } while (Customer.checkMail(mail));
 
-            Console.WriteLine("-  Nhap thong tin chung: ");
+            Console.WriteLine("-  Nhập thông tin chung: ");
             g = addGeneralInfo();
 
             return new Customer(CreateID.createID(fileCustomer), sDT, mail, g);
@@ -213,7 +216,7 @@ namespace QLDienThoai
             lap:
             try
             {
-                Console.Write("  -  Nhap ngay sinh [yyyy/MM/dd]: ");
+                Console.Write("  -  Nhập ngày sinh [yyyy/MM/dd]: ");
                 birthday = Convert.ToDateTime(Read());
             }
             catch (Exception)
@@ -223,17 +226,17 @@ namespace QLDienThoai
 
             do
             {
-                Console.Write("  -  Nhap ten : ");
+                Console.Write("  -  Nhập tên : ");
                 name = Read();
             } while (Customer.checkString(name) == false);
 
             do
             {
-                Console.Write("  -  Nhap so CMND: ");
+                Console.Write("  -  Nhập số CMND: ");
                 soCMND = Read();
             } while (!GeneralInfo.checkSoCMND(soCMND));
 
-            Console.WriteLine("-  Nhap dia chi: ");
+            Console.WriteLine("-  Nhập địa chỉ: ");
             dc = addAddress();
 
             return new GeneralInfo(name, birthday, soCMND, dc);
@@ -247,18 +250,18 @@ namespace QLDienThoai
 
             do
             {
-                Console.Write("  -  Nhap SDT nhan vien: ");
+                Console.Write("  -  Nhập SDT nhân viên: ");
                 sDT = Read();
             } while (!Customer.checkSDT(sDT));
 
             do
             {
-                Console.Write("  -  Nhap mail nhan vien: ");
+                Console.Write("  -  Nhập mail nhân viên: ");
                 mail = Read();
             } while (Customer.checkMail(mail));
 
 
-            Console.WriteLine("- Nhap thong tin chung");
+            Console.WriteLine("- Nhập thông tin chung");
             g = addGeneralInfo();
 
             return new Staff(CreateID.createID(fileStaff), sDT, mail, g);
@@ -273,25 +276,25 @@ namespace QLDienThoai
 
             do
             {
-                Console.Write("  -  Nhap so nha: ");
+                Console.Write("  -  Nhập số nhà: ");
                 soNha = Read();
             } while (Customer.checkString(soNha) == false);
 
             do
             {
-                Console.Write("  -  Nhap duong: ");
+                Console.Write("  -  Nhập dường: ");
                 duong = Read();
             } while (Customer.checkString(duong) == false);
 
             do
             {
-                Console.Write("  -  Nhap quan: ");
+                Console.Write("  -  Nhập quận: ");
                 quan = Read();
             } while (Customer.checkString(quan) == false);
 
             do
             {
-                Console.Write("  -  Nhap thanh pho: ");
+                Console.Write("  -  Nhập thành phố: ");
                 thanhPho = Read();
             } while (Customer.checkString(thanhPho) == false);
             return new Address(soNha, duong, quan, thanhPho);
@@ -320,7 +323,8 @@ namespace QLDienThoai
         {
             string code = "";
             int amount = 0;
-            Console.WriteLine("1. nhâp sản phầm môi");
+            Console.WriteLine();
+            Console.WriteLine("1. nhâp sản phầm mới");
             Console.WriteLine("2. nhâp sản phầm cũ");
 
             int menu = 0;
@@ -334,8 +338,8 @@ namespace QLDienThoai
             switch (menu)
             {
                 case 1:
-                    code = IOFile.Add(CreateID.createID(fileProduct), addCustomer().writeCustomer(), fileProduct);
-                    break;
+                    code = IOFile.Add(CreateID.createID(fileProduct), addProduct().nhapFileSanPham(), fileProduct);
+                    return;
                 case 2:
                     do
                     {
@@ -367,7 +371,27 @@ namespace QLDienThoai
         #region Xuất hàng hoá
         static void xuatHangHoa()
         {
+            Bill hd = addBill();
 
+            LinkedList<Product> listProduct = hd.Products;
+
+            string[] s = IOFile.docFile(fileProduct);
+            Product[] p = new Product[s.Length];
+
+            for (LinkedListNode<Product> i = listProduct.First; i != null; i=i.Next)
+            {
+                int line = IOFile.findInCode(i.Value.ProductID, fileProduct);
+
+                p[line] = Product.getProduct(s[line]);
+                p[line].Amoust -= i.Value.Amoust;
+                s[line] = p[line].nhapFileSanPham();
+            }
+
+            List<string> fData = s.ToList();
+
+            File.WriteAllLines(fileProduct, fData.ToArray());
+
+            IOFile.Add(CreateID.createID(fileBill), hd.nhapFileHoaDon(), fileBill);
         }
         #endregion
     }
