@@ -5,8 +5,6 @@
  * class thông tin chung chứa các thông tin như ho tên ngày sinh số CMND
  */
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QLDienThoai
 {
@@ -61,7 +59,10 @@ namespace QLDienThoai
             SoCMND = soCMND;
             Address = new Address(apartmentNum, street, district, city);
         }
-
+        /// <summary>
+        /// constructor copy
+        /// </summary>
+        /// <param name="generalInfo"></param>
         public GeneralInfo(GeneralInfo generalInfo)
         {
             this.Name = generalInfo.name;
@@ -69,12 +70,12 @@ namespace QLDienThoai
             this.Address = generalInfo.address;
             this.BirdDay = generalInfo.birdDay;
         }
-
+        /// <summary>
+        /// constructor mac dinh
+        /// </summary>
         public GeneralInfo()
         {
         }
-
-
 
         //properties
         public string Name
@@ -113,7 +114,7 @@ namespace QLDienThoai
             }
             set
             {
-                if (value != "" && value != null)
+                if (Customer.checkString(value) && checkSoCMND(value))
                 {
                     soCMND = value;
                 }
@@ -136,15 +137,29 @@ namespace QLDienThoai
         /// ngày : 2/7/2020
         /// </summary>
         /// <returns></returns>
-        public String nhapFileThongTinChung()
+        public String writeGeneralInfo()
         {
             return $"{Name}.{BirdDay.ToString("yyyy/MM/dd")}.{Address.nhapFileDiaChi()}.{SoCMND}";
         }
-        public static GeneralInfo xuatFileThongTinChung(string thongTinChung)
+        /// <summary>
+        /// doc từ file
+        /// </summary>
+        /// <param name="thongTinChung"></param>
+        /// <returns></returns>
+        public static GeneralInfo getGeneralInfo(string thongTinChung)
         {
             string[] s = thongTinChung.Split('.');
             Address dc = Address.xuatFileDiaChi(s[2]);
             return new GeneralInfo(s[0], Convert.ToDateTime(s[1]), s[3], dc);
+        }
+        /// <summary>
+        /// check so cmnd
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool checkSoCMND(string value)
+        {
+            return value.Length == 9 || value.Length == 12;
         }
         /// <summary>
         /// in thông tin chung của khách hang

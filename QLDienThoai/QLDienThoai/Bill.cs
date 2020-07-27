@@ -5,7 +5,6 @@
  * class hoá đơn lưu thông tin khách hàng mua hàng và danh sach sản phẩm
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +34,6 @@ namespace QLDienThoai
             Products = sanPhams;
             Staff = staff;
         }
-
         //properties
         public string CodeBill
         {
@@ -80,7 +78,6 @@ namespace QLDienThoai
             }
         }
         internal Staff Staff { get { return staff; } set { if (value != null) { staff = value; } } }
-
         /// <summary>
         /// form ghi vao file
         /// ngay : 9/7/2020
@@ -96,10 +93,10 @@ namespace QLDienThoai
             {
                 if (i == products.Count - 1)
                 {
-                    sb.Append($"{Products.ElementAt(i).CodeProduct}");
+                    sb.Append($"{Products.ElementAt(i).ProductID}/{Products.ElementAt(i).Price}");
                     break;
                 }
-                sb.Append($"{Products.ElementAt(i).CodeProduct}*");
+                sb.Append($"{Products.ElementAt(i).ProductID}/{Products.ElementAt(i).Price}*");
             }
 
             sb.Append($"-{base.CodeCustomer}");
@@ -108,31 +105,53 @@ namespace QLDienThoai
 
             return sb.ToString();
         }
-
-        public static Bill xuatFileHoaDon(string bill)
+        /// <summary>
+        /// Đọc hóa đơn từ file Bill 
+        /// </summary>
+        /// <param name="bill"></param>
+        /// <returns></returns>
+        public static Bill getBill(string bill)
         {
             string[] bills = bill.Split('-');
 
             LinkedList<Product> l = new LinkedList<Product>();
             string[] product = bills[2].Split('*');
-            for (int i = 0; i < product.Length / 5; i++)
+            for (int i = 0; i < product.Length; i++)
             {
-                l.Append(Product.xuatFileSanPhamBangMaSP(product[i]));
+                l.AddLast(Product.getProductByID(product[i]));
             }
 
-            Customer kh = Customer.xuatFileKhachHangBangMaKH(bills[3]);
-            Staff nv = Staff.xuatFileNhanVienBangMaSP(bills[4]);
+            Customer kh = Customer.getCustomerByID(bills[3]);
+
+            Staff nv = Staff.getStaffById(bills[4]);
+
             return new Bill(bills[0], Convert.ToDateTime(bills[1]), kh, l, nv);
         }
-
-        public static Bill xuatFileHoaDonBangMaHoaDon(string code)
+        /// <summary>
+        /// Ghi mã hóa đơn ra file CodeBill
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static Bill getBillByID(string code)
         {
             string data;
             if ((data = IOFile.docFileBangMa(code, test.fileBill)) != null)
             {
-                return Bill.xuatFileHoaDon(data);
+                return Bill.getBill(data);
             }
             return null;
+        }
+
+        public double getTongTien()
+        {
+            double result = 0;
+            LinkedListNode<Product> a = products.First;
+            do
+            {
+                result += Product.getProductByID(a.Value.ProductID).Price;
+            } while ((a = a.Next) != null);
+
+            return result;
         }
 
         /// <summary>
@@ -142,7 +161,29 @@ namespace QLDienThoai
         /// <returns></returns>
         public override string ToString()
         {
-            return $"true" /*{base.GeneralInfo.Name},*/;
+            StringBuilder s = new StringBuilder();
+            s.Append("+-------------------------------------------------------------------------------------------------+\n");
+            s.Append($"{"|",-41}{"HOA DON BAN HANG",-57}|\n");
+            s.Append("+-------------------------------------------------------------------------------------------------+\n");
+            s.Append($"{"|   Ma Hoa Don",-20}:{CodeBill,-27}{"|   Ma khach hang:",-25}{this.CodeCustomer,-25}|\n");
+            s.Append($"{"|   Ten nhan vien",-20}:{Staff.Name,-27}{"|   Ten khach hang:",-25}{this.Name,-25}|\n");
+            s.Append($"{"|",-48}{"|   SDT:",-25}{this.SDT,-25}|\n");
+            s.Append("+-------------------------------------------------------------------------------------------------+\n");
+            s.Append($"{"|    STT",-18}{"Ma san pham",-23}{"Ten san pham",-27}{"So luong",-17}{"Gia",-13}|\n");
+
+            LinkedListNode<Product> a = products.First;
+            int i = 1;
+            while (a != null)
+            {
+                s.Append($"{"|",-5}{i++,-13}{a.Value.ProductID,-23}{a.Value.NameProduct,-27}{a.Value.Amoust,-17}{a.Value.Price,-13}|\n");
+                a = a.Next;
+            }
+            s.Append("+-------------------------------------------------------------------------------------------------+\n");
+            s.Append($"{"|",-10}{"Tong:",-9}{getTongTien() + "VND",-79}|\n");
+            s.Append("+-------------------------------------------------------------------------------------------------+\n");
+
+
+            return s.ToString();
         }
     }
 }

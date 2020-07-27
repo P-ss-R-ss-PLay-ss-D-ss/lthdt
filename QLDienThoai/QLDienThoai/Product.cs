@@ -11,11 +11,11 @@ namespace QLDienThoai
     class Product
     {
         //fields
-        private String codeProduct = "Unknow";
+        private string productID = "Unknow";
+        private int amoust = 0;
         private string nameProduct = "Unknow";
-        private int amount = 1;
         private double price = 0;
-        private string makeIn = "Unknow";
+        private string madeIn = "Unknow";
         /// <summary>
         /// constructor mặc đinh
         /// ngày : 2/7/2020
@@ -31,43 +31,14 @@ namespace QLDienThoai
         /// <param name="soLuong"></param>
         /// <param name="gia"></param>
         /// <param name="xuatXu"></param>
-        /// <param name="temSP"></param>
-        public Product(string maSP, int soLuong, double gia, string xuatXu, string temSP)
+        /// <param name="tenSP"></param>
+        public Product(string maSP, int soLuong, double gia, string xuatXu, string tenSP)
         {
-            CodeProduct = maSP;
-            Amount = soLuong;
             Price = gia;
-            MakeIn = xuatXu;
-            NameProduct = temSP;
-        }
-        //properties
-        public string CodeProduct
-        {
-            get
-            {
-                return codeProduct;
-            }
-            set
-            {
-                if (value != null && value != "")
-                {
-                    codeProduct = value;
-                }
-            }
-        }
-        public int Amount
-        {
-            get
-            {
-                return amount;
-            }
-            set
-            {
-                if (value > 0)
-                {
-                    amount = value;
-                }
-            }
+            MadeIn = xuatXu;
+            NameProduct = tenSP;
+            Amoust = soLuong;
+            ProductID = maSP;
         }
         public double Price
         {
@@ -81,17 +52,17 @@ namespace QLDienThoai
 
             }
         }
-        public string MakeIn
+        public string MadeIn
         {
             get
             {
-                return makeIn;
+                return madeIn;
             }
             set
             {
                 if (value != null && value != "")
                 {
-                    makeIn = value;
+                    madeIn = value;
                 }
             }
         }
@@ -110,6 +81,19 @@ namespace QLDienThoai
             }
         }
 
+        public string ProductID
+        {
+            get { return productID; }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    productID = value;
+                }
+            }
+        }
+        public int Amoust { get { return amoust; } set { amoust = value; } }
+
         /// <summary>
         /// form ghi vao file
         /// ngay : 9/7/2020
@@ -117,26 +101,33 @@ namespace QLDienThoai
         /// <returns></returns>
         public string nhapFileSanPham()
         {
-            return $"{CodeProduct},{NameProduct},{Amount},{Price},{MakeIn}";
+            return $"{ProductID},{Amoust},{NameProduct},{Price},{MadeIn}";
         }
-
-        public static Product xuatFileSanPham(string product)
+        /// <summary>
+        /// lay doi tuong bang tu file
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public static Product getProduct(string product)
         {
             string[] s = product.Split(',');
-            return new Product(s[0], Convert.ToInt32(s[2]), Convert.ToDouble(s[3]), s[1], s[4]);
+            return new Product(s[0], Convert.ToInt32(s[1]), Convert.ToDouble(s[3]), s[4], s[2]);
         }
-
-        public static Product xuatFileSanPhamBangMaSP(string code)
+        /// <summary>
+        /// lay doi tuong tu file bang ma
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static Product getProductByID(string code)
         {
             string fileSP = @"..\Product.txt";
             string data;
-            if ((data = IOFile.docFileBangMa(code, fileSP))!=null)
+            if ((data = IOFile.docFileBangMa(code, fileSP)) != null)
             {
-                return Product.xuatFileSanPham(data);
+                return Product.getProduct(data);
             }
             return null;
         }
-
         /// <summary>
         /// in thông tin sản phầm
         /// ngày : 2/7/2020
@@ -144,8 +135,7 @@ namespace QLDienThoai
         /// <returns></returns>
         public override string ToString()
         {
-            return base.ToString();
+            return null;
         }
-        ~Product() { }
     }
 }

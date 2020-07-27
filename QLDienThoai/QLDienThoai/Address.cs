@@ -4,10 +4,6 @@
  * Ngày : 2/7/2020
  * class địa chỉ chứa các thông tin địa chỉ nhà như số nhà đường quận thành phố
  */
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace QLDienThoai
 {
@@ -106,6 +102,16 @@ namespace QLDienThoai
             return new Address(s[0], s[1], s[2], s[3]);
         }
 
+        /// <summary>
+        /// tạo địa chỉ từ file
+        /// </summary>
+        /// <param name="diaChi"></param>
+        /// <returns></returns>
+        public static Address xuatFileDiaChi(string diaChi)
+        {
+            string[] s = diaChi.Split(',');
+            return new Address(s[0], s[1], s[2], s[3]);
+        }
         /// <summary>
         /// in địa chỉ
         /// Ngày : 2/7/2020
