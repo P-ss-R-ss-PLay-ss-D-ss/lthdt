@@ -1,51 +1,56 @@
-﻿using System;
+﻿/**
+ * Nguyễn Lê Trọng Tiền
+ * Lớp CD19TT9
+ * Ngày : 5/7/2020
+ * class IOFile dùng để thao tác với file như đọc,ghi,tìm,sửa,xóa file
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-<<<<<<< HEAD
-using System.Reflection.Emit;
-=======
->>>>>>> of-tien
 
 namespace QLDienThoai
 {
     class IOFile
     {
-<<<<<<< HEAD
-=======
         /// <summary>
         /// doc file
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
->>>>>>> of-tien
-        public static String[] docFile(string file)
+        public static String[] readFile(string file)
         {
             string[] s = new string[0];
 
-            StreamReader sr = new StreamReader(file);
-
-            string s1;
-            while ((s1 = sr.ReadLine()) != null)
+            if (File.Exists(file))
             {
-                Array.Resize(ref s, s.Length + 1);
-                s[s.Length - 1] = s1;
+                StreamReader sr = new StreamReader(file);
+
+                string s1;
+                while ((s1 = sr.ReadLine()) != null)
+                {
+                    Array.Resize(ref s, s.Length + 1);
+                    s[s.Length - 1] = s1;
+                }
+
+                sr.Close();
+            }
+            else
+            {
+                File.Create(file);
             }
 
-            sr.Close();
             return s;
         }
-<<<<<<< HEAD
-
-=======
         /// <summary>
         /// ghi du lieu vao file
         /// </summary>
         /// <param name="file"></param>
         /// <param name="data"></param>
         /// <returns></returns>
->>>>>>> of-tien
-        public static bool ghiFile(string file, string data)
+        public static bool writeFile(string file, string data)
         {
             if (File.Exists(file))
             {
@@ -58,60 +63,26 @@ namespace QLDienThoai
             }
             else
             {
+                File.Create(file);
                 return false;
             }
         }
-<<<<<<< HEAD
-
-        public static string docFileBangMa(string code, string file)
-        {
-            int line;
-            if ((line = findInCode(code,file))!=-1)
-            {
-                return File.ReadLines(file).Skip(line).Take(1).First();
-            }
-            return null;
-        }
-
-        public static int findInCode(string code, string file)
-        {
-            StreamReader sr = new StreamReader(CreataCode.createAutoFileCode(file));
-
-            int length = File.ReadAllLines(file).Length;
-            int result = -1;
-            for (int i = 0; i < length; i++)
-            {
-                if (code == sr.ReadLine())
-                {
-                    result = i;
-                    break;
-                }
-            }
-
-            sr.Close();
-            return result;
-        }
-
-        public static string Delete(string code, string fileData)
-        {
-            string fileCode = CreataCode.createAutoFileCode(fileData);
-=======
         /// <summary>
         /// doc doi tuong bang ma
         /// </summary>
         /// <param name="code"></param>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static string docFileBangMa(string code, string file)
+        public static string readFileByID(string code, string file)
         {
             int line;
-            if ((line = findInCode(code, file)) != -1)
+            if ((line = findByCode(code, file)) != -1)
             {
-                List<string> fData = IOFile.docFile(file).ToList();
+                List<string> fData = IOFile.readFile(file).ToList();
 
                 if (line == -1)
                 {
-                    return "Sai ma!!!";
+                    return null;
                 }
 
                 return fData[line];
@@ -124,9 +95,9 @@ namespace QLDienThoai
         /// <param name="code"></param>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static int findInCode(string code, string file)
+        public static int findByCode(string code, string file)
         {
-            List<string> fcode = IOFile.docFile(CreateID.createAutoFileCode(file)).ToList();
+            List<string> fcode = IOFile.readFile(CreateID.createAutoFileCode(file)).ToList();
 
             for (int i = 0; i < fcode.Count; i++)
             {
@@ -144,15 +115,14 @@ namespace QLDienThoai
         /// <param name="code"></param>
         /// <param name="fileData"></param>
         /// <returns></returns>
-        public static string Delete(string code, string fileData)
+        public static string Remove(string code, string fileData)
         {
             string fileCode = CreateID.createAutoFileCode(fileData);
->>>>>>> of-tien
 
-            List<string> fcode = IOFile.docFile(fileCode).ToList();
-            List<string> fData = IOFile.docFile(fileData).ToList();
+            List<string> fcode = IOFile.readFile(fileCode).ToList();
+            List<string> fData = IOFile.readFile(fileData).ToList();
 
-            int line = IOFile.findInCode(code, fileCode);
+            int line = IOFile.findByCode(code, fileData);
 
             if (line == -1)
             {
@@ -167,12 +137,6 @@ namespace QLDienThoai
 
             return code;
         }
-<<<<<<< HEAD
-
-        public static string Add(string code, string data,  string fileData)
-        {
-            string fileCode = CreataCode.createAutoFileCode(fileData);
-=======
         /// <summary>
         /// them doi tuong
         /// </summary>
@@ -183,27 +147,15 @@ namespace QLDienThoai
         public static string Add(string code, string data, string fileData)
         {
             string fileCode = CreateID.createAutoFileCode(fileData);
->>>>>>> of-tien
 
-            List<string> fcode = IOFile.docFile(fileCode).ToList();
-            List<string> fData = IOFile.docFile(fileData).ToList();
+            File.AppendAllText(fileCode,code);
+            File.AppendAllText(fileData, data);
 
-            fcode.Add(code);
-            fData.Add(data);
-
-            File.WriteAllLines(fileCode, fcode.ToArray());
-            File.WriteAllLines(fileData, fData.ToArray());
+            Sort(fileData);
 
             return code;
         }
-<<<<<<< HEAD
 
-        public static bool Clear(string file)
-        {
-            ghiFile(CreataCode.createAutoFileCode(file), "");
-            return ghiFile(file, "");
-        }
-=======
         /// <summary>
         /// sua doi tuong
         /// </summary>
@@ -211,14 +163,13 @@ namespace QLDienThoai
         /// <param name="data"></param>
         /// <param name="fileData"></param>
         /// <returns></returns>
-        public static string setInCode(string code, string data, string fileData)
+        public static string Update(string code, string data, string fileData)
         {
             string fileCode = CreateID.createAutoFileCode(fileData);
 
-            List<string> fcode = IOFile.docFile(fileCode).ToList();
-            List<string> fData = IOFile.docFile(fileData).ToList();
+            List<string> fData = IOFile.readFile(fileData).ToList();
 
-            fData[findInCode(code, fileCode)] = data;
+            fData[findByCode(code, fileData)] = data;
 
             File.WriteAllLines(fileData, fData.ToArray());
 
@@ -229,18 +180,18 @@ namespace QLDienThoai
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static bool Clear(string file)
+        public static bool deleteFile(string file)
         {
-            ghiFile(CreateID.createAutoFileCode(file), "");
-            return ghiFile(file, "");
+            writeFile(CreateID.createAutoFileCode(file), "");
+            return writeFile(file, "");
         }
 
         public static bool Sort(string fileData)
         {
             string fileCode = CreateID.createAutoFileCode(fileData);
 
-            List<string> fcode = IOFile.docFile(fileCode).ToList();
-            List<string> fData = IOFile.docFile(fileData).ToList();
+            List<string> fcode = IOFile.readFile(fileCode).ToList();
+            List<string> fData = IOFile.readFile(fileData).ToList();
 
             fcode.Sort();
             fData.Sort();
@@ -251,11 +202,11 @@ namespace QLDienThoai
             return true;
         }
 
-        public static bool CheckTrung(string code, string fileData)
+        public static bool checkIDTrung(string code, string fileData)
         {
             string fileCode = CreateID.createAutoFileCode(fileData);
 
-            List<string> fcode = IOFile.docFile(fileCode).ToList();
+            List<string> fcode = IOFile.readFile(fileCode).ToList();
 
             foreach (var k in fcode)
             {
@@ -264,6 +215,5 @@ namespace QLDienThoai
             }
             return false;
         }
->>>>>>> of-tien
     }
 }

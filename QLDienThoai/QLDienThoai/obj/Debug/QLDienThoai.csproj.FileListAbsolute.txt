@@ -1,0 +1,6 @@
+D:\LuuThiKieuOanh_CD19TT9\LTHDT\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.exe.config
+D:\LuuThiKieuOanh_CD19TT9\LTHDT\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.exe
+D:\LuuThiKieuOanh_CD19TT9\LTHDT\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.pdb
+D:\LuuThiKieuOanh_CD19TT9\LTHDT\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.csprojResolveAssemblyReference.cache
+D:\LuuThiKieuOanh_CD19TT9\LTHDT\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.exe
+D:\LuuThiKieuOanh_CD19TT9\LTHDT\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.pdb

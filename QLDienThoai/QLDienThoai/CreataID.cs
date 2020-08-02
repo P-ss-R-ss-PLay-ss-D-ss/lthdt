@@ -19,34 +19,34 @@ namespace QLDienThoai
             string result = "";
             Random rd = new Random();
 
-            if (file.Contains("Bill"))
+            if (file.Contains("HD"))//file hóa đơn
             {
                 result = $"hd{checkID(file) + 1:000}";
-                while (IOFile.CheckTrung(result, file))
+                while (IOFile.checkIDTrung(result, file))//Kiểm tra mã có tồn tại chưa???
                 {
-                    result = $"hd{rd.Next(999) + 1:000}";
+                    result = $"hd{rd.Next(999) + 1:000}";//Tạo mã ngẫu nhiên
                 }
             }
-            else if (file.Contains("Customer"))
+            else if (file.Contains("KH"))//file khách hàng
             {
                 result = $"kh{checkID(file) + 1:000}";
-                while (IOFile.CheckTrung(result, file))
+                while (IOFile.checkIDTrung(result, file))
                 {
                     result = $"kh{rd.Next(999) + 1:000}";
                 }
             }
-            else if (file.Contains("Product"))
+            else if (file.Contains("SP"))//file sản phẩm
             {
                 result = $"sp{checkID(file) + 1:000}";
-                while (IOFile.CheckTrung(result, file))
+                while (IOFile.checkIDTrung(result, file))
                 {
                     result = $"sp{rd.Next(999) + 1:000}";
                 }
             }
-            else if (file.Contains("Staff"))
+            else if (file.Contains("NV"))//file nhân viên
             {
                 result = $"nv{checkID(file) + 1:000}";
-                while (IOFile.CheckTrung(result, file))
+                while (IOFile.checkIDTrung(result, file))
                 {
                     result = $"nv{rd.Next(999) + 1:000}";
                 }
@@ -57,7 +57,7 @@ namespace QLDienThoai
         /**/
         public static int checkID(string file)
         {
-            List<string> l = IOFile.docFile(file).ToList<string>();
+            List<string> l = IOFile.readFile(file).ToList<string>();
             return l.Count;
         }
         /**/
@@ -65,17 +65,15 @@ namespace QLDienThoai
         public static string createAutoFileCode(string file)
         {
             char[] chTemp = file.ToCharArray();
-            Array.Resize(ref chTemp, chTemp.Length + 4);
+            Array.Resize(ref chTemp, chTemp.Length + 3);
 
-            for (int i = chTemp.Length - 1; i >= 6; i--)
+            for (int i = chTemp.Length - 1; i >= 5; i--)
             {
-                chTemp[i] = chTemp[i - 4];
+                chTemp[i] = chTemp[i - 3];
             }
-
-            chTemp[3] = 'C';
-            chTemp[4] = 'o';
-            chTemp[5] = 'd';
-            chTemp[6] = 'e';
+            chTemp[2] = 'I';
+            chTemp[3] = 'D';
+            chTemp[4] = '_';
 
             return new string(chTemp);
         }

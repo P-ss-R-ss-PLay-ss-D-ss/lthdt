@@ -1,0 +1,15 @@
+sp001,13,OPPO Reno3,7000000,China
+sp002,7,Galaxy A71,8000000,Korea
+sp003,16,Iphone 11 Pro Max 64GB,30000000,USA
+sp004,11,Xiaomi Redmi Note 8,4200000,Realme 6 Pro
+sp005,25,Realme 6 Pro,8000000,China
+sp006,5,SamSung Galaxy A21S,5000000,Korea
+sp007,12,OPPO A52,5999000,China
+sp008,10,Xiaomi Redmi 9,3990000,China
+sp009,13,Vivo V19 Neo,7300000,China
+sp010,8,Iphone Xs 64GB,17500000,USA
+sp011,14,iPhone Xs Max 256GB,26000000,USA
+sp012,15,iPhone 8 Plus 128GB,17000000,USA
+sp013,16,SamSung Galaxy A51,6700000,Korea
+sp014,5,SamSung Galaxy A31,5500000,Korea
+sp015,3,OPPO Reno4,9000000,China
