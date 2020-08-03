@@ -74,6 +74,7 @@ namespace QLDienThoai
         public static string fileNV = @".\NV.txt";
         static void Main(string[] args)
         {
+            Console.SetWindowSize(100, 50);
             string home = Home();
             Console.WriteLine(FirstLogo());
             Console.WriteLine();
@@ -82,7 +83,7 @@ namespace QLDienThoai
             Console.Clear();
             #region main
             Console.Title = "Quản Lý Bán Hàng";
-            home:
+        home:
             Console.WriteLine();
             Console.WriteLine(home);
 
@@ -546,6 +547,8 @@ namespace QLDienThoai
                     {
                         HoaDon hd = new HoaDon();
                         Console.WriteLine(hd.GetFile(k));
+                        Console.WriteLine();
+                        Console.WriteLine();
                     }
                     Read();
                     return;
@@ -555,6 +558,8 @@ namespace QLDienThoai
                     {
                         KhachHang kh = new KhachHang();
                         Console.WriteLine(kh.GetFile(k));
+                        Console.WriteLine();
+                        Console.WriteLine();
                     }
                     Read();
                     return;
@@ -564,6 +569,8 @@ namespace QLDienThoai
                     {
                         NhanVien nv = new NhanVien();
                         Console.WriteLine(nv.GetFile(k));
+                        Console.WriteLine();
+                        Console.WriteLine();
                     }
                     Read();
                     return;
@@ -573,6 +580,8 @@ namespace QLDienThoai
                     {
                         SanPham sp = new SanPham();
                         Console.WriteLine(sp.GetFile(k));
+                        Console.WriteLine();
+                        Console.WriteLine();
                     }
                     Read();
                     return;
