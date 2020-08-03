@@ -45,29 +45,6 @@ namespace QLDienThoai
             return s;
         }
         /// <summary>
-        /// ghi du lieu vao file
-        /// </summary>
-        /// <param name="file"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static bool writeFile(string file, string data)
-        {
-            if (File.Exists(file))
-            {
-                StreamWriter sr = new StreamWriter(file);
-
-                sr.Write(data);
-
-                sr.Close();
-                return true;
-            }
-            else
-            {
-                File.Create(file);
-                return false;
-            }
-        }
-        /// <summary>
         /// doc doi tuong bang ma
         /// </summary>
         /// <param name="code"></param>
@@ -78,7 +55,7 @@ namespace QLDienThoai
             int line;
             if ((line = findByCode(code, file)) != -1)
             {
-                List<string> fData = IOFile.readFile(file).ToList();
+                List<string> fData = File.ReadAllLines(file).ToList();
 
                 if (line == -1)
                 {
@@ -144,12 +121,12 @@ namespace QLDienThoai
         /// <param name="data"></param>
         /// <param name="fileData"></param>
         /// <returns></returns>
-        public static string Add(string code, string data, string fileData)
+        public static string Add(string code, INhapXuatFile data, string fileData)
         {
             string fileCode = CreateID.createAutoFileCode(fileData);
 
             File.AppendAllText(fileCode,code);
-            File.AppendAllText(fileData, data);
+            File.AppendAllText(fileData, data.WriteFile());
 
             Sort(fileData);
 
@@ -163,27 +140,17 @@ namespace QLDienThoai
         /// <param name="data"></param>
         /// <param name="fileData"></param>
         /// <returns></returns>
-        public static string Update(string code, string data, string fileData)
+        public static string Update(string code, INhapXuatFile data, string fileData)
         {
             string fileCode = CreateID.createAutoFileCode(fileData);
 
             List<string> fData = IOFile.readFile(fileData).ToList();
 
-            fData[findByCode(code, fileData)] = data;
+            fData[findByCode(code, fileData)] = data.WriteFile();
 
             File.WriteAllLines(fileData, fData.ToArray());
 
             return code;
-        }
-        /// <summary>
-        /// xoa toan bo file
-        /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
-        public static bool deleteFile(string file)
-        {
-            writeFile(CreateID.createAutoFileCode(file), "");
-            return writeFile(file, "");
         }
 
         public static bool Sort(string fileData)

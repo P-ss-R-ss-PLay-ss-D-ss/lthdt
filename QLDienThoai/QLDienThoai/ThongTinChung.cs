@@ -8,7 +8,7 @@ using System;
 
 namespace QLDienThoai
 {
-    class ThongTinChung : NhapXuatFile
+    class ThongTinChung : INhapXuatFile
     {
         //fields
         private string hoTen;
@@ -167,11 +167,6 @@ namespace QLDienThoai
             string[] s = thongTinChung.Split('.');
             DiaChi dc = (DiaChi)DiaChi.GetFile(s[2]);
             return new ThongTinChung(s[0], Convert.ToDateTime(s[1]), s[3], dc);
-        }
-
-        public virtual object GetFileByID(string code)
-        {
-            return null;
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ using System.Text;
 
 namespace QLDienThoai
 {
-    class HoaDon : KhachHang, NhapXuatFile
+    class HoaDon : KhachHang, INhapXuatFile, IGetID
     {
         //fields
         private LinkedList<SanPham> dSSP;
@@ -168,7 +168,7 @@ namespace QLDienThoai
             LinkedListNode<SanPham> a = dSSP.First;
             do
             {
-                result += a.Value.Gia*a.Value.SoLuong;
+                result += a.Value.Gia * a.Value.SoLuong;
             } while ((a = a.Next) != null);
 
             return result;
@@ -200,7 +200,6 @@ namespace QLDienThoai
             s.Append("+-------------------------------------------------------------------------------------------------+\n");
             s.Append($"{"|",-10}{"Tong:",-9}{getTongTien() + "VND",-79}|\n");
             s.Append("+-------------------------------------------------------------------------------------------------+\n");
-
 
             return s.ToString();
         }

@@ -7,7 +7,7 @@
 
 namespace QLDienThoai
 {
-    class DiaChi : NhapXuatFile
+    class DiaChi : INhapXuatFile
     {
         //fields
         private string soNha;
@@ -117,11 +117,6 @@ namespace QLDienThoai
             return new DiaChi(s[0], s[1], s[2], s[3]);
         }
 
-        public object GetFileByID(string code)
-        {
-            return null;
-        }
-
         /// <summary>
         /// in địa chỉ
         /// Ngày sửa: 2/7/2020
@@ -131,7 +126,5 @@ namespace QLDienThoai
         {
             return $"so {SoNha}, duong {Duong}, quan {Quan}, TP {ThanhPho}";
         }
-
-
     }
 }

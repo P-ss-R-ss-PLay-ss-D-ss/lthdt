@@ -10,7 +10,7 @@ using System.Text;
 
 namespace QLDienThoai
 {
-    class NhanVien : ThongTinChung, NhapXuatFile
+    class NhanVien : ThongTinChung, INhapXuatFile,IGetID
     {
         //fileds
         private string staffID;

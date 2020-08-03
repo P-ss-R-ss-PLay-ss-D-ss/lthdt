@@ -10,7 +10,7 @@ using System.Text;
 
 namespace QLDienThoai
 {
-    class SanPham : NhapXuatFile
+    class SanPham : INhapXuatFile,IGetID
     {
         //fields
         private string maSP;

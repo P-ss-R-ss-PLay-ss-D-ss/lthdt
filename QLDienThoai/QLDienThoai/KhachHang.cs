@@ -10,7 +10,7 @@ using System.Text;
 
 namespace QLDienThoai
 {
-    class KhachHang : ThongTinChung, NhapXuatFile
+    class KhachHang : ThongTinChung, INhapXuatFile,IGetID
     {
         //fields
         private string maKhachHang;
@@ -124,7 +124,7 @@ namespace QLDienThoai
         /// </summary>
         /// <param name="iD"></param>
         /// <returns></returns>
-        public override object GetFileByID(string iD)
+        public object GetFileByID(string iD)
         {
             string data;
             if ((data = IOFile.readFileByID(iD, ChucNang.fileKH)) != null)

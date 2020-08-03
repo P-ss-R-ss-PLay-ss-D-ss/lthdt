@@ -10,7 +10,7 @@ using System.Text;
 
 namespace QLDienThoai
 {
-    interface NhapXuatFile
+    interface INhapXuatFile
     {
         /// <summary>
         /// Phuong thức ghi vao file
@@ -23,11 +23,6 @@ namespace QLDienThoai
         /// <param name="path"></param>
         /// <returns></returns>
         object GetFile(string path);
-        /// <summary>
-        /// phương thức đọc dữ liệu từ file bằng mã
-        /// </summary>
-        /// <param name="iD"></param>
-        /// <returns></returns>
-        object GetFileByID(string iD);
+        
     }
 }
