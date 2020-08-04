@@ -1,5 +1,5 @@
 ﻿/**
- * Tên: Lưu Thị Kiều Oanh
+ * Tên: Lưu Thị Kiều Oanh, Nguyễn Lê Trọng Tiền
  * Ngày: 16/7/2020
  * Mô tả: Viết các chức năng cho chương trình
  */
@@ -82,10 +82,10 @@ namespace QLDienThoai
             Read();
             Console.Clear();
             #region main
-            Console.Title = "Quản Lý Bán Hàng";
+            Console.Title = "Quản Lý Bán Hàng";//Tiêu đề cho màn hình console
         home:
             Console.WriteLine();
-            Console.WriteLine(home);
+            Console.WriteLine(home);//Giao diện home menu
 
 
             int menu = 0;
@@ -393,16 +393,11 @@ namespace QLDienThoai
                 Environment.Exit(0);
             }
 
-            if (s.Equals("clear"))
-            {
-                Console.Clear();
-            }
-
             return s;
         }
         #endregion
 
-        #region Nhap hàng hoá
+        #region Nhap hàng hoá vào kho
         static void nhapKho()
         {
             string code = "";

@@ -10,3 +10,6 @@ C:\Users\Administrator\Documents\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\
 C:\Users\Administrator\Documents\GitHub\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.exe
 C:\Users\Administrator\Documents\GitHub\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.pdb
 C:\Users\Administrator\Documents\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.csprojResolveAssemblyReference.cache
+D:\GitHub\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.exe.config
+D:\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.exe
+D:\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.pdb
