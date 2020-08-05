@@ -1,2 +1,0 @@
-SP001,oanh,1,10000,my
-SP002,ban phim,1,360000,viet nam

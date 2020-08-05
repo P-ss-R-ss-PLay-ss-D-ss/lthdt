@@ -1,4 +1,0 @@
-D:\Chuong4\doanhdt\bin\Debug\doanhdt.exe
-D:\Chuong4\doanhdt\bin\Debug\doanhdt.pdb
-D:\Chuong4\doanhdt\obj\Debug\doanhdt.exe
-D:\Chuong4\doanhdt\obj\Debug\doanhdt.pdb
