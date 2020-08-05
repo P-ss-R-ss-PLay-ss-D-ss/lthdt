@@ -1,5 +1,5 @@
 ﻿/**
- * Tên: Lưu Thị Kiều Oanh,Nguyễn Lê Trọng Tiền
+ * Tên: Lưu Thị Kiều Oanh, Nguyễn Lê Trọng Tiền
  * Ngày: 16/7/2020
  * Mô tả: Viết các chức năng cho chương trình
  */
@@ -74,6 +74,7 @@ namespace QLDienThoai
         public static string fileNV = @".\NV.txt";
         static void Main(string[] args)
         {
+            Console.SetWindowSize(100, 50);
             string home = Home();
             Console.WriteLine(FirstLogo());
             Console.WriteLine();
@@ -81,10 +82,10 @@ namespace QLDienThoai
             Read();
             Console.Clear();
             #region main
-            Console.Title = "Quản Lý Bán Hàng";
-            home:
+            Console.Title = "Quản Lý Bán Hàng";//Tiêu đề cho màn hình console
+        home:
             Console.WriteLine();
-            Console.WriteLine(home);
+            Console.WriteLine(home);//Giao diện home menu
 
 
             int menu = 0;
@@ -394,7 +395,7 @@ namespace QLDienThoai
         }
         #endregion
 
-        #region Nhap hàng hoá
+        #region Nhap hàng hoá vào kho
         static void nhapKho()
         {
             string code = "";
@@ -540,6 +541,8 @@ namespace QLDienThoai
                     {
                         HoaDon hd = new HoaDon();
                         Console.WriteLine(hd.GetFile(k));
+                        Console.WriteLine();
+                        Console.WriteLine();
                     }
                     Read();
                     return;
@@ -549,6 +552,8 @@ namespace QLDienThoai
                     {
                         KhachHang kh = new KhachHang();
                         Console.WriteLine(kh.GetFile(k));
+                        Console.WriteLine();
+                        Console.WriteLine();
                     }
                     Read();
                     return;
@@ -558,6 +563,8 @@ namespace QLDienThoai
                     {
                         NhanVien nv = new NhanVien();
                         Console.WriteLine(nv.GetFile(k));
+                        Console.WriteLine();
+                        Console.WriteLine();
                     }
                     Read();
                     return;
@@ -567,6 +574,8 @@ namespace QLDienThoai
                     {
                         SanPham sp = new SanPham();
                         Console.WriteLine(sp.GetFile(k));
+                        Console.WriteLine();
+                        Console.WriteLine();
                     }
                     Read();
                     return;
