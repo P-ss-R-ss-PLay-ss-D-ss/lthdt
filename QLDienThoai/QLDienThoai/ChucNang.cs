@@ -74,7 +74,7 @@ namespace QLDienThoai
         public static string fileNV = @".\NV.txt";
         static void Main(string[] args)
         {
-            Console.SetWindowSize(100, 50);
+            Console.SetWindowSize(100, 44);
             string home = Home();
             Console.WriteLine(FirstLogo());
             Console.WriteLine();
@@ -290,7 +290,6 @@ namespace QLDienThoai
             string name;
             string soCMND;
             DateTime birthday;
-
             do
             {
                 Console.Write("  -  Nhap ten : ");
@@ -313,9 +312,6 @@ namespace QLDienThoai
             {
                 goto lap;
             }
-
-
-
             Console.WriteLine("-  Nhap dia chi: ");
             dc = addAddress();
 
@@ -445,7 +441,7 @@ namespace QLDienThoai
 
         #endregion
 
-        #region Xuất hàng hoá
+        #region Xuất hóa đơn
         static void xuatHoaDon()
         {
             HoaDon hd = addBill();//thêm hóa đơn

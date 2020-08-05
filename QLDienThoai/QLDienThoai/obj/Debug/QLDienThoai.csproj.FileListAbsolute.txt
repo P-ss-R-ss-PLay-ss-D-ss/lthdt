@@ -11,3 +11,10 @@ D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.csprojAssemblyReferen
 D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.csproj.CoreCompileInputs.cache
 D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.exe
 D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.pdb
+D:\GitHub\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.exe.config
+D:\GitHub\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.exe
+D:\GitHub\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.pdb
+D:\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.csprojAssemblyReference.cache
+D:\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.csproj.CoreCompileInputs.cache
+D:\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.exe
+D:\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.pdb
