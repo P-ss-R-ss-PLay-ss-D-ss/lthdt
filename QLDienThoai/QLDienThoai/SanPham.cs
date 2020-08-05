@@ -46,6 +46,7 @@ namespace QLDienThoai
             SoLuong = soLuong;
             MaSP = maSP;
         }
+        //properties
         public double Gia
         {
             get
@@ -101,6 +102,7 @@ namespace QLDienThoai
         /// <summary>
         /// Định dạng chuỗi được in ra file
         /// Ngày: 3/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <returns></returns>
         public string WriteFile()
@@ -110,6 +112,7 @@ namespace QLDienThoai
         /// <summary>
         /// Đọc dữ liệu từ file
         /// Ngày : 3/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -121,13 +124,14 @@ namespace QLDienThoai
         /// <summary>
         /// Đọc dữ liệu từ file bằng mã
         /// Ngày : 3/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="iD"></param>
         /// <returns></returns>
         public object GetFileByID(string iD)
         {
             string data;
-            if ((data = IOFile.readFileByID(iD, ChucNang.fileSP)) != null)
+            if ((data = IOFile.ReadFileByID(iD, ChucNang.fileSP)) != null)
             {
                 SanPham sp = new SanPham();
                 return sp.GetFile(data);
@@ -136,7 +140,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// in thông tin sản phầm
-        /// ngày : 2/7/2020
+        /// ngày : 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -155,6 +160,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// Phuong thuc huy 
+        /// ngày : 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         ~SanPham() { }
     }

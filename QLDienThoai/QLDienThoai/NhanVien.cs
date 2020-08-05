@@ -54,6 +54,8 @@ namespace QLDienThoai
         //method
         /// <summary>
         /// constructor day du tham so
+        /// Ngày: 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="maNhanVien"></param>
         /// <param name="sDT"></param>
@@ -67,6 +69,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// constructor k tham so
+        /// Ngày: 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         public NhanVien()
         {
@@ -89,6 +93,7 @@ namespace QLDienThoai
         /// <summary>
         /// Định dạng chuỗi được in ra file
         /// Ngày: 2/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <returns></returns>
         public override string WriteFile()
@@ -98,6 +103,7 @@ namespace QLDienThoai
         /// <summary>
         /// Đọc dữ liệu từ file
         /// Ngày : 3/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -117,7 +123,7 @@ namespace QLDienThoai
         public object GetFileByID(string iD)
         {
             string data;
-            if ((data = IOFile.readFileByID(iD, ChucNang.fileNV)) != null)
+            if ((data = IOFile.ReadFileByID(iD, ChucNang.fileNV)) != null)
             {
                 NhanVien nv = new NhanVien();
                 return nv.GetFile(data);
@@ -126,7 +132,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// xuất thông tin nhân viên
-        /// ngày : 3/7/2020
+        /// Ngày: 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -147,6 +154,8 @@ namespace QLDienThoai
 
         /// <summary>
         /// Phuong thuc huy 
+        /// Ngày: 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         ~NhanVien() { }
     }
