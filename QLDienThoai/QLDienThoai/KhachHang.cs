@@ -122,7 +122,7 @@ namespace QLDienThoai
         /// </summary>
         /// <param name="iD"></param>
         /// <returns></returns>
-        public object GetFileByID(string iD)
+        public virtual object GetFileByID(string iD)
         {
             string data;
             if ((data = IOFile.readFileByID(iD, ChucNang.fileKH)) != null)

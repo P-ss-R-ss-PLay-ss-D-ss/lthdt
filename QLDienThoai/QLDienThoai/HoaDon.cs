@@ -11,7 +11,7 @@ using System.Text;
 
 namespace QLDienThoai
 {
-    class HoaDon : KhachHang, INhapXuatFile, IGetID
+    class HoaDon : KhachHang, INhapXuatFile,IGetID
     {
         //fields
         private LinkedList<SanPham> dSSP;
@@ -153,7 +153,7 @@ namespace QLDienThoai
             string data;
             if ((data = IOFile.readFileByID(iD, ChucNang.fileHD)) != null)
             {
-                HoaDon hd = null;
+                HoaDon hd = new HoaDon();
                 return hd.GetFile(data);
             }
             return null;
