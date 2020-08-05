@@ -14,7 +14,6 @@ namespace QLDienThoai
         /// <summary>
         /// tạo tự động mã
         /// 25/7/2020
-        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -61,7 +60,6 @@ namespace QLDienThoai
         /// <summary>
         /// đếm số id trong file
         /// 25/7/2020
-        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -73,7 +71,6 @@ namespace QLDienThoai
         /// <summary>
         /// Tạo đường liên kết iD tự động
         /// 25/7/2020
-        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>

@@ -17,7 +17,6 @@ namespace QLDienThoai
         /// <summary>
         /// doc file
         /// 25/7/2020
-        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -70,7 +69,6 @@ namespace QLDienThoai
         /// <summary>
         /// tin doi tuong bang ma
         /// 25/7/2020
-        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="code"></param>
         /// <param name="file"></param>
@@ -92,7 +90,6 @@ namespace QLDienThoai
         /// <summary>
         /// xoa doi tuong bang ma
         /// 25/7/2020
-        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="code"></param>
         /// <param name="fileData"></param>
@@ -122,7 +119,6 @@ namespace QLDienThoai
         /// <summary>
         /// them doi tuong
         /// 25/7/2020
-        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="code"></param>
         /// <param name="data"></param>
@@ -143,7 +139,6 @@ namespace QLDienThoai
         /// <summary>
         /// sua doi tuong
         /// 25/7/2020
-        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="code"></param>
         /// <param name="data"></param>
@@ -164,7 +159,6 @@ namespace QLDienThoai
         /// <summary>
         /// sắp xếp trong file
         /// 25/7/2020
-        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="fileData"></param>
         /// <returns></returns>
@@ -186,7 +180,6 @@ namespace QLDienThoai
         /// <summary>
         /// kiểm tra id trùng
         /// 25/7/2020
-        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="code"></param>
         /// <param name="fileData"></param>

@@ -1,5 +1,5 @@
 ﻿/**
- * Nguyễn Lê Trọng Tiền
+ * Lưu Thị Kiều Oanh,Nguyễn Lê Trọng Tiền
  * Lớp CD19TT9
  * Ngày : 2/7/2020
  * class ThongTinChung chứa các thông tin như ho tên ngày sinh số CMND
