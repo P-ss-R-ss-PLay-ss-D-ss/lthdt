@@ -1,9 +1,5 @@
 ﻿/**
-<<<<<<< HEAD
  * Tên: Lưu Thị Kiều Oanh, Nguyễn Lê Trọng Tiền
-=======
- * Tên: Lưu Thị Kiều Oanh,Nguyễn Lê Trọng Tiền
->>>>>>> interface
  * Ngày: 16/7/2020
  * Mô tả: Viết các chức năng cho chương trình
  */
