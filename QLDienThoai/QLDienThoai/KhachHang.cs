@@ -1,10 +1,11 @@
 ﻿/**
-* Nguyễn Lê Trọng Tiền,Lưu Thị Kiều Oanh
-* Lớp CD19TT9
-* Ngày : 3/7/2020
-* class KhachHang chứa các thông tin như thông tin chung, mã khách hàng, sDT, mail
-*/
+ * Nguyễn Lê Trọng Tiền,Lưu Thị Kiều Oanh
+ * Lớp CD19TT9
+ * Ngày : 3/7/2020
+ * class KhachHang chứa các thông tin như thông tin chung, mã khách hàng, sDT, mail
+ */
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace QLDienThoai
 {
@@ -14,10 +15,10 @@ namespace QLDienThoai
         private string maKhachHang;
         private string sDT;
         private string mail;
-
         /// <summary>
         /// constructor đầy đủ tham số
         /// Ngày: 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="maKhachHang"></param>
         /// <param name="thongTinChung"></param>
@@ -29,7 +30,9 @@ namespace QLDienThoai
             Mail = mail;
         }
         /// <summary>
-        ///  Constructor Copy đối tượng
+        /// Constructor Copy đối tượng
+        /// Ngày: 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="customer"></param>
         public KhachHang(KhachHang customer) : base(customer.HoTen, customer.NgaySinh, customer.SoCMND, customer.DiaChi)
@@ -40,6 +43,7 @@ namespace QLDienThoai
         }
         /// <summary>
         /// constructor mặc định
+        /// 
         /// </summary>
         public KhachHang() : base()
         {
@@ -97,6 +101,7 @@ namespace QLDienThoai
         /// <summary>
         /// Định dạng chuỗi được in ra file
         /// Ngày: 3/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <returns></returns>
         public override string WriteFile()
@@ -106,6 +111,7 @@ namespace QLDienThoai
         /// <summary>
         /// Đọc dữ liệu từ file
         /// Ngày : 3/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -119,13 +125,14 @@ namespace QLDienThoai
         /// <summary>
         /// Đọc dữ liệu từ file bằng mã
         /// Ngày : 3/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="iD"></param>
         /// <returns></returns>
         public virtual object GetFileByID(string iD)
         {
             string data;
-            if ((data = IOFile.readFileByID(iD, ChucNang.fileKH)) != null)
+            if ((data = IOFile.ReadFileByID(iD, ChucNang.fileKH)) != null)
             {
                 KhachHang kh = new KhachHang();
                 return kh.GetFile(data);
@@ -134,32 +141,20 @@ namespace QLDienThoai
         }
         /// <summary>
         /// Check mail
+        /// ngày : 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="mail"></param>
         /// <returns></returns>
         public static bool checkMail(string mail)
         {
-            return checkCharacter(mail) != 1 || mail.Contains(" ");
-        }
-        /// <summary>
-        /// Check ký tự @
-        /// </summary>
-        /// <param name="mail"></param>
-        /// <returns></returns>
-        private static int checkCharacter(string mail)
-        {
-            int result = 0;
-            foreach (var k in mail)
-            {
-                if (k == '@')
-                {
-                    result++;
-                }
-            }
-            return result;
+            Regex g = new Regex("\\w+(\\.?\\w+)*@[a-z0-9]+(.\\?[a-z0-9]+)*(\\.[a-z]{2,6})+");
+            return g.IsMatch(mail);
         }
         /// <summary>
         /// Check Chuỗi rỗng
+        /// ngày : 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -173,21 +168,30 @@ namespace QLDienThoai
         }
         /// <summary>
         /// Kiểm tra số điện thoại
+        /// ngày : 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         public static bool checkSDT(string value)
         {
-            return value.Length >= 10 && value.Length <= 11;
+            Regex g = new Regex("[0-9]+");
+            if (g.IsMatch(value))
+            {
+                return value.Length == 10 || value.Length == 11;
+            }
+            return false;
         }
         /// <summary>
         /// xuất thông tin khách hàng
         /// ngày : 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+
             sb.Append("+-------------------------------------------------------------------------------------------------+\n");
             sb.Append($"{"|",-39}{"THONG TIN KHACH HANG",-59}|\n");
             sb.Append("+-------------------------------------------------------------------------------------------------+\n");
@@ -198,10 +202,11 @@ namespace QLDienThoai
             sb.Append("+-------------------------------------------------------------------------------------------------+\n\n");
 
             return sb.ToString();
-
         }
         /// <summary>
         /// Phuong thuc huy KhachHang
+        /// ngày : 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         ~KhachHang() { }
     }

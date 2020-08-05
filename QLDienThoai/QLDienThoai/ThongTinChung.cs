@@ -5,6 +5,7 @@
  * class ThongTinChung chứa các thông tin như ho tên ngày sinh số CMND
  */
 using System;
+using System.Text.RegularExpressions;
 
 namespace QLDienThoai
 {
@@ -18,6 +19,7 @@ namespace QLDienThoai
         /// <summary>
         /// constructor đầy đủ tham số
         /// ngày : 2/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="hoTen"></param>
         /// <param name="ngaySinh"></param>
@@ -33,6 +35,7 @@ namespace QLDienThoai
         /// <summary>
         /// constructor đầy đủ tham số
         /// ngày : 2/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="hoTen"></param>
         /// <param name="soCMND"></param>
@@ -48,6 +51,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// constructor copy
+        /// ngày : 2/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="generalInfo"></param>
         public ThongTinChung(ThongTinChung generalInfo)
@@ -59,6 +64,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// constructor mac dinh
+        /// ngày : 2/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         public ThongTinChung()
         {
@@ -105,7 +112,7 @@ namespace QLDienThoai
             }
             set
             {
-                if (KhachHang.checkString(value) && checkSoCMND(value))
+                if (checkSoCMND(value))
                 {
                     soCMND = value;
                 }
@@ -126,16 +133,23 @@ namespace QLDienThoai
         /// <summary>
         /// check so cmnd
         /// Ngày: 2/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         public static bool checkSoCMND(string value)
         {
-            return value.Length == 9 || value.Length == 12;
+            Regex g = new Regex("[0-9]+");
+            if (g.IsMatch(value))
+            {
+                return value.Length == 9 || value.Length == 12;
+            }
+            return false;
         }
         /// <summary>
         /// Định dạng chuỗi được in ra file
         /// Ngày: 2/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <returns></returns>
         public virtual string WriteFile()
@@ -146,6 +160,7 @@ namespace QLDienThoai
         /// <summary>
         /// Đọc dữ liệu từ file
         /// Ngày : 2/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="thongTinChung"></param>
         /// <returns></returns>
@@ -159,6 +174,7 @@ namespace QLDienThoai
         /// <summary>
         /// in thông tin chung
         /// ngày sửa: 2/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -167,6 +183,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// phuong thuc huy
+        /// ngày sửa: 2/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         ~ThongTinChung() { }
 

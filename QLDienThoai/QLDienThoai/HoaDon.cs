@@ -11,7 +11,7 @@ using System.Text;
 
 namespace QLDienThoai
 {
-    class HoaDon : KhachHang, INhapXuatFile,IGetID
+    class HoaDon : KhachHang, INhapXuatFile, IGetID
     {
         //fields
         private LinkedList<SanPham> dSSP;
@@ -20,6 +20,8 @@ namespace QLDienThoai
         private NhanVien nhanVien;
         /// <summary>
         /// constructor mặc định
+        /// ngày : 3/7/2020
+        /// Lưu thị kiều oanh
         /// </summary>
         public HoaDon()
         {
@@ -31,6 +33,7 @@ namespace QLDienThoai
         /// <summary>
         /// constructor đầy đủ tham số
         /// ngày : 3/7/2020
+        /// Lưu thị kiều oanh
         /// </summary>
         /// <param name="maHoaDon"></param>
         /// <param name="ngayMua"></param>
@@ -90,6 +93,7 @@ namespace QLDienThoai
         /// <summary>
         /// Định dạng chuỗi được in ra file
         /// Ngày: 3/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <returns></returns>
         public override string WriteFile()
@@ -117,6 +121,7 @@ namespace QLDienThoai
         /// <summary>
         /// Đọc dữ liệu từ file
         /// Ngày : 3/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -145,13 +150,14 @@ namespace QLDienThoai
         /// <summary>
         /// Đọc dữ liệu từ file bằng mã
         /// Ngày : 3/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="iD"></param>
         /// <returns></returns>
         public override object GetFileByID(string iD)
         {
             string data;
-            if ((data = IOFile.readFileByID(iD, ChucNang.fileHD)) != null)
+            if ((data = IOFile.ReadFileByID(iD, ChucNang.fileHD)) != null)
             {
                 HoaDon hd = new HoaDon();
                 return hd.GetFile(data);
@@ -160,6 +166,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// tính tổng tiền trong một hóa đơn
+        /// ngày : 3/7/2020
+        /// Lưu thị kiều oanh
         /// </summary>
         /// <returns></returns>
         public double getTongTien()
@@ -176,6 +184,7 @@ namespace QLDienThoai
         /// <summary>
         /// in hoá đơn
         /// ngày : 3/7/2020
+        /// Lưu thị kiều oanh
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -205,6 +214,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// phuong thuc huy
+        /// ngày : 3/7/2020
+        /// Lưu thị kiều oanh
         /// </summary>
         ~HoaDon() { }
     }

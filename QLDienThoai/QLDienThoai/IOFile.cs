@@ -16,10 +16,12 @@ namespace QLDienThoai
     {
         /// <summary>
         /// doc file
+        /// 25/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static String[] readFile(string file)
+        public static String[] ReadFile(string file)
         {
             string[] s = new string[0];
 
@@ -49,10 +51,10 @@ namespace QLDienThoai
         /// <param name="code"></param>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static string readFileByID(string code, string file)
+        public static string ReadFileByID(string code, string file)
         {
             int line;
-            if ((line = findByCode(code, file)) != -1)
+            if ((line = FindByCode(code, file)) != -1)
             {
                 List<string> fData = File.ReadAllLines(file).ToList();
 
@@ -66,14 +68,16 @@ namespace QLDienThoai
             return null;
         }
         /// <summary>
-        /// tin doi tuong bang ma 
+        /// tin doi tuong bang ma
+        /// 25/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="code"></param>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static int findByCode(string code, string file)
+        public static int FindByCode(string code, string file)
         {
-            List<string> fcode = IOFile.readFile(CreateID.createAutoFileCode(file)).ToList();
+            List<string> fcode = IOFile.ReadFile(CreateID.CreateAutoFileCode(file)).ToList();
 
             for (int i = 0; i < fcode.Count; i++)
             {
@@ -87,22 +91,24 @@ namespace QLDienThoai
         }
         /// <summary>
         /// xoa doi tuong bang ma
+        /// 25/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="code"></param>
         /// <param name="fileData"></param>
         /// <returns></returns>
         public static string Remove(string code, string fileData)
         {
-            string fileCode = CreateID.createAutoFileCode(fileData);
+            string fileCode = CreateID.CreateAutoFileCode(fileData);
 
-            List<string> fcode = IOFile.readFile(fileCode).ToList();
-            List<string> fData = IOFile.readFile(fileData).ToList();
+            List<string> fcode = IOFile.ReadFile(fileCode).ToList();
+            List<string> fData = IOFile.ReadFile(fileData).ToList();
 
-            int line = IOFile.findByCode(code, fileData);
+            int line = IOFile.FindByCode(code, fileData);
 
             if (line == -1)
             {
-                return "Sai ma!!!";
+                return null;
             }
 
             fcode.RemoveAt(line);
@@ -115,6 +121,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// them doi tuong
+        /// 25/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="code"></param>
         /// <param name="data"></param>
@@ -122,7 +130,7 @@ namespace QLDienThoai
         /// <returns></returns>
         public static string Add(string code, INhapXuatFile data, string fileData)
         {
-            string fileCode = CreateID.createAutoFileCode(fileData);
+            string fileCode = CreateID.CreateAutoFileCode(fileData);
 
             File.AppendAllLines(fileCode, new string[] { code });
             File.AppendAllLines(fileData, new string[] { data.WriteFile() });
@@ -134,6 +142,8 @@ namespace QLDienThoai
 
         /// <summary>
         /// sua doi tuong
+        /// 25/7/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="code"></param>
         /// <param name="data"></param>
@@ -141,23 +151,29 @@ namespace QLDienThoai
         /// <returns></returns>
         public static string Update(string code, INhapXuatFile data, string fileData)
         {
-            string fileCode = CreateID.createAutoFileCode(fileData);
+            string fileCode = CreateID.CreateAutoFileCode(fileData);
 
-            List<string> fData = IOFile.readFile(fileData).ToList();
+            List<string> fData = IOFile.ReadFile(fileData).ToList();
 
-            fData[findByCode(code, fileData)] = data.WriteFile();
+            fData[FindByCode(code, fileData)] = data.WriteFile();
 
             File.WriteAllLines(fileData, fData.ToArray());
 
             return code;
         }
-
+        /// <summary>
+        /// sắp xếp trong file
+        /// 25/7/2020
+        /// Nguyễn Lê Trọng Tiền
+        /// </summary>
+        /// <param name="fileData"></param>
+        /// <returns></returns>
         public static bool Sort(string fileData)
         {
-            string fileCode = CreateID.createAutoFileCode(fileData);
+            string fileCode = CreateID.CreateAutoFileCode(fileData);
 
-            List<string> fcode = IOFile.readFile(fileCode).ToList();
-            List<string> fData = IOFile.readFile(fileData).ToList();
+            List<string> fcode = IOFile.ReadFile(fileCode).ToList();
+            List<string> fData = IOFile.ReadFile(fileData).ToList();
 
             fcode.Sort();
             fData.Sort();
@@ -167,12 +183,19 @@ namespace QLDienThoai
 
             return true;
         }
-
-        public static bool checkIDTrung(string code, string fileData)
+        /// <summary>
+        /// kiểm tra id trùng
+        /// 25/7/2020
+        /// Nguyễn Lê Trọng Tiền
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="fileData"></param>
+        /// <returns></returns>
+        public static bool CheckIDTrung(string code, string fileData)
         {
-            string fileCode = CreateID.createAutoFileCode(fileData);
+            string fileCode = CreateID.CreateAutoFileCode(fileData);
 
-            List<string> fcode = IOFile.readFile(fileCode).ToList();
+            List<string> fcode = IOFile.ReadFile(fileCode).ToList();
 
             foreach (var k in fcode)
             {

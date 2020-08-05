@@ -1,4 +1,4 @@
-nv001+1234453234+hai@gmail.com+Nguyen Trong Hai.2000/01/01.1,Linh Chieu,Thu Duc,HCM.123432***
+nv001+1234453234+hai@gmail.com+Nguyen Trong Hai.2000/01/01.1,Linh Chieu,Thu Duc,HCM.123432123
 nv002+3214567654+toan@gmail.com+Nguyen Van Toan.1998/02/02.2,Linh Dong,Thu Duc,HCM.234567890
 nv003+2345673211+bao@gmail.com+Nguyen Van Bao.1997/03/03.3,NDC,Thoi Binh,Ca Mau.345218765
 nv004+1243576879+tu@gmail.com+Tran Thi Cam Tu.2000/04/04.4,PVH,Quan 12,HCM.765439870

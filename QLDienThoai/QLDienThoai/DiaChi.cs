@@ -1,5 +1,5 @@
 ﻿/**
-* Nguyễn Lê Trọng Tiền
+* Nguyễn Lê Trọng Tiền,Lưu Thị Kiều Oanh
 * Lớp CD19TT9
 * Ngày : 2/7/2020
 * class DiaChi chứa các thông tin địa chỉ nhà như số nhà đường quận thành phố
@@ -15,6 +15,8 @@ namespace QLDienThoai
         private string thanhPho;
         /// <summary>
         /// Constructor không tham so
+        /// 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         public DiaChi()
         {
@@ -25,7 +27,8 @@ namespace QLDienThoai
         }
         /// <summary>
         /// consrtuctor đầy đủ tham số
-        /// Ngày : 2/7/2020
+        /// 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <param name="soNha"></param>
         /// <param name="duong"></param>
@@ -98,6 +101,7 @@ namespace QLDienThoai
         /// <summary>
         /// Định dạng chuỗi được ghi xuống file
         /// Ngay sửa:1/8/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <returns></returns>
         public string WriteFile()
@@ -107,6 +111,7 @@ namespace QLDienThoai
         /// <summary>
         /// Lấy dữ liệu từ file
         /// Ngày sửa: 1/8/2020
+        /// Nguyễn Lê Trọng Tiền
         /// </summary>
         /// <param name="diaChi"></param>
         /// <returns></returns>
@@ -118,7 +123,8 @@ namespace QLDienThoai
 
         /// <summary>
         /// in địa chỉ
-        /// Ngày sửa: 2/7/2020
+        /// 3/7/2020
+        /// Lưu Thị Kiều Oanh
         /// </summary>
         /// <returns></returns>
         public override string ToString()
