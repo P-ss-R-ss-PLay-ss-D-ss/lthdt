@@ -4,6 +4,7 @@ D:\LuuThiKieuOanh_CD19TT9\LTHDT\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.pd
 D:\LuuThiKieuOanh_CD19TT9\LTHDT\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.csprojResolveAssemblyReference.cache
 D:\LuuThiKieuOanh_CD19TT9\LTHDT\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.exe
 D:\LuuThiKieuOanh_CD19TT9\LTHDT\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.pdb
+<<<<<<< HEAD
 C:\Users\Administrator\Documents\GitHub\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.exe.config
 C:\Users\Administrator\Documents\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.exe
 C:\Users\Administrator\Documents\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.pdb
@@ -13,3 +14,12 @@ C:\Users\Administrator\Documents\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\
 D:\GitHub\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.exe.config
 D:\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.exe
 D:\GitHub\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.pdb
+=======
+D:\git\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.exe.config
+D:\git\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.exe
+D:\git\lthdt\QLDienThoai\QLDienThoai\bin\Debug\QLDienThoai.pdb
+D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.csprojAssemblyReference.cache
+D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.csproj.CoreCompileInputs.cache
+D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.exe
+D:\git\lthdt\QLDienThoai\QLDienThoai\obj\Debug\QLDienThoai.pdb
+>>>>>>> interface

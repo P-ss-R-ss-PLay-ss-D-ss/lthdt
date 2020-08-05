@@ -1,5 +1,9 @@
 ﻿/**
+<<<<<<< HEAD
  * Tên: Lưu Thị Kiều Oanh, Nguyễn Lê Trọng Tiền
+=======
+ * Tên: Lưu Thị Kiều Oanh,Nguyễn Lê Trọng Tiền
+>>>>>>> interface
  * Ngày: 16/7/2020
  * Mô tả: Viết các chức năng cho chương trình
  */
@@ -7,12 +11,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace QLDienThoai
 {
     class ChucNang
     {
+        //Tạo logo 
         static string FirstLogo()
         {
             string str = "\n\n\n\t      ___       __   __         ___   \n";
@@ -96,8 +100,6 @@ namespace QLDienThoai
                 Console.WriteLine();
             } while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
 
-
-
             switch (menu)
             {
                 case 1:
@@ -170,7 +172,7 @@ namespace QLDienThoai
             {
                 case 1:
                     kh = addCustomer();
-                    customerID = IOFile.Add(kh.MaKhachHang, kh.WriteFile(), fileKH);
+                    customerID = IOFile.Add(kh.MaKhachHang, kh, fileKH);
                     break;
                 case 2:
                     do
@@ -383,7 +385,7 @@ namespace QLDienThoai
             } while (KhachHang.checkString(thanhPho) == false);
             return new DiaChi(soNha, duong, quan, thanhPho);
         }
-        //Đọc dữ liệu nhập vào
+        //Ngừng chương trình
         static string Read()
         {
             string s = Console.ReadLine();
@@ -410,8 +412,9 @@ namespace QLDienThoai
             int menu = 0;
             do
             {
-                Console.Write(" - Nhap lua chon: ");
-                int.TryParse(Read(), out menu);
+                Console.Write(">> ");
+                int.TryParse(Console.ReadKey().KeyChar + "", out menu);
+                Console.WriteLine();
             } while (menu != 1 && menu != 2);
 
 
@@ -419,7 +422,7 @@ namespace QLDienThoai
             {
                 case 1:
                     SanPham sp = addProduct();
-                    code = IOFile.Add(sp.MaSP, sp.WriteFile(), fileSP);
+                    code = IOFile.Add(sp.MaSP, sp, fileSP);
                     return;
                 case 2:
                     do
@@ -467,7 +470,7 @@ namespace QLDienThoai
 
             File.WriteAllLines(fileSP, s);
 
-            IOFile.Add(hd.MaHD, hd.WriteFile(), fileHD);
+            IOFile.Add(hd.MaHD, hd, fileHD);
         }
         #endregion
 
@@ -802,7 +805,7 @@ namespace QLDienThoai
 
                     sp.TenSP = name;
 
-                    IOFile.Update(id, sp.WriteFile(), fileSP);
+                    IOFile.Update(id, sp, fileSP);
 
                     Console.Clear();
                     goto update;
@@ -817,7 +820,7 @@ namespace QLDienThoai
 
                     sp.Gia = gia;
 
-                    IOFile.Update(id, sp.WriteFile(), fileSP);
+                    IOFile.Update(id, sp, fileSP);
 
                     Console.Clear();
                     goto update;
@@ -832,7 +835,7 @@ namespace QLDienThoai
 
                     sp.XuatXu = makeIn;
 
-                    IOFile.Update(id, sp.WriteFile(), fileSP);
+                    IOFile.Update(id, sp, fileSP);
 
                     Console.Clear();
                     goto update;
@@ -881,7 +884,7 @@ namespace QLDienThoai
 
                     nv.SDT = sdt;
 
-                    IOFile.Update(id, nv.WriteFile(), fileNV);
+                    IOFile.Update(id, nv, fileNV);
 
                     Console.Clear();
                     goto update;
@@ -896,7 +899,7 @@ namespace QLDienThoai
 
                     nv.Mail = mail;
 
-                    IOFile.Update(id, nv.WriteFile(), fileNV);
+                    IOFile.Update(id, nv, fileNV);
 
                     Console.Clear();
                     goto update;
@@ -911,7 +914,7 @@ namespace QLDienThoai
 
                     nv.GeneralInfo = info;
 
-                    IOFile.Update(id, nv.WriteFile(), fileNV);
+                    IOFile.Update(id, nv, fileNV);
 
                     Console.Clear();
                     goto update;
@@ -960,7 +963,7 @@ namespace QLDienThoai
 
                     kh.SDT = sdt;
 
-                    IOFile.Update(id, kh.WriteFile(), fileKH);
+                    IOFile.Update(id, kh, fileKH);
 
                     Console.Clear();
                     goto update;
@@ -975,7 +978,7 @@ namespace QLDienThoai
 
                     kh.Mail = mail;
 
-                    IOFile.Update(id, kh.WriteFile(), fileKH);
+                    IOFile.Update(id, kh, fileKH);
 
                     Console.Clear();
                     goto update;
@@ -990,7 +993,7 @@ namespace QLDienThoai
 
                     kh.GeneralInfo = info;
 
-                    IOFile.Update(id, kh.WriteFile(), fileKH);
+                    IOFile.Update(id, kh, fileKH);
 
                     Console.Clear();
                     goto update;
@@ -1042,15 +1045,13 @@ namespace QLDienThoai
         static void themThongTinNhanVien()
         {
             NhanVien a = addStaff();
-            string data = a.WriteFile();
-            IOFile.Add(CreateID.createID(fileNV), data, fileNV);
+            IOFile.Add(a.StaffID, a, fileNV);
         }
 
         static void themThongTinKhachHang()
         {
             KhachHang a = addCustomer();
-            string data = a.WriteFile();
-            IOFile.Add(CreateID.createID(fileKH), data, fileKH);
+            IOFile.Add(a.MaKhachHang, a, fileKH);
         }
 
         #endregion

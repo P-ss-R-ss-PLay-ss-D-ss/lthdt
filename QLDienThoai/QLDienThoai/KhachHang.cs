@@ -4,13 +4,11 @@
 * Ngày : 3/7/2020
 * class KhachHang chứa các thông tin như thông tin chung, mã khách hàng, sDT, mail
 */
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace QLDienThoai
 {
-    class KhachHang : ThongTinChung, NhapXuatFile
+    class KhachHang : ThongTinChung, INhapXuatFile, IGetID
     {
         //fields
         private string maKhachHang;
@@ -124,7 +122,7 @@ namespace QLDienThoai
         /// </summary>
         /// <param name="iD"></param>
         /// <returns></returns>
-        public override object GetFileByID(string iD)
+        public object GetFileByID(string iD)
         {
             string data;
             if ((data = IOFile.readFileByID(iD, ChucNang.fileKH)) != null)

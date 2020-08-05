@@ -4,13 +4,11 @@
 * Ngày : 2/7/2020
 * class NhanVien
 */
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace QLDienThoai
 {
-    class NhanVien : ThongTinChung, NhapXuatFile
+    class NhanVien : ThongTinChung, INhapXuatFile, IGetID
     {
         //fileds
         private string staffID;
@@ -116,7 +114,7 @@ namespace QLDienThoai
         /// </summary>
         /// <param name="iD"></param>
         /// <returns></returns>
-        public override object GetFileByID(string iD)
+        public object GetFileByID(string iD)
         {
             string data;
             if ((data = IOFile.readFileByID(iD, ChucNang.fileNV)) != null)
@@ -146,6 +144,7 @@ namespace QLDienThoai
             return sb.ToString();
 
         }
+
         /// <summary>
         /// Phuong thuc huy 
         /// </summary>

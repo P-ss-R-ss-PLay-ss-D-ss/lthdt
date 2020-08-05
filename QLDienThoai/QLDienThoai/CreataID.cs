@@ -4,10 +4,8 @@
  * Mô tả: Tạo ID cho các đối tượng Bill, Customer, Product, Staff
  */
 using System;
-using System.IO;
-using System.Collections;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace QLDienThoai
 {
