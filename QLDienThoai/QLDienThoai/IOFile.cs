@@ -5,7 +5,6 @@
  * class IOFile dùng để thao tác với file như đọc,ghi,tìm,sửa,xóa file
  */
 
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -125,8 +124,8 @@ namespace QLDienThoai
         {
             string fileCode = CreateID.createAutoFileCode(fileData);
 
-            File.AppendAllText(fileCode,code);
-            File.AppendAllText(fileData, data.WriteFile());
+            File.AppendAllLines(fileCode, new string[] { code });
+            File.AppendAllLines(fileData, new string[] { data.WriteFile() });
 
             Sort(fileData);
 

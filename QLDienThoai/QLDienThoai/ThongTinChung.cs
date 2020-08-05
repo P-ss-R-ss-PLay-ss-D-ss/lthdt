@@ -30,19 +30,6 @@ namespace QLDienThoai
             SoCMND = soCMND;
             DiaChi = diaChi;
         }
-        ///// <summary>
-        ///// constructor thiếu ngày sinh
-        ///// ngày : 2/7/2020
-        ///// </summary>
-        ///// <param name="hoTen"></param>
-        ///// <param name="soCMND"></param>
-        ///// <param name="diaChi"></param>
-        //public ThongTinChung(string hoTen, string soCMND, DiaChi diaChi)
-        //{
-        //    HoTen = hoTen;
-        //    SoCMND = soCMND;
-        //    DiaChi = this.diaChi;
-        //}
         /// <summary>
         /// constructor đầy đủ tham số
         /// ngày : 2/7/2020

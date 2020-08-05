@@ -48,6 +48,7 @@
     <Compile Include="HoaDon.cs" />
     <Compile Include="CreataID.cs" />
     <Compile Include="KhachHang.cs" />
+    <Compile Include="Serialize.cs" />
     <Compile Include="ThongTinChung.cs" />
     <Compile Include="IOFile.cs" />
     <Compile Include="INhapXuatFile.cs" />

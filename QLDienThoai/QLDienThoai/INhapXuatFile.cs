@@ -4,9 +4,6 @@
 * Ngày : 29/7/2020
 * class NhapXuatFile
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QLDienThoai
 {
@@ -23,6 +20,6 @@ namespace QLDienThoai
         /// <param name="path"></param>
         /// <returns></returns>
         object GetFile(string path);
-        
+
     }
 }

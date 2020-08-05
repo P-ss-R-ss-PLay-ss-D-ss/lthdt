@@ -5,12 +5,11 @@
  * class SanPham gồm các thông tin như mã sản phẩm ,tên sản phẩm, số lượng, giá,xuất xứ
  */
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace QLDienThoai
 {
-    class SanPham : INhapXuatFile,IGetID
+    class SanPham : INhapXuatFile, IGetID
     {
         //fields
         private string maSP;

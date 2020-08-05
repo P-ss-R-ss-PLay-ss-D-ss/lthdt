@@ -4,13 +4,11 @@
 * Ngày : 3/7/2020
 * class KhachHang chứa các thông tin như thông tin chung, mã khách hàng, sDT, mail
 */
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace QLDienThoai
 {
-    class KhachHang : ThongTinChung, INhapXuatFile,IGetID
+    class KhachHang : ThongTinChung, INhapXuatFile, IGetID
     {
         //fields
         private string maKhachHang;

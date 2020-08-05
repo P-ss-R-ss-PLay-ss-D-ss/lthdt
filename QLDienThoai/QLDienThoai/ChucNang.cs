@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace QLDienThoai
 {
@@ -411,7 +410,7 @@ namespace QLDienThoai
                 Console.Write(">> ");
                 int.TryParse(Console.ReadKey().KeyChar + "", out menu);
                 Console.WriteLine();
-            } while (menu != 1 && menu != 2 );
+            } while (menu != 1 && menu != 2);
 
 
             switch (menu)

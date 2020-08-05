@@ -1,10 +1,9 @@
 ﻿/**
- * Nguyễn Lê Trọng Tiền
- * Lớp CD19TT9
- * Ngày : 2/7/2020
- * class DiaChi chứa các thông tin địa chỉ nhà như số nhà đường quận thành phố
- */
-
+* Nguyễn Lê Trọng Tiền
+* Lớp CD19TT9
+* Ngày : 2/7/2020
+* class DiaChi chứa các thông tin địa chỉ nhà như số nhà đường quận thành phố
+*/
 namespace QLDienThoai
 {
     class DiaChi : INhapXuatFile
